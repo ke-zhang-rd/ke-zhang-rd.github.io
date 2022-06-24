@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inspect function caller &mdash; Krystal Python 0.post1+ge624e66 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="setuptools" href="setuptools.html" />
+    <link rel="prev" title="Search methods’ host class" href="searchmethod.html" />
+ 
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-185617644-1']);
+  _gaq.push(['_trackPageview']);
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ff8fbe" >
+            <a href="index.html" class="icon icon-home"> Krystal Python
+          </a>
+              <div class="version">
+                0.post1+ge624e66
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Typing and annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dunder.html">Dunder methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy.html">Deepcopy vs Shallow copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutabledefault.html">Mutable default arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirvsdict.html">dir vs __dict__</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forelse.html">for else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starred.html">Starred expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="try.html">try, except, else and finally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iter.html">iter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="itertools.html">itertools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_filter_reduce.html">Map, Filter and Reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container.html">High performance container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">Decorator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataclass.html">Case Study: dataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decoratormethod.html">A decorator as class method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptor.html">Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classmethod.html">classmethod, staticmethod and property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functools.html">functools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newvsinit.html">new vs  init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="super.html">super</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta.html">Metaclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singleton.html">Singleton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractmethod.html">Abstractmethod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html">Thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator, yield and yield from</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio.html">asyncio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Inspect function caller</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#package">package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">vscode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source in For-profit Corporation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ff8fbe" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Krystal Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Inspect function caller</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/inspect.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="inspect-function-caller">
+<h1>Inspect function caller<a class="headerlink" href="#inspect-function-caller" title="Permalink to this heading">¶</a></h1>
+<p>You write a function <code class="docutils literal notranslate"><span class="pre">func()</span></code> and coorperate with popular package in the way this package subscribe <code class="docutils literal notranslate"><span class="pre">func()</span></code>. You are curious which function of this package actually call your <code class="docutils literal notranslate"><span class="pre">func</span></code>. <code class="docutils literal notranslate"><span class="pre">inspect</span></code> could help you.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This part happen in popular package.</span>
+<span class="k">def</span> <span class="nf">caller</span><span class="p">():</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="n">func</span><span class="p">()</span> <span class="c1"># This function could be called implicitly.</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is your own function.</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+  <span class="c1"># f_back go up one in the stack</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()</span><span class="o">.</span><span class="n">f_back</span><span class="p">))</span>
+  <span class="c1"># Other part...</span>
+</pre></div>
+</div>
+<p>When you try this popular package methods.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">caller</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">caller</span><span class="p">():</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="n">func</span><span class="p">()</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<section id="package">
+<h2>package<a class="headerlink" href="#package" title="Permalink to this heading">¶</a></h2>
+<p>I wrote a package called <code class="docutils literal notranslate"><span class="pre">ambush</span></code> to do this. <a class="reference external" href="https://github.com/ke-zhang-rd/ambush">https://github.com/ke-zhang-rd/ambush</a></p>
+<p><strong>Example:</strong></p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">main.py</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">sub</span> <span class="kn">import</span> <span class="n">Member</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="k">class</span> <span class="nc">Primary</span><span class="p">:</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 8</span>        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos"> 9</span>        <span class="n">m</span> <span class="o">=</span> <span class="n">Member</span><span class="p">()</span>
+<span class="linenos">10</span>        <span class="n">m</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="linenos">11</span>        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">12</span>        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="n">p</span> <span class="o">=</span> <span class="n">Primary</span><span class="p">()</span>
+<span class="linenos">16</span><span class="n">p</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">sub.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">Member</span><span class="p">:</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span>    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">5</span>        <span class="kn">from</span> <span class="nn">ambush</span> <span class="kn">import</span> <span class="n">detector</span>
+<span class="linenos">6</span>        <span class="n">detector</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Who is calling current function
+=========================================================
+In file:
+/Users/kz2249/tmp/main.py
+
+class Primary:
+    # by caller function:
+    def foo in line 6
+        ...
+        # actually call:
+        m.bar() # in line 10
+        ...
+
+Peek:
+---------------------------------------------------------
+    def foo(self):
+        a = 1
+        a = a + 1
+        m = Member()
+        m.bar()
+        a = a + 1
+        a = a + 1
+
+=========================================================
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="searchmethod.html" class="btn btn-neutral float-left" title="Search methods’ host class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="setuptools.html" class="btn btn-neutral float-right" title="setuptools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Ke Zhang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<div class="footer">This page uses <a href="https://analytics.google.com/">
+Google Analytics</a> to collect statistics. You can disable it by blocking
+the JavaScript coming from www.google-analytics.com.
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+</div>
+
+
+</body>
+</html>

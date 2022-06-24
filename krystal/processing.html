@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Process &mdash; Krystal Python 0.post1+ge624e66 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Generator, yield and yield from" href="generator.html" />
+    <link rel="prev" title="Thread" href="threading.html" />
+ 
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-185617644-1']);
+  _gaq.push(['_trackPageview']);
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ff8fbe" >
+            <a href="index.html" class="icon icon-home"> Krystal Python
+          </a>
+              <div class="version">
+                0.post1+ge624e66
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Typing and annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dunder.html">Dunder methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy.html">Deepcopy vs Shallow copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutabledefault.html">Mutable default arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirvsdict.html">dir vs __dict__</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forelse.html">for else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starred.html">Starred expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="try.html">try, except, else and finally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iter.html">iter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="itertools.html">itertools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_filter_reduce.html">Map, Filter and Reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container.html">High performance container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">Decorator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataclass.html">Case Study: dataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decoratormethod.html">A decorator as class method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptor.html">Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classmethod.html">classmethod, staticmethod and property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functools.html">functools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newvsinit.html">new vs  init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="super.html">super</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta.html">Metaclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singleton.html">Singleton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractmethod.html">Abstractmethod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html">Thread</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Process</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pool">Pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-if-name-main">Why if __name__ == ‘__main__’:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#process-communication">Process Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#queue">Queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pipe">Pipe</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#synchronization">Synchronization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator, yield and yield from</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio.html">asyncio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inspect.html">Inspect function caller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">vscode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source in For-profit Corporation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ff8fbe" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Krystal Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Process</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/processing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="process">
+<h1>Process<a class="headerlink" href="#process" title="Permalink to this heading">¶</a></h1>
+<section id="pool">
+<h2>Pool<a class="headerlink" href="#pool" title="Permalink to this heading">¶</a></h2>
+<p>Pool is the most common way to in using multiprocessing. Here is a example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>There are several things worth to mention:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Pool()</span></code> return a context manager. This is the most usual way to use <code class="docutils literal notranslate"><span class="pre">Pool</span></code>. <code class="docutils literal notranslate"><span class="pre">__enter__()</span></code> return a Pool object and <code class="docutils literal notranslate"><span class="pre">__exit__()</span></code> calls <code class="docutils literal notranslate"><span class="pre">terminate()</span></code> method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pool()</span></code> uses a method <code class="docutils literal notranslate"><span class="pre">map</span></code> to achieve multiprocessing map.</p></li>
+<li><p>You need use <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__':</span></code> to protect you main multiprocessings logic. There are more details about this later.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>Process<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>Process is the raw approach to spawn a process.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;bob&#39;</span><span class="p">,))</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Clearly, you need use <code class="docutils literal notranslate"><span class="pre">start()</span></code> to start a process and <code class="docutils literal notranslate"><span class="pre">join()</span></code> make process in which <code class="docutils literal notranslate"><span class="pre">join()</span></code> get called wait caller finish, e.g. main process need to wait <code class="docutils literal notranslate"><span class="pre">p</span></code> finish here.</p>
+<p>join() and daemon</p>
+<dl class="simple">
+<dt>If in your main process, you call:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">p.join()</span></code> make main process wait <code class="docutils literal notranslate"><span class="pre">p</span></code> finished.
+<code class="docutils literal notranslate"><span class="pre">p.daemon</span> <span class="pre">=</span> <span class="pre">True</span></code>: if main process is closed, also go to close daemoned subprocess <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="why-if-name-main">
+<h2>Why if __name__ == ‘__main__’:<a class="headerlink" href="#why-if-name-main" title="Permalink to this heading">¶</a></h2>
+<p>Python multiprocessing supports two basic ways to start a process: <code class="docutils literal notranslate"><span class="pre">spawn</span></code> and <code class="docutils literal notranslate"><span class="pre">fork</span></code>. Their relationship is sample:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spawn</span> <span class="o">=</span> <span class="n">fork</span> <span class="o">+</span> <span class="n">execve</span>
+</pre></div>
+</div>
+<p><strong>fork:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The child process, when it begins, is effectively identical to the parent process.</p></li>
+<li><p>All resources of the parent are independent and identical in child process.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>spawn:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Basically, it’s rerun code including import module at start of each child process</p></li>
+<li><p>run <code class="docutils literal notranslate"><span class="pre">execve(path)</span></code> which construct a new process based on path. <code class="docutils literal notranslate"><span class="pre">path</span></code> is copied pickable process.</p></li>
+<li><p>So spawn method need lots of things pickable.</p></li>
+<li><p>import module at start of each child process, including <code class="docutils literal notranslate"><span class="pre">__main__</span></code> module since you need function <code class="docutils literal notranslate"><span class="pre">f</span></code> in your new process. That’s the main reason why you need <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__':</span></code> to prevent resursive.</p></li>
+<li><p>Therefore, child process DON’T gets variables defined in name == main block</p></li>
+<li><p>Extra <code class="docutils literal notranslate"><span class="pre">execve</span></code> call make this operation heavy.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">execve(const</span> <span class="pre">char</span> <span class="pre">*pathname,</span> <span class="pre">char</span> <span class="pre">*const</span> <span class="pre">argv[],</span> <span class="pre">char</span> <span class="pre">*const</span> <span class="pre">envp[])</span></code></p>
+<p>execve() executes the program referred to by pathname.  This
+causes the program that is currently being run by the calling
+process to be replaced with a new program, with newly initialized
+stack, heap, and (initialized and uninitialized) data segments.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Neither method copies running threads into the child processes. So multithreaded process isn’t friendly.</p>
+</div>
+</section>
+<section id="process-communication">
+<h2>Process Communication<a class="headerlink" href="#process-communication" title="Permalink to this heading">¶</a></h2>
+<section id="queue">
+<h3>Queue<a class="headerlink" href="#queue" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Queue</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">([</span><span class="mi">42</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">q</span><span class="p">,))</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>    <span class="c1"># prints &quot;[42, None, &#39;hello&#39;]&quot;</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="pipe">
+<h3>Pipe<a class="headerlink" href="#pipe" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="p">,</span> <span class="ow">in</span> <span class="o">=</span> <span class="n">Pipe</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You could think <code class="docutils literal notranslate"><span class="pre">out</span></code> and <code class="docutils literal notranslate"><span class="pre">in</span></code> as two physical location in memory. You build a bridge between them. So if there is a copy <code class="docutils literal notranslate"><span class="pre">out_cp</span></code> and <code class="docutils literal notranslate"><span class="pre">in_cp</span></code>, you still could use <code class="docutils literal notranslate"><span class="pre">in.send()</span></code> and get by <code class="docutils literal notranslate"><span class="pre">out_cp.rec()</span></code>.</p>
+<p>Here is a example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Pipe</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">reader_proc</span><span class="p">(</span><span class="n">pipe</span><span class="p">):</span>
+    <span class="c1">## Read from the pipe; this will be spawned as a separate Process</span>
+    <span class="n">p_output</span><span class="p">,</span> <span class="n">p_input</span> <span class="o">=</span> <span class="n">pipe</span>
+    <span class="n">p_input</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>    <span class="c1"># We are only reading</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">p_output</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>    <span class="c1"># Read from the output pipe and do nothing</span>
+        <span class="k">if</span> <span class="n">msg</span><span class="o">==</span><span class="s1">&#39;DONE&#39;</span><span class="p">:</span>
+            <span class="k">break</span>
+
+<span class="k">def</span> <span class="nf">writer</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">p_input</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+        <span class="n">p_input</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>             <span class="c1"># Write &#39;count&#39; numbers into the input pipe</span>
+    <span class="n">p_input</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;DONE&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">]:</span>
+        <span class="c1"># Pipes are unidirectional with two endpoints:  p_input ------&gt; p_output</span>
+        <span class="n">p_output</span><span class="p">,</span> <span class="n">p_input</span> <span class="o">=</span> <span class="n">Pipe</span><span class="p">()</span>  <span class="c1"># writer() writes to p_input from _this_ process</span>
+        <span class="n">reader_p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">reader_proc</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">((</span><span class="n">p_output</span><span class="p">,</span> <span class="n">p_input</span><span class="p">),))</span>
+        <span class="n">reader_p</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">reader_p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>     <span class="c1"># Launch the reader process</span>
+
+        <span class="n">p_output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>       <span class="c1"># We no longer need this part of the Pipe()</span>
+        <span class="n">_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">writer</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">p_input</span><span class="p">)</span> <span class="c1"># Send a lot of stuff to reader_proc()</span>
+        <span class="n">p_input</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">reader_p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sending </span><span class="si">{0}</span><span class="s2"> numbers to Pipe() took </span><span class="si">{1}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">_start</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>In this example, we put pipe as args while construct Process. You may notice p_output is closed by main process but in <code class="docutils literal notranslate"><span class="pre">reader_proc</span></code>, p_output.recv() is called. If we print the id of those two <code class="docutils literal notranslate"><span class="pre">p_output</span></code>, you will find they are different. However, p_input in <code class="docutils literal notranslate"><span class="pre">writer</span></code> still could send to a copied <code class="docutils literal notranslate"><span class="pre">p_output</span></code>.
+Put pipe as args of Process will make subprocess have a builtin communication bridge. It’s pretty common to see pipe or one end appearing in args of Process.
+The object sent must be picklable. Very large pickles (approximately 32 MiB+, though it depends on the OS) may raise a ValueError exception.</p>
+</section>
+</section>
+<section id="synchronization">
+<h2>Synchronization<a class="headerlink" href="#synchronization" title="Permalink to this heading">¶</a></h2>
+<p>By Lock</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Lock</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">l</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">lock</span><span class="p">,</span> <span class="n">num</span><span class="p">))</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This example basically is a serial running one by one. <code class="docutils literal notranslate"><span class="pre">p.join()</span></code> make main process with <code class="docutils literal notranslate"><span class="pre">p</span></code> finish``.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="threading.html" class="btn btn-neutral float-left" title="Thread" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generator.html" class="btn btn-neutral float-right" title="Generator, yield and yield from" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Ke Zhang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<div class="footer">This page uses <a href="https://analytics.google.com/">
+Google Analytics</a> to collect statistics. You can disable it by blocking
+the JavaScript coming from www.google-analytics.com.
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+</div>
+
+
+</body>
+</html>

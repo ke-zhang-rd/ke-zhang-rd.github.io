@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generator, yield and yield from &mdash; Krystal Python 0.post1+ge624e66 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="asyncio" href="asyncio.html" />
+    <link rel="prev" title="Process" href="processing.html" />
+ 
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-185617644-1']);
+  _gaq.push(['_trackPageview']);
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ff8fbe" >
+            <a href="index.html" class="icon icon-home"> Krystal Python
+          </a>
+              <div class="version">
+                0.post1+ge624e66
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Typing and annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dunder.html">Dunder methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy.html">Deepcopy vs Shallow copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutabledefault.html">Mutable default arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirvsdict.html">dir vs __dict__</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forelse.html">for else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starred.html">Starred expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="try.html">try, except, else and finally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iter.html">iter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="itertools.html">itertools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_filter_reduce.html">Map, Filter and Reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container.html">High performance container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">Decorator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataclass.html">Case Study: dataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decoratormethod.html">A decorator as class method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptor.html">Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classmethod.html">classmethod, staticmethod and property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functools.html">functools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newvsinit.html">new vs  init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="super.html">super</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta.html">Metaclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singleton.html">Singleton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractmethod.html">Abstractmethod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html">Thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing.html">Process</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generator, yield and yield from</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#yield">yield</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#yield-expression">yield expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#yield-from">yield from</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio.html">asyncio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inspect.html">Inspect function caller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">vscode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source in For-profit Corporation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ff8fbe" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Krystal Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Generator, yield and yield from</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/generator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generator-yield-and-yield-from">
+<h1>Generator, yield and yield from<a class="headerlink" href="#generator-yield-and-yield-from" title="Permalink to this heading">¶</a></h1>
+<section id="yield">
+<h2>yield<a class="headerlink" href="#yield" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>variable is assigned by <code class="docutils literal notranslate"><span class="pre">gen.send()</span></code></p>
+</section>
+<section id="yield-expression">
+<h2>yield expression<a class="headerlink" href="#yield-expression" title="Permalink to this heading">¶</a></h2>
+<p>A generator expression is a compact generator notation in parentheses:
+generator_expression = (expression comp_for)
+A generator expression yields a new generator object. Its syntax is the same as for comprehensions, except that it is enclosed in parentheses instead of brackets or curly braces.</p>
+</section>
+<section id="yield-from">
+<h2>yield from<a class="headerlink" href="#yield-from" title="Permalink to this heading">¶</a></h2>
+<p>The true name of <code class="docutils literal notranslate"><span class="pre">yield</span> <span class="pre">from</span></code> is <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. It allows the user to delegate tasks to another generator. Additionally, the subgenerator is allowed to return with a value, and the value is made available to the delegating generator. example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen1</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">i</span>
+
+<span class="n">gen2</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">gen</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">gen1</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">i</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">gen2</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">i</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">gen</span><span class="p">())</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gen</span><span class="p">():</span>
+    <span class="k">yield from</span> <span class="n">gen1</span><span class="p">()</span>
+    <span class="k">yield from</span> <span class="n">gen2</span><span class="p">()</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">gen</span><span class="p">())</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lamyield</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">lamyield</span><span class="p">())</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span> <span class="mi">14</span>
+</pre></div>
+</div>
+<p>Even yield from designed to yield from another generator, however, it allows any iterator, example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">yield from</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">yield from</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="processing.html" class="btn btn-neutral float-left" title="Process" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="asyncio.html" class="btn btn-neutral float-right" title="asyncio" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Ke Zhang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<div class="footer">This page uses <a href="https://analytics.google.com/">
+Google Analytics</a> to collect statistics. You can disable it by blocking
+the JavaScript coming from www.google-analytics.com.
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dunder methods &mdash; Krystal Python 0.post1+ge624e66 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chaining Comparison Operators" href="comparision.html" />
+    <link rel="prev" title="lambda" href="lambda.html" />
+ 
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-185617644-1']);
+  _gaq.push(['_trackPageview']);
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ff8fbe" >
+            <a href="index.html" class="icon icon-home"> Krystal Python
+          </a>
+              <div class="version">
+                0.post1+ge624e66
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Typing and annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dunder methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#slot">__slot__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#doc">__doc__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#str-and-repr">__str__ and __repr__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attributs-related">Attributs related</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getattribute">__getattribute__</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setattr">__setattr__</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getattr">__getattr__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delattr">__delattr__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getitem">__getitem__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-and-iter">__next__ and __iter__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparison-methods">Comparison methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hash">__hash__</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy.html">Deepcopy vs Shallow copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutabledefault.html">Mutable default arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirvsdict.html">dir vs __dict__</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forelse.html">for else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starred.html">Starred expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="try.html">try, except, else and finally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iter.html">iter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="itertools.html">itertools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_filter_reduce.html">Map, Filter and Reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container.html">High performance container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">Decorator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataclass.html">Case Study: dataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decoratormethod.html">A decorator as class method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptor.html">Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classmethod.html">classmethod, staticmethod and property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functools.html">functools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newvsinit.html">new vs  init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="super.html">super</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta.html">Metaclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singleton.html">Singleton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractmethod.html">Abstractmethod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html">Thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator, yield and yield from</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio.html">asyncio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inspect.html">Inspect function caller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">vscode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source in For-profit Corporation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ff8fbe" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Krystal Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Dunder methods</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dunder.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dunder-methods">
+<h1>Dunder methods<a class="headerlink" href="#dunder-methods" title="Permalink to this heading">¶</a></h1>
+<section id="slot">
+<h2>__slot__<a class="headerlink" href="#slot" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://towardsdatascience.com/understand-slots-in-python-e3081ef5196d">https://towardsdatascience.com/understand-slots-in-python-e3081ef5196d</a></p>
+</section>
+<section id="doc">
+<h2>__doc__<a class="headerlink" href="#doc" title="Permalink to this heading">¶</a></h2>
+<p>Show the docstring inside triple quotes <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;...&quot;&quot;&quot;</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># mymodule.py</span>
+<span class="sd">&quot;&quot;&quot;This is the module docstring.&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This is the function docstring.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">mymodule</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">mymodule</span><span class="o">.</span><span class="vm">__doc__</span>
+<span class="s1">&#39;This is the module docstring.&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">mymodule</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="vm">__doc__</span>
+<span class="s1">&#39;This is the function docstring.&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="str-and-repr">
+<h2>__str__ and __repr__<a class="headerlink" href="#str-and-repr" title="Permalink to this heading">¶</a></h2>
+<dl class="simple">
+<dt>class Point:</dt><dd><dl class="simple">
+<dt>def __init__(self, x, y):</dt><dd><p>self.x, self.y = x, y</p>
+</dd>
+<dt>def __repr__(self):</dt><dd><p>return f’Point(x={self.x}, y={self.y})’</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>p = Point(3, 4)
+print(p)
+Point(x=3, y=4)</p>
+<dl class="simple">
+<dt>class Point:</dt><dd><dl class="simple">
+<dt>def __init__(self, x, y):</dt><dd><p>self.x, self.y = x, y</p>
+</dd>
+<dt>def __repr__(self):</dt><dd><p>return f’Point(x={self.x}, y={self.y})’</p>
+</dd>
+<dt>def __str__(self):</dt><dd><p>return f’Point(x={self.x}, y={self.y}) from __str__’</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>p = Point(3, 4)
+print(p)
+Point(x=3, y=4) from __str__</p>
+<p>Here __str__ override __repr__.</p>
+<p>str(p)
+‘Point(x=3, y=4) from __str__’</p>
+<p>repr(p)
+‘Point(x=3, y=4)’</p>
+<p>print(eval(repr(p)))
+Point(x=3, y=4) from __str__</p>
+<p>eval and repr are conjugate. repr shows the argument’s type info(quote of str).</p>
+</section>
+<section id="attributs-related">
+<h2>Attributs related<a class="headerlink" href="#attributs-related" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="getattribute">
+<h2>__getattribute__<a class="headerlink" href="#getattribute" title="Permalink to this heading">¶</a></h2>
+<p>Check lookup chain on this document. All attribute/attr related dunder methods(__getattribute__, __setattr__, __getattr__ and __delattr__) are related to attributes lookup by <code class="docutils literal notranslate"><span class="pre">.</span></code> convention not <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
+<section id="setattr">
+<h3>__setattr__<a class="headerlink" href="#setattr" title="Permalink to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># this example uses __setattr__ to dynamically change attribute value to uppercase</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Frob</span><span class="p">:</span>
+<span class="gp">... </span>   <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="gp">... </span>       <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Frob</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">bamf</span> <span class="o">=</span> <span class="s2">&quot;bamf&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">bamf</span>
+<span class="go">&#39;BAMF&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="getattr">
+<h2>__getattr__<a class="headerlink" href="#getattr" title="Permalink to this heading">¶</a></h2>
+<p>Gets called when the item is not found via __getattribute__</p>
+</section>
+<section id="delattr">
+<h2>__delattr__<a class="headerlink" href="#delattr" title="Permalink to this heading">¶</a></h2>
+<dl class="simple">
+<dt>class foo():</dt><dd><dl class="simple">
+<dt>def __delattr__(self, name):</dt><dd><p>print(name)
+super().__delattr__(name)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="getitem">
+<h2>__getitem__<a class="headerlink" href="#getitem" title="Permalink to this heading">¶</a></h2>
+<p>Get called when look up by [] like a dict.</p>
+<p>Three dots(Ellipsis)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">foo</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">arg</span> <span class="o">==</span> <span class="o">...</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">foo</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">abc</span>
+</pre></div>
+</div>
+<p>f = foo()
+f.xyz = 123</p>
+<p>del f.xyz
+f.xyz
+AttributeError: ‘foo’ object has no attribute ‘xyz’</p>
+</section>
+<section id="next-and-iter">
+<h2>__next__ and __iter__<a class="headerlink" href="#next-and-iter" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>__iter__ return the iterable object(the whole things, list, tuple or generator).</p></li>
+<li><p>__next__ return one element.</p></li>
+</ul>
+<p>An iterable object is an object that implements <code class="docutils literal notranslate"><span class="pre">__iter__</span></code>, which is expected to return an iterator object.
+An iterator is an object that implements __next__, which is expected to return the next element of the iterable object that returned it, and raise a StopIteration exception when no more elements are available.
+In the simplest case the iterable will implement __next__ itself and return self in __iter__.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">class</span> <span class="nc">RandomIterable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;go&quot;</span><span class="p">,</span> <span class="s2">&quot;go&quot;</span><span class="p">,</span> <span class="s2">&quot;stop&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;stop&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>  <span class="c1"># signals &quot;the end&quot;</span>
+        <span class="k">return</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">yield</span> <span class="mi">5</span>
+    <span class="k">yield from</span> <span class="n">some_list</span>
+</pre></div>
+</div>
+<p>__contains__</p>
+<p>__subclasshook__</p>
+<p>__format__</p>
+<p>__reduce__</p>
+<p>__reduce_ex__</p>
+<p>__class__</p>
+<p>__init_subclass__</p>
+</section>
+<section id="comparison-methods">
+<h2>Comparison methods<a class="headerlink" href="#comparison-methods" title="Permalink to this heading">¶</a></h2>
+<section id="hash">
+<h3>__hash__<a class="headerlink" href="#hash" title="Permalink to this heading">¶</a></h3>
+<p>Called by built-in function hash() and for object comparison. Usually it defined with __eq__ together.</p>
+<p>object.__eq__(self, other)
+object.__lt__(self, other)
+object.__le__(self, other)
+object.__ne__(self, other)
+object.__gt__(self, other)
+object.__ge__(self, other)</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lambda.html" class="btn btn-neutral float-left" title="lambda" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="comparision.html" class="btn btn-neutral float-right" title="Chaining Comparison Operators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Ke Zhang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<div class="footer">This page uses <a href="https://analytics.google.com/">
+Google Analytics</a> to collect statistics. You can disable it by blocking
+the JavaScript coming from www.google-analytics.com.
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+</div>
+
+
+</body>
+</html>

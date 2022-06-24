@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Source in For-profit Corporation &mdash; Krystal Python 0.post1+ge624e66 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="ambush" href="ambush.html" />
+ 
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-185617644-1']);
+  _gaq.push(['_trackPageview']);
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ff8fbe" >
+            <a href="index.html" class="icon icon-home"> Krystal Python
+          </a>
+              <div class="version">
+                0.post1+ge624e66
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Typing and annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dunder.html">Dunder methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy.html">Deepcopy vs Shallow copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutabledefault.html">Mutable default arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirvsdict.html">dir vs __dict__</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forelse.html">for else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starred.html">Starred expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="try.html">try, except, else and finally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iter.html">iter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="itertools.html">itertools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_filter_reduce.html">Map, Filter and Reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container.html">High performance container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">Decorator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataclass.html">Case Study: dataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decoratormethod.html">A decorator as class method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptor.html">Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classmethod.html">classmethod, staticmethod and property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functools.html">functools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newvsinit.html">new vs  init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="super.html">super</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta.html">Metaclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singleton.html">Singleton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractmethod.html">Abstractmethod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html">Thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator, yield and yield from</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio.html">asyncio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inspect.html">Inspect function caller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">vscode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Open Source in For-profit Corporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#con">con</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pro">pro</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ff8fbe" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Krystal Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Open Source in For-profit Corporation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opensource.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="open-source-in-for-profit-corporation">
+<h1>Open Source in For-profit Corporation<a class="headerlink" href="#open-source-in-for-profit-corporation" title="Permalink to this heading">¶</a></h1>
+<p>关于开源在盈利 (for-profit）机构的建议</p>
+<p>早期，Apple 2在出售的时候附赠原理图(Schematics)。面对 Amazon 的竞争，MongoDB 选择了完全
+开源的策略。国内完全开源的神经搜索(neural search)公司 Jina 夹现了 3000W 美金的融资。在此历史和
+背景下，本文简要闻达开源在盈利（for-proft机构的利弊井提出一种推进方案。</p>
+<section id="con">
+<h2>con<a class="headerlink" href="#con" title="Permalink to this heading">¶</a></h2>
+<p>诚如开源的字面意思，友商也会同样获得开源的项目信息。然而，通过选择性的开源，或是开源次级先
+进的内容，保留最先进的内容，可使得该局限性可控。</p>
+</section>
+<section id="pro">
+<h2>pro<a class="headerlink" href="#pro" title="Permalink to this heading">¶</a></h2>
+<p>商誉(Coodwill
+开源相对与零和，甚至在语言文化中己经隐含开放，包容和友好等含义。盈利公司拥有一个或多个开源
+项目将有利于提升公司形象，增加融资，估值中的无形资产。</p>
+<p>技术反哺
+开源过程中，可以吸收、接纳外部参与者对项目提交的新特性，新改进甚至是批评，例如
+外部参与者可能有问题的答案。
+比答案更重要的是问对问题，外部参与者可能有问题本身存在性的思考和经验。
+在过程中，项目本身得到提升，反过来又吸引更多的参与者，形成闭环。</p>
+<p>边际成本约等子0
+开源项目中的并发是公司研发的固有过程。此过程井不因项目是否开源而影响。开源过程本身所消耗的
+盈利公司的资金、资源极山，边际成本小。</p>
+<p>供应链风险低
+开源项目并不具备一般商业定义下的供应链。如果要说开源项目的上游依赖，也仅仅是为数不多的软件
+依赖。相較于嵌入式项目的硬件供应链风险，软件依赖风险低，尤其在疫情反复的背景下。软件依赖的
+选择也可通过人为干预增强鲁棒性，比如选择持续性好的，在可预见的将来能被持续维护的上游依赖。</p>
+<p>市场营销
+开源是展示机构技术实力的绝佳，甚至是最直接的平台。包括投资者，二次开发者可通过开源项目对公
+司有进一步了解。对比传统的广告宣传策略，开源更加垂直，反馈更加直接。
+开源是一种最激进的占领市场的营销策略。可参者 Coogle 同 AWS 在云存储竞争中失败后开源
+Kubernetes 的战略。该战略使得 Coogle 保持了在云计算的话语权和竞争力</p>
+<p>开源项目对人才的意义
+开源是一个吸引人才的巨大 “引力场”。在开源项目中，众多贡献者成为潜在的并且极其优质的合作对
+象，这里的合作包括雇佣、短期合作以及机构间的战略合作等。相对于传统招聘流程，HR 被迫去主动寻
+找、搜索，过滤求职者，开源项目在本身经营好的同时实现了对优秀人才的吸号，CPH(C ost-Per-Fire)
+低。该策略尤其针对高端技术人才， RCR(Recruiting-Cost-Ratio)低。</p>
+<p>开源的轻量化
+潜在极客、TOB 用户参与开源项目的成本低于实际购买硬件产品的成本。该成本包括心里上的，时间上
+的和经济上的。而开源的意义更是类似漏斗营销模型中的 Acquisition，通过开源项目中的展示和拥抱参
+与者来完成从漏斗顶端到底端 Revenue 的过程。</p>
+<p>开源–ToB 的APP
+显然各个终端的 App 并不能满足ToB 等二次开发的需要。对单一用户提供定制化的解决方案在经济上往
+往是盈利机构不能接受的。在上述两种极端之问，开源项目夹际作为二次开发者使用的一种 APP 且以统
+一的形式存在，避免了提供定制服务的尴九。
+参与者选择开源项目的第一优先 — 盈利公司的开源项目
+如果申查开源项目背后的开发者或开发机构，大致可 以归为以下几类，
+个人开发者
+夹验室开发因队
+非盈利性组织
+中小规模的盈利机枸
+大型规模的盈利机构</p>
+<p>其中个人开发者和夹验室开发者参与的项目容易因为人员变动而终止。非盈利组织的开发项目通常极度
+庞大而难以参与或是查阅，例如 Linux。大型规模的盈利机构存在公司战略变更而轻易放奔开源项目的
+风险。综上，一个中小规模，正经历高速发展的盈利性机构支持的开源项目，通常被认为是有稳定性
+的，开发者易于参与的，在进行选择的时候通常作为第一优先。</p>
+<p>开源项目- 创建了一种技术交易的环境
+开源项目可以作为创建类似 Kaggle 的竞技性解決方案平台的基底，或是可以作为技术研讨会、开发者大
+会的基础。举例，当公司在研发中有功能需求时，可以通过开源项目，快速的将需求转换为有奖征集的
+形式向全球开发者发布。</p>
+<p>直接收入
+广告收入，在开源项目的首页或适当区域可布设本公司或合作伙伴的推广来获得广告收入或节约
+本公司宣传成本。
+更直接收入
+–一通过开源直接谋求捐赠。许多基金会或是社区，因各种因素的考量，愿意以捐赠
+的形式资助开源项目，类似组织有 Numfocus, Chan Zuckerberg Initiative 等。项目同时可以
+直援接受公众捐赠。</p>
+<p>实施方案
+即具体内容
+前期
+教程类脚本
+非硬件依赖的、通用的次级先进算法
+易于融人数据科学江oB 社区的软任包
+适配公司硬件产品的Demo</p>
+<p>与在最后，当前的现状是许多开源软件难以商业化，仅仅依靠个人或者小团队的无私贡献难以维系。许
+多开源团队也在努力实现商业化的路上，例如努力向了C证明自己的产品具有商业化的潜力等。
+然而从相反的方向看，作为盈利性公司本县就是商业化的，自商业化来，去拥抱开源，形成商业＋开源的
+大的综合体，更令人期待。</p>
+<p>2022/06/16</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ambush.html" class="btn btn-neutral float-left" title="ambush" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Ke Zhang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<div class="footer">This page uses <a href="https://analytics.google.com/">
+Google Analytics</a> to collect statistics. You can disable it by blocking
+the JavaScript coming from www.google-analytics.com.
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+</div>
+
+
+</body>
+</html>

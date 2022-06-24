@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High performance container &mdash; Krystal Python 0.post1+ge624e66 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Decorator" href="decorator.html" />
+    <link rel="prev" title="Map, Filter and Reduce" href="map_filter_reduce.html" />
+ 
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-185617644-1']);
+  _gaq.push(['_trackPageview']);
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ff8fbe" >
+            <a href="index.html" class="icon icon-home"> Krystal Python
+          </a>
+              <div class="version">
+                0.post1+ge624e66
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Typing and annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dunder.html">Dunder methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy.html">Deepcopy vs Shallow copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutabledefault.html">Mutable default arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirvsdict.html">dir vs __dict__</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forelse.html">for else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starred.html">Starred expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="try.html">try, except, else and finally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iter.html">iter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="itertools.html">itertools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_filter_reduce.html">Map, Filter and Reduce</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">High performance container</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ordereddict">OrderedDict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#queue">queue</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#priorityqueue">PriorityQueue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-based-api-of-heapq">Function based API of heapq</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class-based-api-of-queue">Class based API of Queue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#deque">deque</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">Decorator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataclass.html">Case Study: dataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decoratormethod.html">A decorator as class method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptor.html">Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classmethod.html">classmethod, staticmethod and property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functools.html">functools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newvsinit.html">new vs  init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="super.html">super</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta.html">Metaclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singleton.html">Singleton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractmethod.html">Abstractmethod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html">Thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator, yield and yield from</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio.html">asyncio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inspect.html">Inspect function caller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">vscode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source in For-profit Corporation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ff8fbe" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Krystal Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>High performance container</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/container.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="high-performance-container">
+<h1>High performance container<a class="headerlink" href="#high-performance-container" title="Permalink to this heading">¶</a></h1>
+<section id="ordereddict">
+<h2>OrderedDict<a class="headerlink" href="#ordereddict" title="Permalink to this heading">¶</a></h2>
+<p>It is a <code class="docutils literal notranslate"><span class="pre">dict</span></code> and it has order. It could be constructed by <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="n">od</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">({</span><span class="n">i</span><span class="p">:</span> <span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])})</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">od</span>
+<span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>Access by index</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">od</span><span class="o">.</span><span class="n">items</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">(‘a’, 1)</span>
+</pre></div>
+</div>
+<p>Change value doesn’t influence order</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">od</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">od</span>
+<span class="go">OrderedDict([(&#39;a&#39;, 0), (&#39;b&#39;, 2), (&#39;c&#39;, 3)])</span>
+</pre></div>
+</div>
+<p>Inserting a new value will append to the end.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">od</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">od</span>
+<span class="go">OrderedDict([(&#39;a&#39;, 0), (&#39;b&#39;, 2), (&#39;c&#39;, 3), (&#39;d&#39;, 4)])</span>
+</pre></div>
+</div>
+</section>
+<section id="queue">
+<h2>queue<a class="headerlink" href="#queue" title="Permalink to this heading">¶</a></h2>
+<section id="priorityqueue">
+<h3>PriorityQueue<a class="headerlink" href="#priorityqueue" title="Permalink to this heading">¶</a></h3>
+<p>PriorityQueue is a container for min heap.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="mi">2</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">PriorityQueue</span></code> <code class="docutils literal notranslate"><span class="pre">get()</span></code> method returns <strong>min</strong> value. To get a maxheap, use <code class="docutils literal notranslate"><span class="pre">put((-value,</span> <span class="pre">value))</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+
+<span class="c1"># Your original value is 3, 1, 2.</span>
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Store data with priority number in PriorityQueue</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">))</span>
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;eat&#39;</span><span class="p">))</span>
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;sleep&#39;</span><span class="p">))</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+    <span class="n">next_item</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">next_item</span><span class="p">)</span>
+
+<span class="c1"># Result:</span>
+<span class="c1">#   (1, &#39;eat&#39;)</span>
+<span class="c1">#   (2, &#39;code&#39;)</span>
+<span class="c1">#   (3, &#39;sleep&#39;)</span>
+</pre></div>
+</div>
+</section>
+<section id="function-based-api-of-heapq">
+<h3>Function based API of heapq<a class="headerlink" href="#function-based-api-of-heapq" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">heapq</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">))</span>
+<span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;eat&#39;</span><span class="p">))</span>
+<span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;sleep&#39;</span><span class="p">))</span>
+
+<span class="k">while</span> <span class="n">q</span><span class="p">:</span>
+    <span class="n">next_item</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">next_item</span><span class="p">)</span>
+
+<span class="c1"># Result:</span>
+<span class="c1">#   (1, &#39;eat&#39;)</span>
+<span class="c1">#   (2, &#39;code&#39;)</span>
+<span class="c1">#   (3, &#39;sleep&#39;)</span>
+</pre></div>
+</div>
+</section>
+<section id="class-based-api-of-queue">
+<h3>Class based API of Queue<a class="headerlink" href="#class-based-api-of-queue" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">))</span>
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;eat&#39;</span><span class="p">))</span>
+<span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;sleep&#39;</span><span class="p">))</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+    <span class="n">next_item</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">next_item</span><span class="p">)</span>
+
+<span class="c1"># Result:</span>
+<span class="c1">#   (2, &#39;code&#39;)</span>
+<span class="c1">#   (1, &#39;eat&#39;)</span>
+<span class="c1">#   (3, &#39;sleep&#39;)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="deque">
+<h2>deque<a class="headerlink" href="#deque" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="s1">&#39;ghi&#39;</span><span class="p">)</span>                 <span class="c1"># make a new deque with three items</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>                   <span class="c1"># iterate over the deque&#39;s elements</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="go">G</span>
+<span class="go">H</span>
+<span class="go">I</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;j&#39;</span><span class="p">)</span>                    <span class="c1"># add a new entry to the right side</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>                <span class="c1"># add a new entry to the left side</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>                                <span class="c1"># show the representation of the deque</span>
+<span class="go">deque([&#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>                          <span class="c1"># return and remove the rightmost item</span>
+<span class="go">&#39;j&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>                      <span class="c1"># return and remove the leftmost item</span>
+<span class="go">&#39;f&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>                          <span class="c1"># list the contents of the deque</span>
+<span class="go">[&#39;g&#39;, &#39;h&#39;, &#39;i&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                             <span class="c1"># peek at leftmost item</span>
+<span class="go">&#39;g&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                            <span class="c1"># peek at rightmost item</span>
+<span class="go">&#39;i&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>                <span class="c1"># list the contents of a deque in reverse</span>
+<span class="go">[&#39;i&#39;, &#39;h&#39;, &#39;g&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;h&#39;</span> <span class="ow">in</span> <span class="n">d</span>                         <span class="c1"># search the deque</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="s1">&#39;jkl&#39;</span><span class="p">)</span>                  <span class="c1"># add multiple elements at once</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
+<span class="go">deque([&#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                      <span class="c1"># right rotation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
+<span class="go">deque([&#39;l&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>                     <span class="c1"># left rotation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
+<span class="go">deque([&#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">deque</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>               <span class="c1"># make a new deque in reverse order</span>
+<span class="go">deque([&#39;l&#39;, &#39;k&#39;, &#39;j&#39;, &#39;i&#39;, &#39;h&#39;, &#39;g&#39;])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>                        <span class="c1"># empty the deque</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>                          <span class="c1"># cannot pop from an empty deque</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="n">File</span> <span class="s2">&quot;&lt;pyshell#6&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">-</span><span class="n">toplevel</span><span class="o">-</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="gr">IndexError</span>: <span class="n">pop from an empty deque</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">extendleft</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>              <span class="c1"># extendleft() reverses the input order</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
+<span class="go">deque([&#39;c&#39;, &#39;b&#39;, &#39;a&#39;])</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="map_filter_reduce.html" class="btn btn-neutral float-left" title="Map, Filter and Reduce" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="decorator.html" class="btn btn-neutral float-right" title="Decorator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Ke Zhang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<div class="footer">This page uses <a href="https://analytics.google.com/">
+Google Analytics</a> to collect statistics. You can disable it by blocking
+the JavaScript coming from www.google-analytics.com.
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+</div>
+
+
+</body>
+</html>

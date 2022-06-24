@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Descriptor &mdash; Krystal Python 0.post1+ge624e66 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="classmethod, staticmethod and property" href="classmethod.html" />
+    <link rel="prev" title="A decorator as class method" href="decoratormethod.html" />
+ 
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-185617644-1']);
+  _gaq.push(['_trackPageview']);
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ff8fbe" >
+            <a href="index.html" class="icon icon-home"> Krystal Python
+          </a>
+              <div class="version">
+                0.post1+ge624e66
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Typing and annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dunder.html">Dunder methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy.html">Deepcopy vs Shallow copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutabledefault.html">Mutable default arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirvsdict.html">dir vs __dict__</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forelse.html">for else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starred.html">Starred expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="try.html">try, except, else and finally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iter.html">iter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="itertools.html">itertools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_filter_reduce.html">Map, Filter and Reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container.html">High performance container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">Decorator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataclass.html">Case Study: dataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decoratormethod.html">A decorator as class method</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Descriptor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-descriptor">What is descriptor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#object-attribute-lookup">Object attribute lookup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#when-you-need-descriptor">When you need descriptor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-write-a-descriptor">How to write a descriptor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classmethod.html">classmethod, staticmethod and property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functools.html">functools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newvsinit.html">new vs  init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="super.html">super</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta.html">Metaclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singleton.html">Singleton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractmethod.html">Abstractmethod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html">Thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator, yield and yield from</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio.html">asyncio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inspect.html">Inspect function caller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">vscode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source in For-profit Corporation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ff8fbe" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Krystal Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Descriptor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/descriptor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="descriptor">
+<h1>Descriptor<a class="headerlink" href="#descriptor" title="Permalink to this heading">¶</a></h1>
+<section id="what-is-descriptor">
+<h2>What is descriptor<a class="headerlink" href="#what-is-descriptor" title="Permalink to this heading">¶</a></h2>
+<p>Descriptor is a instance of class with certain methods. There are two kind of descriptor.</p>
+<ul class="simple">
+<li><p>non-data descriptor: Only <code class="docutils literal notranslate"><span class="pre">__get__</span></code> is defined in class.</p></li>
+<li><p>data descriptor: <code class="docutils literal notranslate"><span class="pre">__get__</span></code> and one of <code class="docutils literal notranslate"><span class="pre">__set__</span></code> or <code class="docutils literal notranslate"><span class="pre">__del__</span></code> is defined in class.</p></li>
+</ul>
+</section>
+<section id="object-attribute-lookup">
+<h2>Object attribute lookup<a class="headerlink" href="#object-attribute-lookup" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/object-attribute-lookup-v3.png" class="align-center" src="_images/object-attribute-lookup-v3.png" />
+<p><code class="docutils literal notranslate"><span class="pre">Class.__dict__</span></code> is not a real dict but a special dict proxy that will also look in all the base classes.</p>
+<p>For clarity I’ve simplified things to Class.__dict__[‘foobar’] but in reality the __dict__ proxy object is not used, but instead all the logic is inlined: attributes are looked up on the class of the object in the order of the __mro__ via typeobject.c:_PyType_Lookup (called from object.c: _PyObject_GenericGetAttrWithDict).</p>
+</section>
+<section id="when-you-need-descriptor">
+<h2>When you need descriptor<a class="headerlink" href="#when-you-need-descriptor" title="Permalink to this heading">¶</a></h2>
+<p>Based on above lookup figure, if you need extra operation when you do <code class="docutils literal notranslate"><span class="pre">obj.attr</span></code>, you could use descriptor.</p>
+</section>
+<section id="how-to-write-a-descriptor">
+<h2>How to write a descriptor<a class="headerlink" href="#how-to-write-a-descriptor" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># lazy_properties.py</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">LazyProperty</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="vm">__name__</span>
+
+    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;__get__&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">DeepThought</span><span class="p">:</span>
+
+    <span class="nd">@LazyProperty</span>
+    <span class="k">def</span> <span class="nf">meaning_of_life</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;func&quot;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">42</span>
+<span class="c1"># Output</span>
+<span class="c1"># init</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_deep_thought_instance</span> <span class="o">=</span> <span class="n">DeepThought</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">my_deep_thought_instance</span><span class="o">.</span><span class="n">meaning_of_life</span><span class="p">)</span>
+<span class="c1"># Output</span>
+<span class="c1"># __get__</span>
+<span class="c1"># &lt;__main__.DeepThought object at 0x7f917bc07220&gt;</span>
+<span class="c1"># func</span>
+<span class="c1"># 42 (print out after 3 seconds)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">my_deep_thought_instance</span><span class="o">.</span><span class="n">meaning_of_life</span><span class="p">)</span>
+<span class="c1"># 42 (immediatelly)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">my_deep_thought_instance</span><span class="o">.</span><span class="n">meaning_of_life</span><span class="p">)</span>
+<span class="c1"># 42 (immediatelly)</span>
+</pre></div>
+</div>
+<p>Decorator is just a syntax suger. <code class="docutils literal notranslate"><span class="pre">LazyProperty</span></code> get a function and return a object. It could be translated to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="k">class</span> <span class="nc">DeepThought</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">meaning_of_life</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;func&quot;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">42</span>
+
+    <span class="n">meaning_of_life</span> <span class="o">=</span> <span class="n">LazyProperty</span><span class="p">(</span><span class="n">meaning_of_life</span><span class="p">)</span>
+    <span class="c1"># This is run in class definition.</span>
+    <span class="c1"># This is why &quot;init&quot; was print out immediately after class definition.</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>The things we keep in mind is a order of lookup attribute:</dt><dd><ol class="arabic simple">
+<li><p>First, you’ll get the result returned from the <code class="docutils literal notranslate"><span class="pre">__get__</span></code> method of the <em>data descriptor</em> named after the attribute you’re looking for.</p></li>
+<li><p>If that fails, then you’ll get the value of your object’s <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> for the key named after the attribute you’re looking for. This is trying to get value from instance attribute, aka by <code class="docutils literal notranslate"><span class="pre">.</span></code> operation.</p></li>
+<li><p>If that fails, then you’ll get the result returned from the <code class="docutils literal notranslate"><span class="pre">__get__</span></code> method of the <em>non-data descriptor</em> named after the attribute you’re looking for.</p></li>
+</ol>
+</dd>
+</dl>
+<p>Most tricky part is in code below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;get&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>At the beginning, obj’s <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> doesn’t have <code class="docutils literal notranslate"><span class="pre">meaning_of_life</span></code>. However, meaning_of_life is a non-data descriptor, so <code class="docutils literal notranslate"><span class="pre">__get__</span></code> is invoked. After first run, inside <code class="docutils literal notranslate"><span class="pre">__get__</span></code>, <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> is modified and <code class="docutils literal notranslate"><span class="pre">meaning_of_life</span></code> is added to <code class="docutils literal notranslate"><span class="pre">__dict__</span></code>. So next time when lookup <code class="docutils literal notranslate"><span class="pre">meaning_of_life</span></code> by <code class="docutils literal notranslate"><span class="pre">.meaning_of_life</span></code>, <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> has higher priority than non-data descriptor, it will get the result from cached <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> directly instead of invode <code class="docutils literal notranslate"><span class="pre">__get__</span></code> again.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you implement the protocol, keep these things in mind:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self</span></code> is the instance of the descriptor you’re writing, <code class="docutils literal notranslate"><span class="pre">meaning_of_life</span></code> here, also it’s a class attribute.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">obj</span></code> is the instance of the object your descriptor is attached to, <code class="docutils literal notranslate"><span class="pre">my_deep_thought_instance</span></code> here.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p><code class="docutils literal notranslate"><span class="pre">__dict__</span></code> only have instance attributes not class attributes, see <a class="reference internal" href="dirvsdict.html"><span class="doc">dir vs __dict__</span></a>.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="decoratormethod.html" class="btn btn-neutral float-left" title="A decorator as class method" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classmethod.html" class="btn btn-neutral float-right" title="classmethod, staticmethod and property" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Ke Zhang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<div class="footer">This page uses <a href="https://analytics.google.com/">
+Google Analytics</a> to collect statistics. You can disable it by blocking
+the JavaScript coming from www.google-analytics.com.
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+</div>
+
+
+</body>
+</html>

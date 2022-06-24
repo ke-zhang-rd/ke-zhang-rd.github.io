@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krystal Python Documentation &mdash; Krystal Python 0.post1+ge624e66 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Philosophy of this Tutorial" href="philosophy.html" />
+ 
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-185617644-1']);
+  _gaq.push(['_trackPageview']);
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ff8fbe" >
+            <a href="#" class="icon icon-home"> Krystal Python
+          </a>
+              <div class="version">
+                0.post1+ge624e66
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Typing and annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dunder.html">Dunder methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy.html">Deepcopy vs Shallow copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutabledefault.html">Mutable default arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirvsdict.html">dir vs __dict__</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forelse.html">for else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starred.html">Starred expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="try.html">try, except, else and finally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iter.html">iter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="itertools.html">itertools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_filter_reduce.html">Map, Filter and Reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container.html">High performance container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">Decorator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataclass.html">Case Study: dataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decoratormethod.html">A decorator as class method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptor.html">Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classmethod.html">classmethod, staticmethod and property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functools.html">functools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newvsinit.html">new vs  init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="super.html">super</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta.html">Metaclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singleton.html">Singleton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractmethod.html">Abstractmethod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html">Thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator, yield and yield from</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio.html">asyncio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inspect.html">Inspect function caller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">vscode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source in For-profit Corporation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ff8fbe" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Krystal Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Krystal Python Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="krystal-python-documentation">
+<h1>Krystal Python Documentation<a class="headerlink" href="#krystal-python-documentation" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Typing and annotation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotation.html#function">Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annotation.html#class">Class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dunder.html">Dunder methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dunder.html#slot">__slot__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dunder.html#doc">__doc__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dunder.html#str-and-repr">__str__ and __repr__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dunder.html#attributs-related">Attributs related</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dunder.html#getattribute">__getattribute__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dunder.html#getattr">__getattr__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dunder.html#delattr">__delattr__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dunder.html#getitem">__getitem__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dunder.html#next-and-iter">__next__ and __iter__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dunder.html#comparison-methods">Comparison methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comprehension.html#list-comprehension">List comprehension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comprehension.html#nested-list-comprehension">Nested list comprehension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comprehension.html#dict-comprehension">Dict comprehension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comprehension.html#set-comprehension">Set comprehension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comprehension.html#generator-comprehension">Generator comprehension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variables.html#understanding-python-variables-and-memory-management">Understanding Python variables and Memory Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy.html">Deepcopy vs Shallow copy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="copy.html#shallow-copy">Shallow copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="copy.html#deep-copy">Deep copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="copy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mutabledefault.html">Mutable default arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirvsdict.html">dir vs __dict__</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forelse.html">for else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">import</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="import.html#import-wtf">import wtf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import.html#name-main">__name__ == “__main__”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scope.html#how-to-assgin-var-to-another-var-which-has-different-scope">How to assgin var to another var which has different scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html#what-tool-could-be-used-to-check-scope">What tool could be used to check scope</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="starred.html">Starred expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="try.html">try, except, else and finally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iter.html">iter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="iter.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iter.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iter.html#return">Return</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="itertools.html">itertools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="itertools.html#itertools-count">itertools.count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itertools.html#itertools-chain">itertools.chain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="itertools.html#itertools-compress">itertools.compress</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="map_filter_reduce.html">Map, Filter and Reduce</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="map_filter_reduce.html#map">map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_filter_reduce.html#filter">filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_filter_reduce.html#reduce">reduce</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="container.html">High performance container</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="container.html#ordereddict">OrderedDict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container.html#queue">queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container.html#deque">deque</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">Decorator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#chained-decorators">Chained decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#write-a-decorator">Write a decorator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#write-a-decorator-with-parameters">Write a decorator with parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#class-decorator">Class decorator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#make-any-callable-become-a-decorator">Make any callable become a decorator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#how-to-drive-your-boss-crazy">How to drive your boss crazy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dataclass.html">Case Study: dataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decoratormethod.html">A decorator as class method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptor.html">Descriptor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="descriptor.html#what-is-descriptor">What is descriptor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="descriptor.html#object-attribute-lookup">Object attribute lookup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="descriptor.html#when-you-need-descriptor">When you need descriptor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="descriptor.html#how-to-write-a-descriptor">How to write a descriptor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classmethod.html">classmethod, staticmethod and property</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classmethod.html#classmethod">classmethod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classmethod.html#staticmethod">staticmethod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classmethod.html#property">property</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functools.html">functools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functools.html#lru-cache">lru_cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functools.html#cache">cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functools.html#cached-property">cached_property</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functools.html#wraps">wraps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functools.html#partial">partial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="newvsinit.html">new vs  init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="super.html">super</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta.html">Metaclass</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="meta.html#everything-is-object">Everything is Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta.html#classes-construction-and-initializion">Classes Construction and Initializion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta.html#classes-call">Classes Call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta.html#comparision-between-new-init-with-call">Comparision between __new__/__init__ with __call__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta.html#complete-example">Complete Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta.html#object-create-sequence">Object Create Sequence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="singleton.html">Singleton</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="singleton.html#singleton-implementation">Singleton implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="abstractmethod.html">Abstractmethod</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="abstractmethod.html#when-use">When use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abstractmethod.html#how-to-implement">How to implement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abstractmethod.html#about-abc">About ABC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html">Thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing.html">Process</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="processing.html#pool">Pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing.html#id1">Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing.html#why-if-name-main">Why if __name__ == ‘__main__’:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing.html#process-communication">Process Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing.html#synchronization">Synchronization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator, yield and yield from</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generator.html#yield">yield</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generator.html#yield-expression">yield expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generator.html#yield-from">yield from</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio.html">asyncio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="asyncio.html#what-is-asyncio">What is asyncio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asyncio.html#what-is-coroutine">What is coroutine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asyncio.html#how-to-run-coroutine-concurrently">How to run coroutine concurrently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asyncio.html#a-minimum-example">A minimum example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asyncio.html#the-reason-of-concurrently">The reason of concurrently</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asyncio.html#why-we-need-await">Why we need await</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asyncio.html#when-you-use-asyncio">When you use asyncio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asyncio.html#design-pattern">Design Pattern</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concurrentfuture.html#diff1-both-have-callback-mechanisms">Diff1: Both have callback mechanisms:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrentfuture.html#diff3-get-incompleted-result">Diff3: Get incompleted result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrentfuture.html#diff4-block-call">Diff4: Block call:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrentfuture.html#diff5-tie-the-return-value-back-to-the-original-passed-argument">Diff5: tie the return value back to the original passed argument</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pytest.html#fixture">fixture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytest.html#fixture-scopes">fixture scopes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytest.html#parametrize">parametrize</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inspect.html">Inspect function caller</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inspect.html#package">package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setuptools.html#entrypoints">entrypoints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">vscode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html#settings-json">settings.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html#launch-json">launch.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html#shortcut">shortcut</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst.html#subrst">subrst</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source in For-profit Corporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensource.html#con">con</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensource.html#pro">pro</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="philosophy.html" class="btn btn-neutral float-right" title="Philosophy of this Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Ke Zhang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<div class="footer">This page uses <a href="https://analytics.google.com/">
+Google Analytics</a> to collect statistics. You can disable it by blocking
+the JavaScript coming from www.google-analytics.com.
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+</div>
+
+
+</body>
+</html>
