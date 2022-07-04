@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nullspace.__init__ &mdash; nullspace 0.post1+g6839893 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> nullspace
+          </a>
+              <div class="version">
+                0.post1+g6839893
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">nullspace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>nullspace.__init__</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nullspace.__init__</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">Array</span>
+
+<span class="kn">from</span> <span class="nn">._version</span> <span class="kn">import</span> <span class="n">get_versions</span>
+
+
+<span class="n">__version__</span> <span class="o">=</span> <span class="n">get_versions</span><span class="p">()[</span><span class="s1">&#39;version&#39;</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">get_versions</span>
+
+
+<span class="k">def</span> <span class="nf">ensure_positive_Z</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">vt</span><span class="p">,</span> <span class="n">u_based_decision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function is under the background of svd optimization. u or</span>
+<span class="sd">    vt is understood as the normal vector of best fit plane of</span>
+<span class="sd">    multi-sample points in 3d world.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u : ndarray</span>
+<span class="sd">        u and vt are the output of &#39;linalg.svd&#39; with matching inner</span>
+<span class="sd">        dimensions so one can compute u @ vt</span>
+<span class="sd">    vt: ndarray</span>
+<span class="sd">        u and vt are the output of &#39;linalg.svd&#39; with matching inner</span>
+<span class="sd">        dimensions so one can compute u @ vt</span>
+<span class="sd">    u_based_decision : bool, default=True</span>
+<span class="sd">        If True, use the columns of u as the basis for sign flipping</span>
+<span class="sd">        Otherwise, use the rows of v. The choice of which one is</span>
+<span class="sd">        generally algorithm dependent.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    u, vt : arrays with the same dimensions as the input.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">u_based_decision</span><span class="p">:</span>
+        <span class="c1"># sign is determined by Z location/index 2 of columns of u</span>
+        <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># sign is determined by Z location/index 2 of rows of vt</span>
+        <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">vt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:][</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="c1"># Convert u to positive if it&#39;s negative, stay positive if not</span>
+    <span class="n">u</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="n">sign</span>
+    <span class="c1"># Make sure u and vt sign change together so that matrix multiplication</span>
+    <span class="c1"># result won&#39;t change.</span>
+    <span class="n">vt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*=</span> <span class="n">sign</span>
+    <span class="k">return</span> <span class="n">u</span><span class="p">,</span> <span class="n">vt</span>
+
+
+<span class="k">def</span> <span class="nf">svd_without_sign_ambiguity</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    SVD with ensure deterministic.</span>
+
+<span class="sd">    The raw svd function of numpy only ensure the multiplication result of</span>
+<span class="sd">    column of u and matching row of vt is deterministic. If there is a matrix</span>
+<span class="sd">    a in shape (M, N), both pair of (u[:, k], vt[k, :]) and pair of (-u[:,k],</span>
+<span class="sd">    -vt[k, :]) are possible returned pair, where k = range(K), K = min(M, N).</span>
+<span class="sd">    The sign ambiguity could exist for a pair of column u and matching a row</span>
+<span class="sd">    of vt.</span>
+<span class="sd">    The sign of each columns of u and each rows of vt are determined by a</span>
+<span class="sd">    measure of left singular vector(u) with X and a measure of right singular</span>
+<span class="sd">    vector(vt) with X. If they disagree with each other, the one with bigger</span>
+<span class="sd">    abs value will be choose as determining factor, hence need to be always</span>
+<span class="sd">    positive, and the other one will be flipped coorespondingly.</span>
+<span class="sd">    This function implicitly use &#39;full_matrices=False&#39;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : (M, N) array</span>
+<span class="sd">        A numpy 2D matrix, which should be legal for SVD. The legal check is</span>
+<span class="sd">        handled by &#39;numpy.linalg.svd&#39; inside function.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    u : (M, K) array</span>
+<span class="sd">        Left singular vectors. K = min(M, N)</span>
+<span class="sd">    s: (, K) array</span>
+<span class="sd">        Vector with the singular values.</span>
+<span class="sd">    vt: (K, N) array</span>
+<span class="sd">        Right singular vectors.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Bro, R., Acar, E., &amp; Kolda, T. G. (2008). Resolving</span>
+<span class="sd">           the sign ambiguity in the singular value decomposition</span>
+<span class="sd">           Journal of Chemometrics: A Journal of the Chemometrics</span>
+<span class="sd">           Society, 22(2), 135-140.</span>
+<span class="sd">    .. [2] https://prod-ng.sandia.gov/techlib-noauth/access-control.cqi/2007/076422.pdf</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># svd dimensions:</span>
+    <span class="c1"># u, s, vt = np.linalg.svd(X, full_matrices=False)</span>
+    <span class="c1"># a = u @ diag(s) @ vt</span>
+    <span class="c1"># (M, N) = (M, K) @ (K, K) @ (K, N)</span>
+
+    <span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">M</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">vt</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">assert</span> <span class="n">u</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">M</span><span class="o">.</span> <span class="n">K</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">vt</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+    <span class="n">sign_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;left&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="p">),</span>
+                 <span class="s1">&#39;right&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="p">)}</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">mask</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># (M, N) = (M, N) (M, K-1) @ (K-1, K-1) @ (K-1, N)</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="p">(</span><span class="n">u</span><span class="p">[:,</span> <span class="n">mask</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span> <span class="o">@</span> <span class="n">vt</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="p">:])</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">[:,</span> <span class="n">k</span><span class="p">],</span> <span class="n">Y</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span>
+            <span class="n">sign_dict</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">d</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vt</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:],</span> <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:])</span>
+            <span class="n">sign_dict</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">d</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+        <span class="n">sign</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">if</span> <span class="n">sign_dict</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sign_dict</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sign</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+        <span class="k">elif</span> <span class="n">sign_dict</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">sign_dict</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sign_dict</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">])</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sign_dict</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]):</span>
+                <span class="c1"># Use sign of right as determining flip sign.</span>
+                <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">sign_dict</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">sign_dict</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">])</span>
+        <span class="c1"># multiplied by sign of itself will always change it to positive</span>
+        <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">sign</span>
+        <span class="c1"># alwars flip together.</span>
+        <span class="n">vt</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">vt</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">sign</span>
+    <span class="k">return</span> <span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">vt</span>
+
+
+<span class="k">def</span> <span class="nf">svd_regulated</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Wrapper function takes care of the replacement of standard svd</span>
+<span class="sd">    to achieve goals below.</span>
+<span class="sd">    1. sign of deterministic of svd</span>
+<span class="sd">    2. In 3D world, the optimized normal vector achieved by svd is</span>
+<span class="sd">    roughly aligned with Z-ish axis.</span>
+
+<span class="sd">    The first goal is much more important in autodiff_svd. The second</span>
+<span class="sd">    make sure normal vector only change in positive Z semi-space in</span>
+<span class="sd">    3d. This make sure normal vector won&#39;t jog. This function implicityly</span>
+<span class="sd">    return with &#39;full_matrices=False&#39;</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">svd_without_sign_ambiguity</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>  <span class="c1"># bus</span>
+        <span class="n">u</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">ensure_positive_Z</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">vt</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># rocket</span>
+        <span class="n">u</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">ensure_positive_Z</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">vt</span><span class="p">,</span> <span class="n">u_based_decision</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">vt</span>
+
+
+<div class="viewcode-block" id="autodiff_svd"><a class="viewcode-back" href="../../usage.html#nullspace.__init__.autodiff_svd">[docs]</a><span class="k">def</span> <span class="nf">autodiff_svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q_star</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">symbolic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Automatic Differentiating of svd.</span>
+
+<span class="sd">    It takes matrix A, return differentiation of U, S and V with respect to</span>
+<span class="sd">    specific q value q_star. U, S and VT(V.T) are result of standard SVD.</span>
+<span class="sd">    This method is implemented in reverse mode in terms of auto diff conventions</span>
+<span class="sd">    which is more effeciency since all free variables q take advantages of same</span>
+<span class="sd">    intermedia svd result, U_star, S_star and V_star. It returns ecomonic result</span>
+<span class="sd">    which means &#39;full_matrices=False&#39; in corresponding &#39;numpy.linalg.svd&#39;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    A : (m, n) Matrix</span>
+<span class="sd">        A sympy symbolic 2D Matrix, which should be legal for SVD later.</span>
+<span class="sd">    q_star : dict</span>
+<span class="sd">        A dict from sympy symbolic variable to value.</span>
+<span class="sd">    symbolic : bool, optional</span>
+<span class="sd">        Control return type. Return numerical result, numpy.ndarray, if true</span>
+<span class="sd">        (default), otherwise return symbolic result, sympy.Array.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dU : (Q. m, K) array</span>
+<span class="sd">        Partial derivatives/gradient of U with respect to each variables in q star.</span>
+<span class="sd">        Each variable matches a (m, k) matrix. Q is number of variables. Return</span>
+<span class="sd">        sympy.Array if symbolic=True.</span>
+<span class="sd">    dS : (0, k, k) array</span>
+<span class="sd">        Partial derivatives/gradient of S with respect to each variables in q star,</span>
+<span class="sd">        Each variable matches a (m, k) matrix. k=min(m, n). (..., k, k) is a strict</span>
+<span class="sd">        diagonal matrix which is quaranteed by Hadamard operation. check examples</span>
+<span class="sd">        for details. Return sympy.Array if symbolic=True.</span>
+<span class="sd">    dV : (Q, n, k) array</span>
+<span class="sd">        Partial derivatives/gradient of V(NOT VT) with respect to each variables in</span>
+<span class="sd">        g_star. Each variable matches a (n, k) matrix. Return sympy.Array if</span>
+<span class="sd">        symbolic=True</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    numpy.linalg.svd : Similar function in numpy.</span>
+<span class="sd">    sympy.Array : 3D tensor in sympy.</span>
+<span class="sd">    sympy.Matrix.jacobian : jacobian calculation in sympy.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] James Townsend. Differentiating the Singular Value Decomposition.</span>
+<span class="sd">    .. [2] Mike Giles. An extended collection of matrix derivative results</span>
+<span class="sd">         for forward and reverse mode algorithmic differentiation.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sympy import sin, cos, symbols, Matrix</span>
+<span class="sd">    &gt;&gt;&gt; q0, q1 = symbols (&#39;qû,ol&#39;&quot;)</span>
+<span class="sd">    ... q star = (q0: 1, q1: 2}</span>
+<span class="sd">    ... A = Matrix([[2*q0,          1,    q0**3 + 2*q1, sin(q0) + q1],</span>
+<span class="sd">                   [q0**2 - q1**2,  2*q1, 2*q0 + q1**3, cos(q0) + q1],</span>
+<span class="sd">                   [q0**2 + q1**2,  2,    3,            sin(q0) + cos(q1)]])</span>
+<span class="sd">    &gt;&gt;&gt; dU, dS, dV = autodiff svd(A, q_star)</span>
+<span class="sd">    &gt;&gt;&gt; dU.shape</span>
+<span class="sd">    (2, 3, 3)</span>
+<span class="sd">    &gt;&gt;&gt; dS.shape</span>
+<span class="sd">    (2, 3, 3)</span>
+<span class="sd">    &gt;&gt;&gt;dV.shape</span>
+<span class="sd">    (2, 4, 3)</span>
+<span class="sd">    &gt;&gt;&gt; dU_sym, dS_sym, dV_sym = autodiff_svd(A, q_star, symbolic=True)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_star</span><span class="p">)</span>
+    <span class="c1"># For a specific q0 and q1, get U_star, S_star and V_star_T.</span>
+    <span class="n">A_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q_star</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">U_star</span><span class="p">,</span> <span class="n">S_star_1d</span><span class="p">,</span> <span class="n">V_star_T</span> <span class="o">=</span> <span class="n">svd_regulated</span><span class="p">(</span><span class="n">A_star</span><span class="p">)</span>  <span class="c1"># U star (m, k), S star 1d (k, 1),</span>
+    <span class="n">U_star</span> <span class="o">=</span> <span class="n">U_star</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">]</span>  <span class="c1"># Use economic U (m, k)</span>
+    <span class="n">V_star_T</span> <span class="o">=</span> <span class="n">V_star_T</span><span class="p">[:</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># Use economic VT (k, n)</span>
+    <span class="n">S_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S_star_1d</span><span class="p">)</span>  <span class="c1"># Construct S (k, k)</span>
+    <span class="n">S_star_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reciprocal</span><span class="p">(</span><span class="n">S_star_1d</span><span class="p">))</span>
+    <span class="n">Ik</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">U_star_T</span> <span class="o">=</span> <span class="n">U_star</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">V_star</span> <span class="o">=</span> <span class="n">V_star_T</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># F</span>
+    <span class="n">F_star</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span> <span class="k">else</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">S_star_1d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">S_star_1d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)])</span>
+
+    <span class="c1"># dA</span>
+    <span class="c1"># Reshape A to 1d vector for convenience of jacobian calculation, will reshape back to 2</span>
+    <span class="n">A_element_wise</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">q_var</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">q_star</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>  <span class="c1"># (g 0, q 1, qi. .., q Q-1]</span>
+    <span class="n">dA_element_wise</span> <span class="o">=</span> <span class="n">A_element_wise</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">q_var</span><span class="p">)</span>  <span class="c1"># in shape (m*n, Q)</span>
+    <span class="c1"># Reserve list of dA, d5, dU and dV for each q variables. E.X. dA lsti] is dA with resp</span>
+    <span class="n">dA_lst</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">Q</span>
+    <span class="n">dS_lst</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">Q</span>
+    <span class="n">dU_lst</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">Q</span>
+    <span class="n">dV_lst</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">Q</span>
+
+    <span class="n">Im</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">In</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
+        <span class="c1"># Get matrix dA of eq(6) wrt qi, each element in dA lst is dA wrt qi. dA wrt gi is</span>
+        <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dA_element_wise</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="c1"># Use @ instead of * force all binary operation between np.array(s) and sp.Matrix(s)</span>
+        <span class="n">dU_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">F_star</span><span class="o">.</span><span class="n">multiply_elementwise</span><span class="p">(</span><span class="n">U_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">S_star</span>
+                                                         <span class="o">+</span> <span class="n">S_star</span> <span class="o">@</span> <span class="n">V_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span><span class="p">)</span>
+        <span class="o">+</span> <span class="p">(</span><span class="n">Im</span> <span class="o">-</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">U_star_T</span><span class="p">)</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">S_star_inv</span>
+        <span class="n">dS_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ik</span><span class="o">.</span><span class="n">multiply_elementwise</span><span class="p">(</span><span class="n">U_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span><span class="p">)</span>
+        <span class="n">dV_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">F_star</span><span class="o">.</span><span class="n">multiply_elementwise</span><span class="p">(</span><span class="n">S_star</span> <span class="o">@</span> <span class="n">U_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span>
+                                                         <span class="o">+</span> <span class="n">V_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">S_star</span><span class="p">)</span>
+        <span class="o">+</span> <span class="p">(</span><span class="n">In</span> <span class="o">-</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">V_star_T</span><span class="p">)</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">S_star_inv</span>
+    <span class="c1"># Build a 3D tensor for all q variables</span>
+    <span class="n">dU_tensor</span> <span class="o">=</span> <span class="n">Array</span><span class="p">([</span><span class="n">e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">dU_lst</span><span class="p">])</span>  <span class="c1"># (0,m,</span>
+    <span class="n">dS_tensor</span> <span class="o">=</span> <span class="n">Array</span><span class="p">([</span><span class="n">e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">dS_lst</span><span class="p">])</span>  <span class="c1"># (Q.k.</span>
+    <span class="n">dV_tensor</span> <span class="o">=</span> <span class="n">Array</span><span class="p">([</span><span class="n">e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">dV_lst</span><span class="p">])</span>  <span class="c1"># (Q, n,kJ</span>
+
+    <span class="k">if</span> <span class="n">symbolic</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dU_tensor</span><span class="p">,</span> <span class="n">dS_tensor</span><span class="p">,</span> <span class="n">dV_tensor</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dU_tensor</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q_star</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dS_tensor</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q_star</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dV_tensor</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q_star</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KZ.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
