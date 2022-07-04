@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Usage &mdash; nullspace 0.post1+g6839893 documentation</title>
+  <title>Usage &mdash; nullspace 0.post1+g9e2f831 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> nullspace
           </a>
               <div class="version">
-                0.post1+g6839893
+                0.post1+g9e2f831
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -106,17 +106,17 @@ which means ‘full_matrices=False’ in corresponding ‘numpy.linalg.svd’</p
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>dU</strong><span class="classifier">(Q. m, K) array</span></dt><dd><p>Partial derivatives/gradient of U with respect to each variables in q star.
-Each variable matches a (m, k) matrix. Q is number of variables. Return
+<dt><strong>du</strong><span class="classifier">(Q, M, K) array</span></dt><dd><p>Partial derivatives/gradient of U with respect to each variables in q star.
+Each variable matches a (M, K) matrix. Q is number of variables. Return
 sympy.Array if symbolic=True.</p>
 </dd>
-<dt><strong>dS</strong><span class="classifier">(0, k, k) array</span></dt><dd><p>Partial derivatives/gradient of S with respect to each variables in q star,
-Each variable matches a (m, k) matrix. k=min(m, n). (…, k, k) is a strict
+<dt><strong>ds</strong><span class="classifier">(0, K, K) array</span></dt><dd><p>Partial derivatives/gradient of S with respect to each variables in q star,
+Each variable matches a (M, K) matrix. K = min(M, N). (…, K, K) is a strict
 diagonal matrix which is quaranteed by Hadamard operation. check examples
-for details. Return sympy.Array if symbolic=True.</p>
+for details. Return ‘sympy.Array’ if symbolic=True.</p>
 </dd>
-<dt><strong>dV</strong><span class="classifier">(Q, n, k) array</span></dt><dd><p>Partial derivatives/gradient of V(NOT VT) with respect to each variables in
-g_star. Each variable matches a (n, k) matrix. Return sympy.Array if
+<dt><strong>dv</strong><span class="classifier">(Q, N, K) array</span></dt><dd><p>Partial derivatives/gradient of V(NOT VT) with respect to each variables in
+q_star. Each variable matches a (N, K) matrix. Return ‘sympy.Array’ if
 symbolic=True</p>
 </dd>
 </dl>
@@ -150,14 +150,14 @@ for forward and reverse mode algorithmic differentiation.</p>
 <span class="gp">... </span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">2</span><span class="o">*</span><span class="n">q0</span><span class="p">,</span>          <span class="mi">1</span><span class="p">,</span>    <span class="n">q0</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">q1</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">q0</span><span class="p">)</span> <span class="o">+</span> <span class="n">q1</span><span class="p">],</span>
 <span class="go">               [q0**2 - q1**2,  2*q1, 2*q0 + q1**3, cos(q0) + q1],</span>
 <span class="go">               [q0**2 + q1**2,  2,    3,            sin(q0) + cos(q1)]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dU</span><span class="p">,</span> <span class="n">dS</span><span class="p">,</span> <span class="n">dV</span> <span class="o">=</span> <span class="n">autodiff</span> <span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q_star</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dU</span><span class="o">.</span><span class="n">shape</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">du</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">dv</span> <span class="o">=</span> <span class="n">autodiff</span> <span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q_star</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">du</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(2, 3, 3)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dS</span><span class="o">.</span><span class="n">shape</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(2, 3, 3)</span>
-<span class="go">&gt;&gt;&gt;dV.shape</span>
+<span class="go">&gt;&gt;&gt;dv.shape</span>
 <span class="go">(2, 4, 3)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dU_sym</span><span class="p">,</span> <span class="n">dS_sym</span><span class="p">,</span> <span class="n">dV_sym</span> <span class="o">=</span> <span class="n">autodiff_svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q_star</span><span class="p">,</span> <span class="n">symbolic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">du_sym</span><span class="p">,</span> <span class="n">ds_sym</span><span class="p">,</span> <span class="n">dv_sym</span> <span class="o">=</span> <span class="n">autodiff_svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q_star</span><span class="p">,</span> <span class="n">symbolic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
