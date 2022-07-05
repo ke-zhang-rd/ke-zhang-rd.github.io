@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nullspace.__init__ &mdash; nullspace 0.post1+g3e7a733 documentation</title>
+  <title>nullspace.__init__ &mdash; nullspace 0.post1+g9a2b8fb documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="../../index.html" class="icon icon-home"> nullspace
           </a>
               <div class="version">
-                0.post1+g3e7a733
+                0.post1+g9a2b8fb
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -77,6 +77,8 @@
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">Array</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">rbda</span><span class="p">,</span> <span class="n">se3</span>
 
 <span class="kn">from</span> <span class="nn">._version</span> <span class="kn">import</span> <span class="n">get_versions</span>
 
@@ -335,12 +337,12 @@
         <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dA_element_wise</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
         <span class="c1"># Use @ instead of * force all binary operation between np.array(s) and sp.Matrix(s)</span>
         <span class="n">du_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">F_star</span><span class="o">.</span><span class="n">multiply_elementwise</span><span class="p">(</span><span class="n">U_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">S_star</span>
-                                                         <span class="o">+</span> <span class="n">S_star</span> <span class="o">@</span> <span class="n">V_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span><span class="p">)</span>
-        <span class="o">+</span> <span class="p">(</span><span class="n">Im</span> <span class="o">-</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">U_star_T</span><span class="p">)</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">S_star_inv</span>
+                                                         <span class="o">+</span> <span class="n">S_star</span> <span class="o">@</span> <span class="n">V_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span><span class="p">)</span> \
+            <span class="o">+</span> <span class="p">(</span><span class="n">Im</span> <span class="o">-</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">U_star_T</span><span class="p">)</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">S_star_inv</span>
         <span class="n">ds_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ik</span><span class="o">.</span><span class="n">multiply_elementwise</span><span class="p">(</span><span class="n">U_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span><span class="p">)</span>
         <span class="n">dv_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">F_star</span><span class="o">.</span><span class="n">multiply_elementwise</span><span class="p">(</span><span class="n">S_star</span> <span class="o">@</span> <span class="n">U_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span>
-                                                         <span class="o">+</span> <span class="n">V_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">S_star</span><span class="p">)</span>
-        <span class="o">+</span> <span class="p">(</span><span class="n">In</span> <span class="o">-</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">V_star_T</span><span class="p">)</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">S_star_inv</span>
+                                                         <span class="o">+</span> <span class="n">V_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">S_star</span><span class="p">)</span> \
+            <span class="o">+</span> <span class="p">(</span><span class="n">In</span> <span class="o">-</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">V_star_T</span><span class="p">)</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">S_star_inv</span>
     <span class="c1"># Build a 3D tensor for all q variables</span>
     <span class="n">du_tensor</span> <span class="o">=</span> <span class="n">Array</span><span class="p">([</span><span class="n">e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">du_lst</span><span class="p">])</span>  <span class="c1"># (Q, M, K)</span>
     <span class="n">ds_tensor</span> <span class="o">=</span> <span class="n">Array</span><span class="p">([</span><span class="n">e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">ds_lst</span><span class="p">])</span>  <span class="c1"># (Q, K, K)</span>
