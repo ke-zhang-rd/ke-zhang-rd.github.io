@@ -59,4 +59,7 @@ Krystal Python Documentation
    pythontutor
    rst
    ambush
+   cython
+   githubactions
    opensource
+   opspace

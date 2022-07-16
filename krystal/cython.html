@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cython101 &mdash; Krystal Python 0.post1+gf59de93 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Github Actions" href="githubactions.html" />
+    <link rel="prev" title="ambush" href="ambush.html" />
+ 
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-185617644-1']);
+  _gaq.push(['_trackPageview']);
+</script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ff8fbe" >
+            <a href="index.html" class="icon icon-home"> Krystal Python
+          </a>
+              <div class="version">
+                0.post1+gf59de93
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Typing and annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dunder.html">Dunder methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy.html">Deepcopy vs Shallow copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutabledefault.html">Mutable default arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirvsdict.html">dir vs __dict__</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forelse.html">for else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starred.html">Starred expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="try.html">try, except, else and finally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iter.html">iter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="itertools.html">itertools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_filter_reduce.html">Map, Filter and Reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container.html">High performance container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">Decorator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataclass.html">Case Study: dataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decoratormethod.html">A decorator as class method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="descriptor.html">Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classmethod.html">classmethod, staticmethod and property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functools.html">functools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newvsinit.html">new vs  init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="super.html">super</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta.html">Metaclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singleton.html">Singleton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abstractmethod.html">Abstractmethod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html">Thread</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator, yield and yield from</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asyncio.html">asyncio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="future.html">Future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inspect.html">Inspect function caller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vscode.html">vscode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cython101</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-architecture-of-cython-orgnization">The architecture of cython orgnization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stay-with-h-and-cpp-file">Stay with .h and .cpp file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#construct-pxd-file">construct .pxd file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#construct-pyx-file">construct .pyx file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-py">setup.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-package">install package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#practice-with-eigne-and-numpy">Practice with Eigne and Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#when-you-use-cdef">When you use cdef</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#numpy-import-vs-cimport">numpy import vs cimport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cython-fatal-error-numpy-arrayobject-h-no-such-file-or-directory">Cython: “fatal error: numpy/arrayobject.h: No such file or directory”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directive-comments">Directive comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#def-vs-cdef-vs-cpdef">def vs cdef vs cpdef</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cannot-find-eign-core">Cannot find Eign/Core</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="githubactions.html">Github Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">Open Source in For-profit Corporation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opspace.html">How operational space define a robot</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ff8fbe" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Krystal Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>cython101</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cython.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cython101">
+<h1>cython101<a class="headerlink" href="#cython101" title="Permalink to this heading">¶</a></h1>
+<p>The reason why you need cython. In my practice, in most case, you don’t need it, there are several case that
+cython might be a really good option.</p>
+<p>You really care about running time instead of engineering time.</p>
+<p>You have conclude that your faster engineering logic works, optimization is next step.</p>
+<section id="the-architecture-of-cython-orgnization">
+<h2>The architecture of cython orgnization<a class="headerlink" href="#the-architecture-of-cython-orgnization" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">PROJECT</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">MODULE</span><span class="o">&gt;</span>
+    <span class="n">include</span>
+      <span class="o">.</span><span class="n">h</span>
+    <span class="n">src</span>
+      <span class="o">.</span><span class="n">cpp</span>
+    <span class="n">python</span>
+      <span class="o">.</span><span class="n">pxd</span>
+      <span class="o">.</span><span class="n">pyx</span>
+    <span class="n">tests</span>
+      <span class="o">.</span><span class="n">py</span>
+  <span class="n">setup</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="stay-with-h-and-cpp-file">
+<h2>Stay with .h and .cpp file<a class="headerlink" href="#stay-with-h-and-cpp-file" title="Permalink to this heading">¶</a></h2>
+<p>.h and .cpp files are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.</p>
+</section>
+<section id="construct-pxd-file">
+<h2>construct .pxd file<a class="headerlink" href="#construct-pxd-file" title="Permalink to this heading">¶</a></h2>
+<p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .h file.</p>
+<p>Use c++ file as source
+.. code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s2">&quot;Rectangle.cpp&quot;</span><span class="p">:</span>
+  <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Note that when you use cdef extern from, the path that you specify is relative to the current file,</p>
+<p>Declare python/cython class with cdef</p>
+<p>Next we declare each method and private members</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rectangle</span><span class="p">()</span> <span class="k">except</span> <span class="o">+</span>
+<span class="n">Rectangle</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">except</span> <span class="o">+</span>
+<span class="nb">int</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span>
+<span class="nb">int</span> <span class="n">getArea</span><span class="p">()</span>
+<span class="n">void</span> <span class="n">getSize</span><span class="p">(</span><span class="nb">int</span><span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="nb">int</span><span class="o">*</span> <span class="n">height</span><span class="p">)</span>
+<span class="n">void</span> <span class="n">move</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>expcept + here is make sure that python will raise the exception of c++ error</p>
+</section>
+<section id="construct-pyx-file">
+<h2>construct .pyx file<a class="headerlink" href="#construct-pyx-file" title="Permalink to this heading">¶</a></h2>
+<p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .cpp file.</p>
+<p>In my naive understanding, this file contain rewritten python-ish code that matches your function and class
+in c++ files.
+We write it in rect.pyx here while there is convention that is called xxx-wrapper.pyx.</p>
+<p>At the beginning, you need cimport your c class definition(It represent cpp class in a python/cython class way)
+from pxd module. If you have ‘Rectangle.pxd’, then</p>
+<p>In the python class that we are about to write, you need use cdef to define a python-ish class for latter use.</p>
+<p>which has a c object as an attribute</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>declare it by c class which was cimport just above. This declaration usually take place in class attribute
+location.</p></li>
+</ul>
+<ul class="simple">
+<li><p>In __cinit__ magic method, construct c object as a attribute of python class.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__cinit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">int</span> <span class="n">x0</span><span class="p">,</span> <span class="nb">int</span> <span class="n">y0</span><span class="p">,</span> <span class="nb">int</span> <span class="n">x1</span><span class="p">,</span> <span class="nb">int</span> <span class="n">y1</span><span class="p">):</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">c_rect</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Next, you just need to rewrite all method you need by calling c object methods, like</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_rect</span><span class="o">.</span><span class="n">getArea</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="setup-py">
+<h2>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this heading">¶</a></h2>
+<p>make sure code below are in setup.py</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+<span class="kn">from</span> <span class="nn">Cython.Build</span> <span class="kn">import</span> <span class="n">cythonize</span>
+
+<span class="n">setup</span><span class="p">(</span>
+<span class="o">...</span>
+<span class="n">ext_modules</span> <span class="o">=</span> <span class="n">cythonize</span><span class="p">(</span><span class="s1">&#39;example_cython.pyx&#39;</span><span class="p">),</span>
+<span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="install-package">
+<h2>install package<a class="headerlink" href="#install-package" title="Permalink to this heading">¶</a></h2>
+<p>Run command below
+.. code:: bash</p>
+<blockquote>
+<div><p>$ python setup.py build_ext –inplace</p>
+</div></blockquote>
+</section>
+<section id="practice-with-eigne-and-numpy">
+<h2>Practice with Eigne and Numpy<a class="headerlink" href="#practice-with-eigne-and-numpy" title="Permalink to this heading">¶</a></h2>
+<p>The code below perfectly show us the logistic to mix Eigen and Numpy with Cython.</p>
+<p>.pyx file
+<a class="reference external" href="https://github.com/rbdl/rbdl/blob/master/python/rbdl-wrapper.pyx#L1331">https://github.com/rbdl/rbdl/blob/master/python/rbdl-wrapper.pyx#L1331</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">cimport</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">cimport</span> <span class="n">csvd</span>
+
+<span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">CalcPointAcceleration</span> <span class="p">(</span><span class="n">Model</span> <span class="n">model</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="n">q</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="n">qdot</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="n">qddot</span><span class="p">,</span>
+        <span class="n">unsigned</span> <span class="nb">int</span> <span class="n">body_id</span><span class="p">,</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="n">body_point_position</span><span class="p">,</span>
+        <span class="n">update_kinematics</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Vector3dToNumpy</span> <span class="p">(</span><span class="n">crbdl</span><span class="o">.</span><span class="n">CalcPointAcceleration</span> <span class="p">(</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">thisptr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">NumpyToVectorNd</span> <span class="p">(</span><span class="n">q</span><span class="p">),</span>
+            <span class="n">NumpyToVectorNd</span> <span class="p">(</span><span class="n">qdot</span><span class="p">),</span>
+            <span class="n">NumpyToVectorNd</span> <span class="p">(</span><span class="n">qddot</span><span class="p">),</span>
+            <span class="n">body_id</span><span class="p">,</span>
+            <span class="n">NumpyToVector3d</span> <span class="p">(</span><span class="n">body_point_position</span><span class="p">),</span>
+            <span class="n">update_kinematics</span>
+            <span class="p">))</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Call NumpyToEigen-ish function</p></li>
+<li><p>Call Actuall function by cSomething.function name. This function is shown in</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>cSomething.pxd by cdef and cdef extern from “&lt;HEADER.h&gt;” namespace “&lt;NAMESPACE&gt;”:</p></li>
+<li><p>.h file</p></li>
+<li><p>.cpp file</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Call EigenToNumpy-ish function</p></li>
+</ol>
+<p>.h file
+<a class="reference external" href="https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/include/rbdl/Kinematics.h#L270">https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/include/rbdl/Kinematics.h#L270</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Math</span><span class="p">::</span><span class="n">Vector3d</span> <span class="n">CalcPointAcceleration</span> <span class="p">(</span>
+    <span class="n">Model</span> <span class="o">&amp;</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">Math</span><span class="p">::</span><span class="n">VectorNd</span> <span class="o">&amp;</span><span class="n">Q</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">Math</span><span class="p">::</span><span class="n">VectorNd</span> <span class="o">&amp;</span><span class="n">QDot</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">Math</span><span class="p">::</span><span class="n">VectorNd</span> <span class="o">&amp;</span><span class="n">QDDot</span><span class="p">,</span>
+    <span class="n">unsigned</span> <span class="nb">int</span> <span class="n">body_id</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">Math</span><span class="p">::</span><span class="n">Vector3d</span> <span class="o">&amp;</span><span class="n">point_position</span><span class="p">,</span>
+    <span class="nb">bool</span> <span class="n">update_kinematics</span> <span class="o">=</span> <span class="n">true</span>
+    <span class="p">);</span>
+</pre></div>
+</div>
+<p>.cpp file
+<a class="reference external" href="https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/src/Kinematics.cc#L513">https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/src/Kinematics.cc#L513</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vector3d</span> <span class="n">CalcPointAcceleration</span> <span class="p">(</span>
+    <span class="n">Model</span> <span class="o">&amp;</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">VectorNd</span> <span class="o">&amp;</span><span class="n">Q</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">VectorNd</span> <span class="o">&amp;</span><span class="n">QDot</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">VectorNd</span> <span class="o">&amp;</span><span class="n">QDDot</span><span class="p">,</span>
+    <span class="n">unsigned</span> <span class="nb">int</span> <span class="n">body_id</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">Vector3d</span> <span class="o">&amp;</span><span class="n">point_position</span><span class="p">,</span>
+    <span class="nb">bool</span> <span class="n">update_kinematics</span><span class="p">)</span> <span class="p">{</span>
+</pre></div>
+</div>
+<p>.pxd file
+<a class="reference external" href="https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/python/crbdl.pxd#L254">https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/python/crbdl.pxd#L254</a>
+.. code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s2">&quot;&lt;rbdl/Kinematics.h&gt;&quot;</span> <span class="n">namespace</span> <span class="s2">&quot;RigidBodyDynamics&quot;</span><span class="p">:</span>
+    <span class="n">cdef</span> <span class="n">Vector3d</span> <span class="n">CalcPointAcceleration</span> <span class="p">(</span><span class="n">Model</span><span class="o">&amp;</span> <span class="n">model</span><span class="p">,</span>
+      <span class="n">const</span> <span class="n">VectorNd</span> <span class="o">&amp;</span><span class="n">q</span><span class="p">,</span>
+      <span class="n">const</span> <span class="n">VectorNd</span> <span class="o">&amp;</span><span class="n">qdot</span><span class="p">,</span>
+      <span class="n">const</span> <span class="n">VectorNd</span> <span class="o">&amp;</span><span class="n">qddot</span><span class="p">,</span>
+      <span class="n">const</span> <span class="n">unsigned</span> <span class="nb">int</span> <span class="n">body_id</span><span class="p">,</span>
+      <span class="n">const</span> <span class="n">Vector3d</span> <span class="o">&amp;</span><span class="n">body_point_coordinates</span><span class="p">,</span>
+      <span class="nb">bool</span> <span class="n">update_kinematics</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="when-you-use-cdef">
+<h2>When you use cdef<a class="headerlink" href="#when-you-use-cdef" title="Permalink to this heading">¶</a></h2>
+<p>When you need define something that need to be used later in python but its come from cpp(in .h file and .cpp file)</p>
+</section>
+<section id="numpy-import-vs-cimport">
+<h2>numpy import vs cimport<a class="headerlink" href="#numpy-import-vs-cimport" title="Permalink to this heading">¶</a></h2>
+<p>how to import or cimport numpy in .pyx file.
+<a class="reference external" href="https://stackoverflow.com/questions/20268228/cython-cimport-and-import-numpy-as-both-np">https://stackoverflow.com/questions/20268228/cython-cimport-and-import-numpy-as-both-np</a></p>
+</section>
+<section id="cython-fatal-error-numpy-arrayobject-h-no-such-file-or-directory">
+<h2>Cython: “fatal error: numpy/arrayobject.h: No such file or directory”<a class="headerlink" href="#cython-fatal-error-numpy-arrayobject-h-no-such-file-or-directory" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://stackoverflow.com/a/14657667/10642305">https://stackoverflow.com/a/14657667/10642305</a></p>
+</section>
+<section id="directive-comments">
+<h2>Directive comments<a class="headerlink" href="#directive-comments" title="Permalink to this heading">¶</a></h2>
+<p>The comments in cython related file are compling directives which do take effect.
+Ref:
+<a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#how-to-set-directives">https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#how-to-set-directives</a>
+The directive is prefered to setup in setup.py by this
+<a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#how-to-set-directives">https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#how-to-set-directives</a></p>
+</section>
+<section id="def-vs-cdef-vs-cpdef">
+<h2>def vs cdef vs cpdef<a class="headerlink" href="#def-vs-cdef-vs-cpdef" title="Permalink to this heading">¶</a></h2>
+<p>cdef is basiclly define a function that only workable inside package. it cannot be used by python directly. If you wanna use it by python directly, aka
+do something like below</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pkg.pyx_module</span> <span class="kn">import</span> <span class="n">function_defined_inside_pyx</span>
+<span class="n">function_defined_inside_pyx</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The function_defined_inside_pyx has to be defined by cpdef.</p>
+</section>
+<section id="cannot-find-eign-core">
+<h2>Cannot find Eign/Core<a class="headerlink" href="#cannot-find-eign-core" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://github.com/opencv/opencv/issues/14868">https://github.com/opencv/opencv/issues/14868</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ambush.html" class="btn btn-neutral float-left" title="ambush" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="githubactions.html" class="btn btn-neutral float-right" title="Github Actions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Ke Zhang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<div class="footer">This page uses <a href="https://analytics.google.com/">
+Google Analytics</a> to collect statistics. You can disable it by blocking
+the JavaScript coming from www.google-analytics.com.
+<script>
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ?
+              'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.documentElement.firstChild.appendChild(ga);
+  })();
+</script>
+</div>
+
+
+</body>
+</html>
