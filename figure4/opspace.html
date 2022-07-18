@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How operational space define a robot &mdash; Figure4 0.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="关于开源在盈利(for-profit)机构的讨论" href="opensource.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #ff8fbe" >
+            <a href="index.html" class="icon icon-home"> Figure4
+          </a>
+              <div class="version">
+                0.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy of this Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensource.html">关于开源在盈利(for-profit)机构的讨论</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How operational space define a robot</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #ff8fbe" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Figure4</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>How operational space define a robot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opspace.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-operational-space-define-a-robot">
+<h1>How operational space define a robot<a class="headerlink" href="#how-operational-space-define-a-robot" title="Permalink to this heading">¶</a></h1>
+<p><em>“The mistake that advanced engineer easy to make is optimizing the things that shouldn’t exist”.</em></p>
+<p>So, when there is a proposal about making a
+robot. The very first question is where is this robot gonna work, in kinematics, which space does operational space exist in, in mathametical,
+which group is pose operated in. Preemptively, a comparasion between operational space dimension and reality operational dimension need to be
+discussed.</p>
+<p>Here are several examples:</p>
+<p><strong>Car</strong></p>
+<p>It runs on 2D space so its operation space is R3 which are x, y and theta(orientation). So if we wanna has a fully-actuated robot,
+we need 3 actuator at least. However, a under-actuated robot might also works. In fact, that’s the case in reality.</p>
+<p><strong>Manipulator</strong></p>
+<p>It need to control the 6 dimentions in operational space(3 position and 3 orientation) to finish tasks. So a reasonal design would be a 6 actuators.</p>
+<p><strong>Tripod Head</strong></p>
+<p>The reason why extra actuator/motor, aka over-actuated usually not a good choice in reality, especially in business world. Lets check gain and loss</p>
+<p>If we take manipulator as a example, if we and 6 + n actuators for manipulation.</p>
+<p>The marginal cost are</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Extra N x actuators.</p></li>
+<li><p>Extra N x links, at least</p></li>
+<li><p>It is safe to think this N extra actuator + links are connected to the end of 6 actuators. The energy of each actuators of previous 6 are bumped.</p></li>
+<li><p>Extra solution of kinematics/dynamics, more calculation.</p></li>
+</ul>
+</div></blockquote>
+<p>The possible marginal revenue are</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>larger dexterous space</p></li>
+<li><p>larger reachable space</p></li>
+<li><p>larger dexterous space ratio</p></li>
+<li><p>condition number closer to 1</p></li>
+</ul>
+</div></blockquote>
+<p>In reality, what we need in operational space is just enough, no more. Extra will hurt you in financial, engineering time and mantainess. Sometimes,
+to add robust, people are tend to use under-actuated structure to achieve the task. One of the example is car, you only get gas paddle and wheel, two
+acutator but we need to control 3 variables in operational space(x, y and theta).</p>
+<p>Eventually, I do believe overactuated robot are not gonna work or very easy to be beated by fully or under actuated robot. For example, to achieve
+the movement task(x, y and theta) in home service domain, humanoid robot or quaduped robot are not good choice comparing to vacuume cleaning platform.</p>
+<p>Even, you determine the number of actuator, you still need to determine the size of links and structures. Those size of links are easy to influence
+the operational space by butterfly effect which make operational ability very sensitive to very small change of those size value.</p>
+<p>The fact that make thing worst is engineers are always tend to make robot more complex than need to achieve maybe more complex/interesting algorithm
+and deploy a new optimization calculation from some paper.</p>
+<p>So the choice of actuator need to be minimized.
+the size of links need to be optimized, maybe by simulation of exhaustion of parameters</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="opensource.html" class="btn btn-neutral float-left" title="关于开源在盈利(for-profit)机构的讨论" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
