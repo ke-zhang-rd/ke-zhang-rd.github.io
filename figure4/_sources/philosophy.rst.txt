@@ -1,7 +1,7 @@
-===========================
-Philosophy of this Tutorial
-===========================
+=======================
+Philosophy of this Blog
+=======================
 
-* This is an **intermediate+** tutorial. Before reading it, you need at least basic python knowledge.
-
+* This is a personal blog of technology, code and robot.
+* The name **Figure4** comes from my favorite movement in bouldering.
 * TLDR
