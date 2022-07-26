@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Github Actions &mdash; Krystal Python 0.post1+gadc9a6b documentation</title>
+  <title>Github Actions &mdash; Krystal Python 0.post1+g0ca50c0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -23,8 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="关于开源在盈利(for-profit)机构的讨论" href="opensource.html" />
-    <link rel="prev" title="cython101" href="cython.html" />
+    <link rel="prev" title="Use C++ function/class in python" href="cpp_plus_python.html" />
  
 <script>
   var _gaq = _gaq || [];
@@ -42,7 +41,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+gadc9a6b
+                0.post1+g0ca50c0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -104,9 +103,8 @@
 <li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cython.html">cython101</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpp_plus_python.html">Use C++ function/class in python</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Github Actions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensource.html">关于开源在盈利(for-profit)机构的讨论</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opspace.html">How operational space define a robot</a></li>
 </ul>
 
         </div>
@@ -135,6 +133,15 @@
              
   <section id="github-actions">
 <h1>Github Actions<a class="headerlink" href="#github-actions" title="Permalink to this heading">¶</a></h1>
+<p>To access the action of github. We need 2 keys</p>
+<p>private key</p>
+<p>public key</p>
+<p>Those two keys are github email related and can be acquired by cmd below</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&quot;</span><span class="k">$(</span>git config user.email<span class="k">)</span><span class="s2">&quot;</span> -f gh-pages -N <span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>ssh-keygen Manual
+<a class="reference external" href="https://man.openbsd.org/ssh-keygen.1">https://man.openbsd.org/ssh-keygen.1</a></p>
 <p>How to orgnaize github actions github pages</p>
 <p><a class="reference external" href="https://github.com/peaceiris/actions-gh-pages">https://github.com/peaceiris/actions-gh-pages</a></p>
 <p>shell: bash -l {0}</p>
@@ -145,8 +152,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cython.html" class="btn btn-neutral float-left" title="cython101" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="opensource.html" class="btn btn-neutral float-right" title="关于开源在盈利(for-profit)机构的讨论" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpp_plus_python.html" class="btn btn-neutral float-left" title="Use C++ function/class in python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

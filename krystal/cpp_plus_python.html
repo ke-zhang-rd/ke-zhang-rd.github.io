@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search methods’ host class &mdash; Krystal Python 0.post1+g0ca50c0 documentation</title>
+  <title>Use C++ function/class in python &mdash; Krystal Python 0.post1+g0ca50c0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Inspect function caller" href="inspect.html" />
-    <link rel="prev" title="Debugging by pdb" href="pdb.html" />
+    <link rel="next" title="Github Actions" href="githubactions.html" />
+    <link rel="prev" title="cython101" href="cython.html" />
  
 <script>
   var _gaq = _gaq || [];
@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="concurrentfuture.html">Processing async vs concurrent.future</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">pytest with contest and parameterize</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pdb.html">Debugging by pdb</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Search methods’ host class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searchmethod.html">Search methods’ host class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inspect.html">Inspect function caller</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setuptools.html">setuptools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conda.html">Conda Virtual Environment</a></li>
@@ -104,7 +104,7 @@
 <li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cython.html">cython101</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpp_plus_python.html">Use C++ function/class in python</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Use C++ function/class in python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="githubactions.html">Github Actions</a></li>
 </ul>
 
@@ -122,9 +122,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Search methods’ host class</li>
+      <li>Use C++ function/class in python</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/searchmethod.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cpp_plus_python.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -132,42 +132,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="search-methods-host-class">
-<h1>Search methods’ host class<a class="headerlink" href="#search-methods-host-class" title="Permalink to this heading">¶</a></h1>
-<p>If you have a pretty complicated inheritance relationship and you would like to search where your object methods or attributes is defined. Here is a shortcut for this purpose.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="bp">cls</span> <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="n">mro</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;target_attribute&#39;</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-
-<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-
-<span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-
-<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span><span class="o">.</span><span class="n">func</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">cls</span> <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">mro</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;func&#39;</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">))</span>
-<span class="c1"># Output</span>
-<span class="c1"># [&lt;class &#39;__main__.A&#39;&gt;]</span>
-</pre></div>
-</div>
+  <section id="use-c-function-class-in-python">
+<h1>Use C++ function/class in python<a class="headerlink" href="#use-c-function-class-in-python" title="Permalink to this heading">¶</a></h1>
+<p>Cython</p>
+<p>Cling</p>
+<p>cppyy</p>
+<p>Pybing11</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pdb.html" class="btn btn-neutral float-left" title="Debugging by pdb" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="inspect.html" class="btn btn-neutral float-right" title="Inspect function caller" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cython.html" class="btn btn-neutral float-left" title="cython101" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="githubactions.html" class="btn btn-neutral float-right" title="Github Actions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
