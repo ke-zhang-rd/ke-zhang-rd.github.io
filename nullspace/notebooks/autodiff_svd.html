@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatic Differentiating(AD) of Singular Value Decomposition(SVD) &mdash; nullspace 0.post1.dev0+ge35ab35 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="A Example of links_params" href="../links_params.html" />
+    <link rel="prev" title="autodiffsvd" href="../autodiffsvd.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> nullspace
+          </a>
+              <div class="version">
+                0.post1.dev0+ge35ab35
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlflow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot.html">plot</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../autodiffsvd.html">autodiffsvd</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Problem-Define">Problem Define</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Analytical/AD-solution">Analytical/AD solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Compare-with-numerical-solution">Compare with numerical solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../links_params.html">A Example of links_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestfithyperplane.html">Best-Fit Hyperplane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nullspace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../autodiffsvd.html">autodiffsvd</a> &raquo;</li>
+      <li>Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/autodiff_svd.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Automatic-Differentiating(AD)-of-Singular-Value-Decomposition(SVD)">
+<h1>Automatic Differentiating(AD) of Singular Value Decomposition(SVD)<a class="headerlink" href="#Automatic-Differentiating(AD)-of-Singular-Value-Decomposition(SVD)" title="Permalink to this heading">¶</a></h1>
+<section id="Problem-Define">
+<h2>Problem Define<a class="headerlink" href="#Problem-Define" title="Permalink to this heading">¶</a></h2>
+<p>we have standard <span class="math notranslate nohighlight">\(A(\textbf{q}) = USV^T\)</span>, where <span class="math notranslate nohighlight">\(\textbf{q} = [q_0, q_1, ..., q_{Q-1}]\)</span>. Find the the differentials <span class="math notranslate nohighlight">\(dU\)</span>, <span class="math notranslate nohighlight">\(dS\)</span> and <span class="math notranslate nohighlight">\(dV\)</span> in terms of <span class="math notranslate nohighlight">\(dA(\textbf{q})\)</span>, <span class="math notranslate nohighlight">\(U\)</span>, <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(V\)</span>. The dimension details show below,</p>
+<p><span class="math notranslate nohighlight">\(A: m \times n\)</span></p>
+<p><span class="math notranslate nohighlight">\(U: m \times k\)</span></p>
+<p><span class="math notranslate nohighlight">\(S: k \times k\)</span></p>
+<p><span class="math notranslate nohighlight">\(V: n \times k\)</span></p>
+<p><span class="math notranslate nohighlight">\(k:\)</span> min<span class="math notranslate nohighlight">\((m, n)\)</span></p>
+<p><span class="math notranslate nohighlight">\(Q\)</span> is the number of independent variables.</p>
+<p>Below derivation of <span class="math notranslate nohighlight">\(dU\)</span> is shown. <span class="math notranslate nohighlight">\(dS\)</span> and <span class="math notranslate nohighlight">\(dV\)</span> are similar. In second part, we compare AD result with conventional numerical method to prove the correctness.</p>
+</section>
+<section id="Analytical/AD-solution">
+<h2>Analytical/AD solution<a class="headerlink" href="#Analytical/AD-solution" title="Permalink to this heading">¶</a></h2>
+<p>This method is implemented in reverse mode which is more effeciency since all free variables q take advantages of same intermedia SVD result, U_star, S_star and V_star. As explained in [0].</p>
+<p>Remember our goal is to get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; dU(\textbf{q}) = \frac{\partial U(\textbf{q})}{\partial q_0}\Delta q_0 + \frac{\partial U(\textbf{q})}{\partial q_1}\Delta q_1 ...\frac{\partial U(\textbf{q})}{\partial q_{Q-1}}\Delta q_{Q-1} &amp; (1)\\
+\end{align}\end{split}\]</div>
+<p>Based on [1], we have result</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; dU = U(F\circ[U^T(dA)VS + SV^T(dA)^TU]) + (I_m - UU^T)(dA)VS^{-1} &amp; (2)\\
+&amp; dS = I_k\circ [U^T(dA)V] &amp; (3)\\
+&amp; dV = V(F\circ[SU^T(dA)V + V^T(dA)^TUS]) + (I_n  - VV^T)(dA)^TUS^{-1} &amp; (4)\\
+\end{align}\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+  F =\begin{cases}
+    \frac{1}{s_j^2 - s_i^2}, &amp; i \neq j.\\
+    0, &amp; i = j.
+  \end{cases}
+\end{equation}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\circ\)</span> is <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard product</a>, aka element-wise matrix multiplication.</p>
+<p>The <span class="math notranslate nohighlight">\(dU\)</span>, <span class="math notranslate nohighlight">\(dS\)</span>, <span class="math notranslate nohighlight">\(dV\)</span>, <span class="math notranslate nohighlight">\(U\)</span>, <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are all implicit function of <span class="math notranslate nohighlight">\(\textbf{q}\)</span>. When we considering a specific <span class="math notranslate nohighlight">\(\textbf{q} = \textbf{q}_*\)</span>, <span class="math notranslate nohighlight">\(U_*, S_*, V_*^T\)</span> and <span class="math notranslate nohighlight">\(F_*\)</span> which are <strong>SVD</strong> results of <span class="math notranslate nohighlight">\(A(\textbf{q}_*)\)</span> are all actually constant. Put those in (2), we get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+&amp; \frac{\partial U(\textbf{q})}{\partial q_i} = U_*(F_*\circ[U_*^T(\frac{\partial A(\textbf{q})}{\partial q_i})V_*S_* + S_*V_*^T(\frac{\partial A(\textbf{q})}{\partial q_i})^TU_*]) + (I_m - U_*U_*^T)(\frac{\partial A(\textbf{q})}{\partial q_i})V_*S_*^{-1} &amp; (5)\\
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(i = 0, 1, ..., Q-1\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{\partial A(\textbf{q})} {\partial q_i}\)</span> is element-wise as shown below.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation*}
+\frac{\partial A(\textbf{q})} {\partial q_i} =
+\begin{bmatrix}
+\frac{\partial A_{0, 0}} {\partial q_i} &amp; \frac{\partial A_{0, 1}} {\partial q_i} &amp; ... &amp; \frac{\partial A_{0, n-1}} {\partial q_i} \\
+\frac{\partial A_{1, 0}} {\partial q_i} &amp; \frac{\partial A_{1, 1}} {\partial q_i} &amp; ... &amp; \frac{\partial A_{1, n-1}} {\partial q_i} \\
+... &amp; ... &amp; ... &amp; ... \\
+\frac{\partial A_{m-1, 0}} {\partial q_i} &amp; \frac{\partial A_{m-1, 1}} {\partial q_i} &amp; ... &amp; \frac{\partial A_{m-1, n-1}} {\partial q_i} \\
+\end{bmatrix}
+\end{equation*}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (6)\end{split}\]</div>
+<p>.</p>
+<p><span class="math notranslate nohighlight">\(\frac{\partial U(\textbf{q})}{\partial q_i}\)</span> is element-wise differentiation so its shape is as same as <span class="math notranslate nohighlight">\(U\)</span>, <span class="math notranslate nohighlight">\(m \times k\)</span>.</p>
+<p>In summary, the jacobian of matrix <span class="math notranslate nohighlight">\(U\)</span> relative to <span class="math notranslate nohighlight">\(\textbf{q}\)</span> is actually a tensor. The <span class="math notranslate nohighlight">\(i\)</span>-th layer is <span class="math notranslate nohighlight">\(m \times k\)</span> matrix of <span class="math notranslate nohighlight">\(\frac{\partial U(\textbf{q})} {\partial q_i}\)</span>. The (1) could be simplified to</p>
+<div class="math notranslate nohighlight">
+\[dU(\textbf{q}) = \nabla U(\textbf{q})\Delta{\textbf{q}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\nabla U(\textbf{q})\)</span> is a <span class="math notranslate nohighlight">\(Q \times m \times k\)</span> tensor.</p>
+<section id="Reference">
+<h3>Reference<a class="headerlink" href="#Reference" title="Permalink to this heading">¶</a></h3>
+<p>[0] Matlab <a class="reference external" href="https://www.mathworks.com/help/optim/ug/autodiff-background.html">Automatic Differentiation Background</a></p>
+<p>[1] James Townsend. <a class="reference external" href="https://j-towns.github.io/papers/svd-derivative.pdf">Differentiating the Singular Value Decomposition</a></p>
+<p>[2] Mike Giles. <a class="reference external" href="https://people.maths.ox.ac.uk/gilesm/files/NA-08-01.pdf">An extended collection of matrix derivative results for forward and reverse mode algorithmic differentiation</a></p>
+<p>[3] ZhouQuan Wang <a class="reference external" href="https://arxiv.org/pdf/1909.02659.pdf">Automatic Differentiation for Complex Valued SVD</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">svd_flip_normal</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">u_based_decision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Sign correction to ensure deterministic output from SVD.</span>
+<span class="sd">    Adjusts the columns of u and the rows of v such that the loadings in the</span>
+<span class="sd">    columns in u that are largest in absolute value are always positive.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u : ndarray</span>
+<span class="sd">        u and v are the output of `linalg.svd` or</span>
+<span class="sd">        :func:`~sklearn.utils.extmath.randomized_svd`, with matching inner</span>
+<span class="sd">        dimensions so one can compute `np.dot(u * s, v)`.</span>
+<span class="sd">    v : ndarray</span>
+<span class="sd">        u and v are the output of `linalg.svd` or</span>
+<span class="sd">        :func:`~sklearn.utils.extmath.randomized_svd`, with matching inner</span>
+<span class="sd">        dimensions so one can compute `np.dot(u * s, v)`.</span>
+<span class="sd">        The input v should really be called vt to be consistent with scipy&#39;s</span>
+<span class="sd">        output.</span>
+<span class="sd">    u_based_decision : bool, default=True</span>
+<span class="sd">        If True, use the columns of u as the basis for sign flipping.</span>
+<span class="sd">        Otherwise, use the rows of v. The choice of which variable to base the</span>
+<span class="sd">        decision on is generally algorithm dependent.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    u_adjusted, v_adjusted : arrays with the same dimensions as the input.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">u_based_decision</span><span class="p">:</span>
+        <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:][</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="n">u</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="n">sign</span>
+    <span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*=</span> <span class="n">sign</span>
+    <span class="k">return</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span>
+
+
+
+<span class="k">def</span> <span class="nf">svd_without_sign_ambiguity</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SVD with corrected signs</span>
+
+<span class="sd">    Bro, R., Acar, E., &amp; Kolda, T. G. (2008). Resolving the sign ambiguity in the singular value decomposition.</span>
+<span class="sd">    Journal of Chemometrics: A Journal of the Chemometrics Society, 22(2), 135-140.</span>
+<span class="sd">    URL: https://prod-ng.sandia.gov/techlib-noauth/access-control.cgi/2007/076422.pdf</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># SDV dimensions:</span>
+    <span class="c1"># U, S, V = np.linalg.svd(X, full_matrices=False)</span>
+    <span class="c1"># X = U @ diag(S) @ V</span>
+    <span class="c1"># (I,J) = (I,K) @ (K,K) @ (K,J)</span>
+
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">I</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">assert</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">K</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">V</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">J</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">J</span><span class="p">)</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;left&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="p">),</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="p">)}</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">mask</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># (I,J) = (I,K-1) @ (K-1,K-1) @ (K-1,J)</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="n">mask</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span> <span class="o">@</span> <span class="n">V</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="p">:])</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">J</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="n">k</span><span class="p">],</span> <span class="n">Y</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span>
+            <span class="n">s</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">d</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">I</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:],</span> <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:])</span>
+            <span class="n">s</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">d</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">])</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]):</span>
+                <span class="n">s</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">s</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">U</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">V</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">V</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">V</span>
+
+<span class="k">def</span> <span class="nf">svd_regulated</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">svd_without_sign_ambiguity</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="c1"># bus</span>
+        <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">svd_flip_normal</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># rocket</span>
+        <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">svd_flip_normal</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">u_based_decision</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">Array</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">autodiff_svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q_star</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">symbolic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Automatic Differentiating of SVD</span>
+
+<span class="sd">    It takes matrix A, return differentiation of U, S and V with respect</span>
+<span class="sd">    to q_star. U, S and VT(V.T) are result of standard SVD. This method</span>
+<span class="sd">    is implemented in reverse mode which is more effeciency since all</span>
+<span class="sd">    free variables q take advantages of same intermedia SVD result,</span>
+<span class="sd">    U_star, S_star and V_star. It&#39;s return ecomonic results which means</span>
+<span class="sd">    full_matrices=False in corresponding np.linalg.svd</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    A : (m, n) Matrix</span>
+<span class="sd">        A sympy symbolic 2D Matrix, which should be legal for SVD later.</span>
+<span class="sd">    q_star : dict</span>
+<span class="sd">        A dict from sympy symbolic variable to value.</span>
+<span class="sd">    symbolic: bool, optional</span>
+<span class="sd">        Control return type. Return numerical result, numpy.ndarray, if</span>
+<span class="sd">        true(default), otherwise return symbolic result, sympy.Array.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dU : (Q, m, k) array</span>
+<span class="sd">        Partial derivatives/gradient of U with respect to each variables in</span>
+
+<span class="sd">        q_star. Each variable matches a (..., m, k) matrix. Q is number of</span>
+<span class="sd">        variables. Return sympy.Array if symbolic=True.</span>
+<span class="sd">    dS : (Q, k, k) array</span>
+<span class="sd">        Partial derivatives/gradient of S with respect to each variables in</span>
+<span class="sd">        q_star. Each variable matches a (..., m, k) matrix. k=min(m, n).</span>
+<span class="sd">        (..., k, k) is a strict diagonal matrix which is guaranteed by</span>
+<span class="sd">        Hadamard operation. check examples for details.</span>
+<span class="sd">        Return sympy.Array if symbolic=True.</span>
+<span class="sd">    dV : (Q, n, k) array</span>
+<span class="sd">        Partial derivatives/gradient of V with respect to each variables in</span>
+<span class="sd">        q_star. Each variable matches a (..., n, k) matrix. Return</span>
+<span class="sd">        sympy.Array if symbolic=True.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    numpy.linalg.svd : Similar function in numpy.</span>
+<span class="sd">    sympy.Array : 3D tensor in sympy.</span>
+<span class="sd">    sympy.Matrix.jacobian : jacobian calculation in sympy.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] James Townsend. Differentiating the Singular Value Decomposition.</span>
+<span class="sd">    .. [2] Mike Giles. An extended collection of matrix derivative results</span>
+<span class="sd">           for forward and reverse mode algorithmic differentiation.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sympy import sin, cos, symbols, Matrix</span>
+<span class="sd">    &gt;&gt;&gt; q0, q1 = symbols(&#39;q0, q1&#39;)</span>
+<span class="sd">    ... q_star = {q0: 1, q1: 2}</span>
+<span class="sd">    ... A = Matrix([[2*q0,          1,    q0**3 + 2*q1, sin(q0) + q1],</span>
+<span class="sd">                    [q0**2 - q1**2, 2*q1, 2*q0 + q1**3, cos(q0) + q1],</span>
+<span class="sd">                    [q0**2 + q1**2, 2,    3,            sin(q0) + cos(q1)]])</span>
+
+<span class="sd">    &gt;&gt;&gt; dU, dS, dV = autodiff_svd(A, q_star)</span>
+<span class="sd">    &gt;&gt;&gt; dU.shape</span>
+<span class="sd">    (2, 3, 3)</span>
+<span class="sd">    &gt;&gt;&gt; dS.shape</span>
+<span class="sd">    (2, 3, 3)</span>
+<span class="sd">    &gt;&gt;&gt; dV.shape</span>
+<span class="sd">    (2, 4, 3)</span>
+<span class="sd">    &gt;&gt;&gt; dU_sym, dS_sym, dV_sym = autodiff_svd(A, q_star, symbolic=True)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_star</span><span class="p">)</span>
+
+    <span class="c1"># For a specific q0 and q1, get U_star, S_star and V_star_T.</span>
+    <span class="n">A_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q_star</span><span class="p">),</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+    <span class="n">U_star</span><span class="p">,</span> <span class="n">S_star_1d</span><span class="p">,</span> <span class="n">V_star_T</span> <span class="o">=</span> <span class="n">svd_regulated</span><span class="p">(</span><span class="n">A_star</span><span class="p">)</span> <span class="c1"># U_star (m, k), S_star_1d (k, 1), V_star_T (n, n)</span>
+    <span class="n">U_star</span> <span class="o">=</span> <span class="n">U_star</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">]</span> <span class="c1"># Use economic U (m, k)</span>
+    <span class="n">V_star_T</span> <span class="o">=</span> <span class="n">V_star_T</span><span class="p">[:</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="c1"># Use economic VT (k, n)</span>
+
+    <span class="n">S_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S_star_1d</span><span class="p">)</span> <span class="c1"># Construct S (k, k)</span>
+    <span class="n">S_star_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reciprocal</span><span class="p">(</span><span class="n">S_star_1d</span><span class="p">))</span>
+
+    <span class="n">Ik</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">U_star_T</span> <span class="o">=</span> <span class="n">U_star</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">V_star</span> <span class="o">=</span> <span class="n">V_star_T</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="c1"># F</span>
+    <span class="n">F_star</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span> <span class="k">else</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">S_star_1d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">S_star_1d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)])</span>
+
+    <span class="c1"># dA</span>
+    <span class="c1"># Reshape A to 1d vector for convenience of jacobian calculation, will reshape back to 2d later</span>
+    <span class="n">A_element_wise</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">q_var</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">q_star</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span> <span class="c1"># [q_0, q_1, q_i..., q_Q-1]</span>
+    <span class="n">dA_element_wise</span> <span class="o">=</span> <span class="n">A_element_wise</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">q_var</span><span class="p">)</span> <span class="c1"># in shape (m*n, Q)</span>
+
+    <span class="c1"># Reserve list of dA, dS, dU and dV for each q variables. E.X. dA_lst[i] is dA with respect to qi</span>
+    <span class="n">dA_lst</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">Q</span>
+    <span class="n">dS_lst</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">Q</span>
+    <span class="n">dU_lst</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">Q</span>
+    <span class="n">dV_lst</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">Q</span>
+
+    <span class="n">Im</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">In</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
+        <span class="c1"># Get matrix dA of eq(6) wrt qi, each element in dA_lst is dA_wrt_qi. dA_wrt_qi is element-wise.</span>
+        <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dA_element_wise</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="c1"># Use @ instead of * force all binary operation between np.array(s) and sp.Matrix(s) using matrix product.</span>
+        <span class="n">dU_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">F_star</span><span class="o">.</span><span class="n">multiply_elementwise</span><span class="p">(</span><span class="n">U_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">S_star</span> \
+                                                       <span class="o">+</span> <span class="n">S_star</span> <span class="o">@</span> <span class="n">V_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span><span class="p">)</span> \
+                    <span class="o">+</span> <span class="p">(</span><span class="n">Im</span> <span class="o">-</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">U_star_T</span><span class="p">)</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">S_star_inv</span>
+        <span class="n">dS_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ik</span><span class="o">.</span><span class="n">multiply_elementwise</span><span class="p">(</span><span class="n">U_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span><span class="p">)</span>
+        <span class="n">dV_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">F_star</span><span class="o">.</span><span class="n">multiply_elementwise</span><span class="p">(</span><span class="n">S_star</span> <span class="o">@</span> <span class="n">U_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">V_star</span> \
+                                                       <span class="o">+</span> <span class="n">V_star_T</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">S_star</span><span class="p">)</span> \
+                    <span class="o">+</span> <span class="p">(</span><span class="n">In</span> <span class="o">-</span> <span class="n">V_star</span> <span class="o">@</span> <span class="n">V_star_T</span><span class="p">)</span> <span class="o">@</span> <span class="n">dA_lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U_star</span> <span class="o">@</span> <span class="n">S_star_inv</span>
+
+    <span class="c1"># Build a 3D tensor for all q variables</span>
+    <span class="n">dU_tensor</span> <span class="o">=</span> <span class="n">Array</span><span class="p">([</span><span class="n">e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">dU_lst</span><span class="p">])</span> <span class="c1"># (Q, m, k)</span>
+    <span class="n">dS_tensor</span> <span class="o">=</span> <span class="n">Array</span><span class="p">([</span><span class="n">e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">dS_lst</span><span class="p">])</span> <span class="c1"># (Q, k, k)</span>
+    <span class="n">dV_tensor</span> <span class="o">=</span> <span class="n">Array</span><span class="p">([</span><span class="n">e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">dV_lst</span><span class="p">])</span> <span class="c1"># (Q, n, k)</span>
+
+    <span class="k">if</span> <span class="n">symbolic</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dU_tensor</span><span class="p">,</span> <span class="n">dS_tensor</span><span class="p">,</span> <span class="n">dV_tensor</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dU_tensor</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q_star</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dS_tensor</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q_star</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dV_tensor</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q_star</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test input</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">Matrix</span>
+<span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;q0, q1, q2, q3&#39;</span><span class="p">)</span>
+<span class="n">q_star</span> <span class="o">=</span> <span class="p">{</span><span class="n">q0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">q1</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">q2</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">q3</span><span class="p">:</span><span class="mi">4</span><span class="p">}</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">2</span><span class="o">*</span><span class="n">q0</span><span class="p">,</span>          <span class="mi">1</span><span class="p">,</span>    <span class="n">q2</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">q3</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">q0</span><span class="p">)</span> <span class="o">+</span> <span class="n">q1</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">q0</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">q1</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">q1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">q0</span> <span class="o">+</span> <span class="n">q1</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">cos</span><span class="p">(</span><span class="n">q0</span><span class="p">)</span> <span class="o">+</span> <span class="n">q1</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">q0</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">q1</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>    <span class="mi">3</span><span class="p">,</span>            <span class="n">sin</span><span class="p">(</span><span class="n">q0</span><span class="p">)</span> <span class="o">+</span> <span class="n">cos</span><span class="p">(</span><span class="n">q1</span><span class="p">)]])</span>
+
+<span class="n">dU_of_MatrixA</span><span class="p">,</span> <span class="n">dS_of_MatrixA</span><span class="p">,</span> <span class="n">dV_of_MatrixA</span> <span class="o">=</span> <span class="n">autodiff_svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q_star</span><span class="p">)</span>
+
+<span class="c1"># Extract jacobian of normal vector</span>
+<span class="c1"># if 3 x N</span>
+<span class="n">j_ori_n_of_A</span> <span class="o">=</span> <span class="n">dU_of_MatrixA</span><span class="p">[:,</span> <span class="p">:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j_ori_n_of_A</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[-0.14231918, -0.21932216,  0.19752725,  0.01463165],
+       [ 0.51855359, -0.01168378,  0.02158681,  0.00159902],
+       [-0.53767579, -0.06999999,  0.05269224,  0.00390313]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span>
+<span class="n">dU_of_MatrixB</span><span class="p">,</span> <span class="n">dS_of_MatrixB</span><span class="p">,</span> <span class="n">dV_of_MatrixB</span> <span class="o">=</span> <span class="n">autodiff_svd</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">q_star</span><span class="p">)</span>
+<span class="n">j_ori_n_of_B</span> <span class="o">=</span> <span class="n">dV_of_MatrixB</span><span class="p">[:,</span> <span class="p">:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># Check uniqueness</span>
+<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">j_ori_n_of_A</span><span class="p">,</span> <span class="n">j_ori_n_of_B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Compare-with-numerical-solution">
+<h2>Compare with numerical solution<a class="headerlink" href="#Compare-with-numerical-solution" title="Permalink to this heading">¶</a></h2>
+<p>Take <span class="math notranslate nohighlight">\(U\)</span> as a example</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial U(\textbf{q})} {\partial q_i} = \frac {U(\textbf{q} + \Delta \textbf{q}_i) - U(\textbf{q})}{\Delta q_i}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta \textbf{q}_i\)</span> is vector that only index <span class="math notranslate nohighlight">\(i\)</span> has value <span class="math notranslate nohighlight">\(\epsilon\)</span></p>
+<div class="math notranslate nohighlight">
+\[\Delta \textbf{q}_i = [0, ..., 0, \epsilon, 0, ..., 0]^T\]</div>
+<p><span class="math notranslate nohighlight">\(U(\textbf{q} + \Delta \textbf{q}_i)\)</span> is derived from standard <strong>SVD</strong> from <span class="math notranslate nohighlight">\(A(\textbf{q} + \Delta \textbf{q}_i)\)</span>. <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are similar.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numerical method /pytest control group</span>
+<span class="c1"># when Q = 2, aka q = [q0, q1]^T</span>
+
+<span class="c1"># For a specific q0 and q1, get U_star, S_star and V_star_T.</span>
+<span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_star</span><span class="p">)</span>
+
+
+
+<span class="c1"># For a specific q0 and q1, get U_star, S_star and V_star_T.</span>
+<span class="n">A_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">q_star</span><span class="p">),</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+<span class="n">U_star</span><span class="p">,</span> <span class="n">S_star_1d</span><span class="p">,</span> <span class="n">V_star_T</span> <span class="o">=</span> <span class="n">svd_regulated</span><span class="p">(</span><span class="n">A_star</span><span class="p">)</span> <span class="c1"># U_star (m, k), S_star_1d (k, 1), V_star_T (n, n)</span>
+
+<span class="n">S_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S_star_1d</span><span class="p">)</span> <span class="c1"># Construct S (k, k)</span>
+<span class="n">U_star</span> <span class="o">=</span> <span class="n">U_star</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">]</span> <span class="c1"># Use economic U (m, k)</span>
+<span class="n">V_star_T</span> <span class="o">=</span> <span class="n">V_star_T</span><span class="p">[:</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="c1"># Use economic VT (k, n)</span>
+
+<span class="n">dq</span> <span class="o">=</span> <span class="mf">1e-7</span>
+<span class="n">U_star_plus_dq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">Q</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+<span class="n">S_star_plus_dq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">Q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+<span class="n">V_star_plus_dq_T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">Q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+<span class="n">dS_numerical_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">Q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+<span class="n">dU_numerical_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">Q</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+<span class="n">dVT_numerical_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">Q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">dV_numerical_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">Q</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
+    <span class="n">qi_star_plus_dq</span> <span class="o">=</span> <span class="n">q_star</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">qi_star_plus_dq</span><span class="p">[</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;q&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))]</span> <span class="o">+=</span> <span class="n">dq</span>
+
+    <span class="n">tmp_U</span><span class="p">,</span> <span class="n">S_star_plus_dqi_1d</span><span class="p">,</span> <span class="n">tmp_VT</span> <span class="o">=</span> <span class="n">svd_regulated</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">qi_star_plus_dq</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
+
+    <span class="n">U_star_plus_dq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">]</span>
+    <span class="n">S_star_plus_dq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S_star_plus_dqi_1d</span><span class="p">)</span>
+    <span class="n">V_star_plus_dq_T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_VT</span><span class="p">[:</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">dS_numerical_q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">S_star_plus_dq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">S_star</span><span class="p">)</span> <span class="o">/</span> <span class="n">dq</span>
+    <span class="n">dU_numerical_q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">U_star_plus_dq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">U_star</span><span class="p">)</span> <span class="o">/</span> <span class="n">dq</span>
+    <span class="n">dVT_numerical_q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">V_star_plus_dq_T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">V_star_T</span><span class="p">)</span> <span class="o">/</span> <span class="n">dq</span> <span class="c1"># Use economic VT (k, n)</span>
+    <span class="n">dV_numerical_q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dVT_numerical_q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Error Check</span>
+<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dU_of_MatrixA</span><span class="p">,</span> <span class="n">dU_numerical_q</span><span class="p">)</span> \
+<span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dS_of_MatrixA</span><span class="p">,</span> <span class="n">dS_numerical_q</span><span class="p">)</span> \
+<span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dV_of_MatrixA</span><span class="p">,</span> <span class="n">dV_numerical_q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../autodiffsvd.html" class="btn btn-neutral float-left" title="autodiffsvd" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../links_params.html" class="btn btn-neutral float-right" title="A Example of links_params" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KZ.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

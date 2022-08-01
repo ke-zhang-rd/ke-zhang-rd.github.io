@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nullspace Documentation &mdash; nullspace 0.post1.dev0+ge9fad23 documentation</title>
+  <title>nullspace Documentation &mdash; nullspace 0.post1.dev0+ge35ab35 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -20,6 +20,7 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -34,7 +35,7 @@
             <a href="#" class="icon icon-home"> nullspace
           </a>
               <div class="version">
-                0.post1.dev0+ge9fad23
+                0.post1.dev0+ge35ab35
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -80,7 +81,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="nullspace-documentation">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="nullspace-documentation">
 <h1>nullspace Documentation<a class="headerlink" href="#nullspace-documentation" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
@@ -88,7 +113,10 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controlflow.html">Control Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot.html">plot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autodiffsvd.html">autodiffsvd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autodiffsvd.html">autodiffsvd</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/autodiff_svd.html">Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="links_params.html">A Example of links_params</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bestfithyperplane.html">Best-Fit Hyperplane</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a><ul>
