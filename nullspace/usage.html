@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Usage &mdash; nullspace 0.post1+g80eee59 documentation</title>
+  <title>Usage &mdash; nullspace 0.post1.dev0+ge9fad23 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> nullspace
           </a>
               <div class="version">
-                0.post1+g80eee59
+                0.post1.dev0+ge9fad23
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -49,6 +49,10 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controlflow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot.html">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autodiffsvd.html">autodiffsvd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links_params.html">A Example of links_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bestfithyperplane.html">Best-Fit Hyperplane</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="min_versions.html">Minimum Version of Python and NumPy</a></li>
 </ul>
@@ -146,7 +150,7 @@ for forward and reverse mode algorithmic differentiation.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">Matrix</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span> <span class="o">=</span> <span class="n">symbols</span> <span class="p">(</span><span class="s1">&#39;qû,ol&#39;</span><span class="s2">&quot;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span> <span class="o">=</span> <span class="n">symbols</span> <span class="p">(</span><span class="s2">&quot;q0, q1&quot;</span><span class="p">)</span>
 <span class="gp">... </span><span class="n">q</span> <span class="n">star</span> <span class="o">=</span> <span class="p">(</span><span class="n">q0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">q1</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 <span class="gp">... </span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">2</span><span class="o">*</span><span class="n">q0</span><span class="p">,</span>          <span class="mi">1</span><span class="p">,</span>    <span class="n">q0</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">q1</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">q0</span><span class="p">)</span> <span class="o">+</span> <span class="n">q1</span><span class="p">],</span>
 <span class="go">               [q0**2 - q1**2,  2*q1, 2*q0 + q1**3, cos(q0) + q1],</span>
