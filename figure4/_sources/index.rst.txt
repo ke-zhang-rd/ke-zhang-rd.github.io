@@ -12,4 +12,4 @@ Figure4
    philosophy
    opensource
    opspace
-
+   tips_of_bouldering
