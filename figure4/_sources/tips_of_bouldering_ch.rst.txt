@@ -113,8 +113,6 @@
 |
 
 * **试着忽略线路的等级**
-
-  忘记那些多彩的胶带对应的Level。
   
   *"All colors are created equal"*
 
