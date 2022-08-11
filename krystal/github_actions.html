@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>zip &mdash; Krystal Python 0.post1+gb2e343f documentation</title>
+  <title>Github Actions &mdash; Krystal Python 0.post1+gb2e343f documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -20,12 +20,11 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Comprehension" href="comprehension.html" />
-    <link rel="prev" title="Chaining Comparison Operators" href="comparision.html" />
+    <link rel="next" title="Wheels: What, Why and How" href="wheel.html" />
+    <link rel="prev" title="Use C++ function/class in python" href="cpp_plus_python.html" />
  
 <script>
   var _gaq = _gaq || [];
@@ -60,7 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="lambda.html">lambda</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dunder.html">Dunder methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comparision.html">Chaining Comparison Operators</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zip.html">zip</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comprehension.html">Comprehension</a></li>
 <li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="walrus.html">Walrus operator</a></li>
@@ -106,7 +105,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cython.html">cython101</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpp_plus_python.html">Use C++ function/class in python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="github_actions.html">Github Actions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Github Actions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#syntax">syntax</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="wheel.html">Wheels: What, Why and How</a></li>
 </ul>
 
@@ -124,9 +126,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>zip</li>
+      <li>Github Actions</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/zip.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/github_actions.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -134,56 +136,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="zip">
-<h1>zip<a class="headerlink" href="#zip" title="Permalink to this heading">¶</a></h1>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">iterables</span><span class="p">)</span>
+  <section id="github-actions">
+<h1>Github Actions<a class="headerlink" href="#github-actions" title="Permalink to this heading">¶</a></h1>
+<p>To access the action of github. We need 2 keys</p>
+<p>private key</p>
+<p>public key</p>
+<p>Those two keys are github email related and can be acquired by cmd below</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&quot;</span><span class="k">$(</span>git config user.email<span class="k">)</span><span class="s2">&quot;</span> -f gh-pages -N <span class="s2">&quot;&quot;</span>
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line">The true name of <code class="docutils literal notranslate"><span class="pre">zip</span></code> is <strong>transpose</strong>.</div>
-<div class="line">When you want to choose certain index of each element in <code class="docutils literal notranslate"><span class="pre">iterables</span></code> and group them together, you need <code class="docutils literal notranslate"><span class="pre">zip</span></code>. Somehow, I feel this is transpose operation.</div>
-</div>
-<p>If you think arguments of zip as a matrix, each argument is a row. Then <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4],</span> <span class="pre">[5,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">9]</span></code> looks like</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-<span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">zip</span></code> will <strong>transpose</strong> it to:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
-<span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
-<span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-</pre></div>
-</div>
-<p><strong>Example</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]))</span>
-<span class="go">[(0, 5), (1, 6), (2, 7), (3, 8), (4, 9)]</span>
-</pre></div>
-</div>
-<p><strong>Example:</strong> inversive</p>
-<p>Transpose is inversive which meaning <span class="math notranslate nohighlight">\(({A^T})^T = A\)</span>. Below is an example showing this feather of <code class="docutils literal notranslate"><span class="pre">zip</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]))))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-<span class="go">[(0, 1, 2, 3, 4), (5, 6, 7, 8, 9)]</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">zip</span></code> takes <code class="docutils literal notranslate"><span class="pre">*iterables</span></code> as arguments which are argument seperated by comma.</p></li>
-<li><p>The star in <code class="docutils literal notranslate"><span class="pre">zip(*zip(...</span></code> unpack zip object to iterable</p></li>
-<li><p>list() is needed to explicit get zip result.</p></li>
-</ul>
-</div>
+<p>ssh-keygen Manual
+<a class="reference external" href="https://man.openbsd.org/ssh-keygen.1">https://man.openbsd.org/ssh-keygen.1</a></p>
+<p>How to orgnaize github actions github pages</p>
+<p><a class="reference external" href="https://github.com/peaceiris/actions-gh-pages">https://github.com/peaceiris/actions-gh-pages</a></p>
+<p>shell: bash -l {0}</p>
+<p><a class="reference external" href="https://stackoverflow.com/a/69070805/10642305">https://stackoverflow.com/a/69070805/10642305</a></p>
+<section id="syntax">
+<h2>syntax<a class="headerlink" href="#syntax" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions">https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions</a></p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="comparision.html" class="btn btn-neutral float-left" title="Chaining Comparison Operators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="comprehension.html" class="btn btn-neutral float-right" title="Comprehension" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpp_plus_python.html" class="btn btn-neutral float-left" title="Use C++ function/class in python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="wheel.html" class="btn btn-neutral float-right" title="Wheels: What, Why and How" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
