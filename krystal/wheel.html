@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buiding Package: What, Why and How &mdash; Krystal Python 0.post1+gd1edb17 documentation</title>
+  <title>Buiding Package: What, Why and How &mdash; Krystal Python 0.post1+g99f1974 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -41,7 +41,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+gd1edb17
+                0.post1+g99f1974
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -165,7 +165,10 @@ platform dependent but faster in performance.</p>
 </section>
 <section id="how-to-include-c-files-header-source-and-libraries">
 <h2>How to include c++ files(header, source and libraries)<a class="headerlink" href="#how-to-include-c-files-header-source-and-libraries" title="Permalink to this heading">¶</a></h2>
-<p>It should be included in setup.py, usually in Extension method of setuptools.</p>
+<p>Those files should be listed in setup.py, usually in Extension method of setuptools.
+<em>#include &lt;Python.h&gt;</em> should be added as mentioned here <a class="reference external" href="https://docs.python.org/3/c-api/intro.html">https://docs.python.org/3/c-api/intro.html</a>
+However, to maintain the c++ files independent which could still be used in pure c++ enviroment. The <em>#include &lt;Python.h&gt;</em>  might be
+better to add in a wrapper layer which wrap pure c++ files inside.</p>
 <p>WARNING</p>
 <p>Note that when using setuptools, you should import it before Cython, otherwise, both might disagree about the class to use here.</p>
 <section id="method-1">
