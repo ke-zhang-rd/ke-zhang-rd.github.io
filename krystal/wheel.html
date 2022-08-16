@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buiding Package: What, Why and How &mdash; Krystal Python 0.post1+gc1ab7e0 documentation</title>
+  <title>Buiding Package: What, Why and How &mdash; Krystal Python 0.post1+gd1edb17 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -41,7 +41,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+gc1ab7e0
+                0.post1+gd1edb17
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -106,6 +106,8 @@
 <li class="toctree-l1"><a class="reference internal" href="cpp_plus_python.html">Use C++ function/class in python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="github_actions.html">Github Actions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Buiding Package: What, Why and How</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-actually-happens-when-a-package-has-been-determined-to-install">What actually happens when a package has been determined to install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-wheels">What are wheels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#why-build-python-package-is-hard">Why build python package is hard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-include-c-files-header-source-and-libraries">How to include c++ files(header, source and libraries)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#method-1">Method 1</a></li>
@@ -142,6 +144,20 @@
              
   <section id="buiding-package-what-why-and-how">
 <h1>Buiding Package: What, Why and How<a class="headerlink" href="#buiding-package-what-why-and-how" title="Permalink to this heading">¶</a></h1>
+<section id="what-actually-happens-when-a-package-has-been-determined-to-install">
+<h2>What actually happens when a package has been determined to install<a class="headerlink" href="#what-actually-happens-when-a-package-has-been-determined-to-install" title="Permalink to this heading">¶</a></h2>
+<p>It goes to pypi server and search if there is any distribution available. There are two types of distribution</p>
+<ul class="simple">
+<li><p>source distribution</p></li>
+<li><p>build distribution</p></li>
+</ul>
+<p>source distribution is nothing but a tarball file which has everything included inside. build distribuition is aka wheel/whl file which are usually
+platform dependent but faster in performance.</p>
+</section>
+<section id="what-are-wheels">
+<h2>What are wheels<a class="headerlink" href="#what-are-wheels" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://realpython.com/python-wheels/">https://realpython.com/python-wheels/</a></p>
+</section>
 <section id="why-build-python-package-is-hard">
 <h2>Why build python package is hard<a class="headerlink" href="#why-build-python-package-is-hard" title="Permalink to this heading">¶</a></h2>
 <p>There may be a time in your development career where you need to author a package that extends Python w/ C or C++. In such a case your Python package needs to go through a compilation process, which converts C or C++ to binaries that work for a specific target system. This becomes really tedious when you think about how many flavors and versions of Linux there are. Building a separate binary for Red Hat, SUSE, Ubuntu, etc… Ugh so tiring.</p>
@@ -149,6 +165,7 @@
 </section>
 <section id="how-to-include-c-files-header-source-and-libraries">
 <h2>How to include c++ files(header, source and libraries)<a class="headerlink" href="#how-to-include-c-files-header-source-and-libraries" title="Permalink to this heading">¶</a></h2>
+<p>It should be included in setup.py, usually in Extension method of setuptools.</p>
 <p>WARNING</p>
 <p>Note that when using setuptools, you should import it before Cython, otherwise, both might disagree about the class to use here.</p>
 <section id="method-1">
@@ -161,12 +178,22 @@
 </section>
 <section id="method-2">
 <h3>Method 2<a class="headerlink" href="#method-2" title="Permalink to this heading">¶</a></h3>
-<p>Use Extension method of setuptools to get the c++ files including</p>
+<p>Use Extension method of setuptools to get the c++ files including, sources, include_dirs, libraries, and library_dirs.
+A general example of all those files config example could be found <a class="reference external" href="https://github.com/numpy/numpy/blob/b62c541463a9c7ed011436311ff6df9408db6651/site.cfg.example">https://github.com/numpy/numpy/blob/b62c541463a9c7ed011436311ff6df9408db6651/site.cfg.example</a></p>
 <blockquote>
-<div><p>include_dirs, libraries, and library_dirs</p>
+<div><ul class="simple">
+<li><p>sources (list[str]) – list of source filenames, relative to the distribution root (where the setup script lives),
+in Unix form (slash-separated) for portability. Source files may be C, C++, SWIG (.i), platform-specific resource
+files, or whatever else is recognized by the “build_ext” command as source for a Python extension.</p></li>
+<li><p>include_dirs: This is the header files that customized by yourself. This usually achieved by a method
+<em>get_include</em> of your own package. That means you need add this method to your package so that it would
+be easier to get the relative location of set
+A example of numpy is: <a class="reference external" href="https://github.com/numpy/numpy/blob/main/numpy/lib/utils.py#L19-L45">https://github.com/numpy/numpy/blob/main/numpy/lib/utils.py#L19-L45</a>
+Documentation is: <a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.get_include.html">https://numpy.org/devdocs/reference/generated/numpy.get_include.html</a></p></li>
+<li><p>library_dirs (list[str]) – list of directories to search for C/C++ libraries at link time</p></li>
+<li><p>libraries (list[str]) – list of library names (not filenames or paths) to link against</p></li>
+</ul>
 </div></blockquote>
-<p>What is source distribution</p>
-<p>What is wheel distribution</p>
 <p>How does wheel join your packaging distribution</p>
 <p>The tar.gz tarball that pip retrieves is a source distribution, or sdist, rather than a wheel. In some ways, a sdist is the opposite of a wheel.</p>
 <p>A developer perspective</p>
