@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buiding Package: What, Why and How &mdash; Krystal Python 0.post1+ga8b63eb documentation</title>
+  <title>Buiding Package: What, Why and How &mdash; Krystal Python 0.post1+g1eb7a15 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -41,7 +41,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+ga8b63eb
+                0.post1+g1eb7a15
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -114,6 +114,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#method-2">Method 2</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#how-does-wheel-join-your-packaging-distribution">How does wheel join your packaging distribution</a></li>
 </ul>
 </li>
 </ul>
@@ -197,13 +198,44 @@ Documentation is: <a class="reference external" href="https://numpy.org/devdocs/
 <li><p>libraries (list[str]) – list of library names (not filenames or paths) to link against</p></li>
 </ul>
 </div></blockquote>
-<p>How does wheel join your packaging distribution</p>
+<p>A example of <em>setup.py</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">Extension</span><span class="p">,</span> <span class="n">setup</span>
+<span class="kn">from</span> <span class="nn">Cython.Build</span> <span class="kn">import</span> <span class="n">cythonize</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Extension</span><span class="p">(</span><span class="s2">&quot;primes&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;primes.pyx&quot;</span><span class="p">],</span>
+        <span class="n">include_dirs</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
+        <span class="n">libraries</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
+        <span class="n">library_dirs</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">]),</span>
+    <span class="c1"># Everything but primes.pyx is included here.</span>
+    <span class="n">Extension</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;*.pyx&quot;</span><span class="p">],</span>
+        <span class="n">include_dirs</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
+        <span class="n">libraries</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
+        <span class="n">library_dirs</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">]),</span>
+<span class="p">]</span>
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;My hello app&quot;</span><span class="p">,</span>
+    <span class="n">ext_modules</span><span class="o">=</span><span class="n">cythonize</span><span class="p">(</span><span class="n">extensions</span><span class="p">),</span>
+    <span class="n">zip_safe</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice:</p>
+<p>If your options are static (for example you do not need to call a tool like pkg-config to determine them) you can also provide them directly in your .pyx or .pxd source file using a special comment block at the start of the file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># distutils: libraries = spam eggs</span>
+<span class="c1"># distutils: include_dirs = /opt/food/include</span>
+</pre></div>
+</div>
+<p>Note also that if you use setuptools instead of distutils, the default action when running python setup.py install is to create a zipped egg file which will not work with cimport for pxd files when you try to use them from a dependent package. To prevent this, include zip_safe=False in the arguments to setup().</p>
+</section>
+</section>
+<section id="how-does-wheel-join-your-packaging-distribution">
+<h2>How does wheel join your packaging distribution<a class="headerlink" href="#how-does-wheel-join-your-packaging-distribution" title="Permalink to this heading">¶</a></h2>
 <p>The tar.gz tarball that pip retrieves is a source distribution, or sdist, rather than a wheel. In some ways, a sdist is the opposite of a wheel.</p>
 <p>A developer perspective</p>
 <p>Create source distribution sdist
 $ python setup.py sdist</p>
 <p>A user perspective</p>
-</section>
 </section>
 </section>
 
