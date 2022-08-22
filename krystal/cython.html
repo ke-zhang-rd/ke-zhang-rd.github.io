@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+gdceda31 documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+g54fa31b documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+gdceda31
+                0.post1+g54fa31b
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -151,10 +151,14 @@
              
   <section id="cython101">
 <h1>cython101<a class="headerlink" href="#cython101" title="Permalink to this heading">¶</a></h1>
-<p>The reason why you need cython. In my practice, in most case, you don’t need it, there are several case that
-cython might be a really good option.</p>
-<p>You really care about running time instead of engineering time.</p>
-<p>You have conclude that your faster engineering logic works, optimization is next step.</p>
+<p>If you are thinking whether you need cython, in most case, you don’t need it, there are
+several case that cython might be a really good option.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You really care about running time instead of engineering time.</p></li>
+<li><p>You have conclude that your engineering logic no matter the language you use do works, optimization is next step.</p></li>
+</ul>
+</div></blockquote>
 <section id="the-architecture-of-cython-orgnization">
 <h2>The architecture of cython orgnization<a class="headerlink" href="#the-architecture-of-cython-orgnization" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">PROJECT</span><span class="o">&gt;</span>
@@ -179,8 +183,7 @@ cython might be a really good option.</p>
 <section id="construct-pxd-file">
 <h2>construct .pxd file<a class="headerlink" href="#construct-pxd-file" title="Permalink to this heading">¶</a></h2>
 <p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .h file.</p>
-<p>Use c++ file as source
-.. code:</p>
+<p>Use c++ file as source</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s2">&quot;Rectangle.cpp&quot;</span><span class="p">:</span>
   <span class="k">pass</span>
 </pre></div>
