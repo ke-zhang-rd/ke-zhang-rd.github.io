@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+g1ce1d3a documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+g6d265a0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+g1ce1d3a
+                0.post1+g6d265a0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -104,13 +104,15 @@
 <li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">cython101</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-architecture-of-cython-orgnization">The architecture of cython orgnization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#stay-with-h-and-cpp-file">Stay with .h and .cpp file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#construct-pxd-file">construct .pxd file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#construct-pyx-file">construct .pyx file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-py">setup.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-architecture-of-cython-orgnization">The architecture of cython orgnization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stay-with-h-and-cpp-file">Stay with .h and .cpp file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#construct-pxd-file">construct .pxd file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#construct-pyx-file">construct .pyx file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-py">setup.py</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#install-package">install package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#practice-with-eigne-and-numpy">Practice with Eigne and Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#practice-with-c-and-python-community-eigne-and-numpy">Practice with C and Python community: Eigne and Numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#when-you-use-cdef">When you use cdef</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#numpy-import-vs-cimport">numpy import vs cimport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cython-fatal-error-numpy-arrayobject-h-no-such-file-or-directory">Cython: “fatal error: numpy/arrayobject.h: No such file or directory”</a></li>
@@ -168,20 +170,19 @@ several case that cython might be a really good option.</p>
     <span class="n">src</span>
       <span class="o">.</span><span class="n">cpp</span>
     <span class="n">python</span>
-      <span class="o">.</span><span class="n">pxd</span>
       <span class="o">.</span><span class="n">pyx</span>
+      <span class="o">.</span><span class="n">pxd</span>
     <span class="n">tests</span>
       <span class="o">.</span><span class="n">py</span>
   <span class="n">setup</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-</section>
 <section id="stay-with-h-and-cpp-file">
-<h2>Stay with .h and .cpp file<a class="headerlink" href="#stay-with-h-and-cpp-file" title="Permalink to this heading">¶</a></h2>
+<h3>Stay with .h and .cpp file<a class="headerlink" href="#stay-with-h-and-cpp-file" title="Permalink to this heading">¶</a></h3>
 <p>.h and .cpp files are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.</p>
 </section>
 <section id="construct-pxd-file">
-<h2>construct .pxd file<a class="headerlink" href="#construct-pxd-file" title="Permalink to this heading">¶</a></h2>
+<h3>construct .pxd file<a class="headerlink" href="#construct-pxd-file" title="Permalink to this heading">¶</a></h3>
 <p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .h file.</p>
 <p>Use c++ file as source</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s2">&quot;Rectangle.cpp&quot;</span><span class="p">:</span>
@@ -202,7 +203,7 @@ several case that cython might be a really good option.</p>
 <p>expcept + here is make sure that python will raise the exception of c++ error</p>
 </section>
 <section id="construct-pyx-file">
-<h2>construct .pyx file<a class="headerlink" href="#construct-pyx-file" title="Permalink to this heading">¶</a></h2>
+<h3>construct .pyx file<a class="headerlink" href="#construct-pyx-file" title="Permalink to this heading">¶</a></h3>
 <p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .cpp file.</p>
 <p>In my naive understanding, this file contain rewritten python-ish code that matches your function and class
 in c++ files.
@@ -233,7 +234,7 @@ location.</p></li>
 </div></blockquote>
 </section>
 <section id="setup-py">
-<h2>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this heading">¶</a></h2>
+<h3>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this heading">¶</a></h3>
 <p>make sure code below are in setup.py</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
 <span class="kn">from</span> <span class="nn">Cython.Build</span> <span class="kn">import</span> <span class="n">cythonize</span>
@@ -245,6 +246,7 @@ location.</p></li>
 </pre></div>
 </div>
 </section>
+</section>
 <section id="install-package">
 <h2>install package<a class="headerlink" href="#install-package" title="Permalink to this heading">¶</a></h2>
 <p>Run command below
@@ -253,8 +255,8 @@ location.</p></li>
 <div><p>$ python setup.py build_ext –inplace</p>
 </div></blockquote>
 </section>
-<section id="practice-with-eigne-and-numpy">
-<h2>Practice with Eigne and Numpy<a class="headerlink" href="#practice-with-eigne-and-numpy" title="Permalink to this heading">¶</a></h2>
+<section id="practice-with-c-and-python-community-eigne-and-numpy">
+<h2>Practice with C and Python community: Eigne and Numpy<a class="headerlink" href="#practice-with-c-and-python-community-eigne-and-numpy" title="Permalink to this heading">¶</a></h2>
 <p>The code below perfectly show us the logistic to mix Eigen and Numpy with Cython.</p>
 <p>.pyx file
 <a class="reference external" href="https://github.com/rbdl/rbdl/blob/master/python/rbdl-wrapper.pyx#L1331">https://github.com/rbdl/rbdl/blob/master/python/rbdl-wrapper.pyx#L1331</a></p>
