@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+g6d265a0 documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+g19b877c documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+g6d265a0
+                0.post1+g19b877c
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -104,15 +104,20 @@
 <li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">cython101</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-architecture-of-cython-orgnization">The architecture of cython orgnization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-architecture-of-a-cython-project">The architecture of a cython project</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#stay-with-h-and-cpp-file">Stay with .h and .cpp file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#construct-pxd-file">construct .pxd file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#construct-pyx-file">construct .pyx file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pxd-file">.pxd file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setup-py">setup.py</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#install-package">install package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#practice-with-c-and-python-community-eigne-and-numpy">Practice with C and Python community: Eigne and Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#practice-with-c-and-python-community-eigne-and-numpy">Practice with C and Python community: Eigne and Numpy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-get-eigen-library">How to get Eigen library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-get-numpy-package">How to get numpy package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-get-cpp-std-libray">How to get Cpp std libray</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#when-you-use-cdef">When you use cdef</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#numpy-import-vs-cimport">numpy import vs cimport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cython-fatal-error-numpy-arrayobject-h-no-such-file-or-directory">Cython: “fatal error: numpy/arrayobject.h: No such file or directory”</a></li>
@@ -161,8 +166,8 @@ several case that cython might be a really good option.</p>
 <li><p>You have conclude that your engineering logic no matter the language you use do works, optimization is next step.</p></li>
 </ul>
 </div></blockquote>
-<section id="the-architecture-of-cython-orgnization">
-<h2>The architecture of cython orgnization<a class="headerlink" href="#the-architecture-of-cython-orgnization" title="Permalink to this heading">¶</a></h2>
+<section id="the-architecture-of-a-cython-project">
+<h2>The architecture of a cython project<a class="headerlink" href="#the-architecture-of-a-cython-project" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">PROJECT</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">MODULE</span><span class="o">&gt;</span>
     <span class="n">include</span>
@@ -179,28 +184,7 @@ several case that cython might be a really good option.</p>
 </div>
 <section id="stay-with-h-and-cpp-file">
 <h3>Stay with .h and .cpp file<a class="headerlink" href="#stay-with-h-and-cpp-file" title="Permalink to this heading">¶</a></h3>
-<p>.h and .cpp files are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.</p>
-</section>
-<section id="construct-pxd-file">
-<h3>construct .pxd file<a class="headerlink" href="#construct-pxd-file" title="Permalink to this heading">¶</a></h3>
-<p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .h file.</p>
-<p>Use c++ file as source</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s2">&quot;Rectangle.cpp&quot;</span><span class="p">:</span>
-  <span class="k">pass</span>
-</pre></div>
-</div>
-<p>Note that when you use cdef extern from, the path that you specify is relative to the current file,</p>
-<p>Declare python/cython class with cdef</p>
-<p>Next we declare each method and private members</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rectangle</span><span class="p">()</span> <span class="k">except</span> <span class="o">+</span>
-<span class="n">Rectangle</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">except</span> <span class="o">+</span>
-<span class="nb">int</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span>
-<span class="nb">int</span> <span class="n">getArea</span><span class="p">()</span>
-<span class="n">void</span> <span class="n">getSize</span><span class="p">(</span><span class="nb">int</span><span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="nb">int</span><span class="o">*</span> <span class="n">height</span><span class="p">)</span>
-<span class="n">void</span> <span class="n">move</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>expcept + here is make sure that python will raise the exception of c++ error</p>
+<p>The.h files under <em>include</em> and .cpp files under <em>src</em> are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.</p>
 </section>
 <section id="construct-pyx-file">
 <h3>construct .pyx file<a class="headerlink" href="#construct-pyx-file" title="Permalink to this heading">¶</a></h3>
@@ -233,6 +217,30 @@ location.</p></li>
 </div>
 </div></blockquote>
 </section>
+<section id="pxd-file">
+<h3>.pxd file<a class="headerlink" href="#pxd-file" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Here we are basiclly write Cython code(Cython extension type) as a wrapper to wrap the logic of .h file.</p></li>
+<li><p>The role of .pxd file is like a shared header file of cython code for convinent of writing .pyx file.</p></li>
+</ul>
+<p>Use c++ file as source</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s2">&quot;Rectangle.cpp&quot;</span><span class="p">:</span>
+  <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Note that when you use <em>cdef extern from</em>, the path that you specify is relative to the current file,</p>
+<p>Declare python/cython class with cdef</p>
+<p>Next we declare each method and private members</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rectangle</span><span class="p">()</span> <span class="k">except</span> <span class="o">+</span>
+<span class="n">Rectangle</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">except</span> <span class="o">+</span>
+<span class="nb">int</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span>
+<span class="nb">int</span> <span class="n">getArea</span><span class="p">()</span>
+<span class="n">void</span> <span class="n">getSize</span><span class="p">(</span><span class="nb">int</span><span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="nb">int</span><span class="o">*</span> <span class="n">height</span><span class="p">)</span>
+<span class="n">void</span> <span class="n">move</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>expcept + here is make sure that python will raise the exception of c++ error</p>
+</section>
 <section id="setup-py">
 <h3>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this heading">¶</a></h3>
 <p>make sure code below are in setup.py</p>
@@ -257,6 +265,15 @@ location.</p></li>
 </section>
 <section id="practice-with-c-and-python-community-eigne-and-numpy">
 <h2>Practice with C and Python community: Eigne and Numpy<a class="headerlink" href="#practice-with-c-and-python-community-eigne-and-numpy" title="Permalink to this heading">¶</a></h2>
+<section id="how-to-get-eigen-library">
+<h3>How to get Eigen library<a class="headerlink" href="#how-to-get-eigen-library" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="how-to-get-numpy-package">
+<h3>How to get numpy package<a class="headerlink" href="#how-to-get-numpy-package" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="how-to-get-cpp-std-libray">
+<h3>How to get Cpp std libray<a class="headerlink" href="#how-to-get-cpp-std-libray" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/wrapping_CPlusPlus.html?highlight=Rectangle#standard-library">https://cython.readthedocs.io/en/latest/src/userguide/wrapping_CPlusPlus.html?highlight=Rectangle#standard-library</a></p>
 <p>The code below perfectly show us the logistic to mix Eigen and Numpy with Cython.</p>
 <p>.pyx file
 <a class="reference external" href="https://github.com/rbdl/rbdl/blob/master/python/rbdl-wrapper.pyx#L1331">https://github.com/rbdl/rbdl/blob/master/python/rbdl-wrapper.pyx#L1331</a></p>
@@ -336,6 +353,7 @@ location.</p></li>
       <span class="nb">bool</span> <span class="n">update_kinematics</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
 </section>
 <section id="when-you-use-cdef">
 <h2>When you use cdef<a class="headerlink" href="#when-you-use-cdef" title="Permalink to this heading">¶</a></h2>
