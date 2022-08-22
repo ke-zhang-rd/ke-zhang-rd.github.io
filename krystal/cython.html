@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+g19b877c documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+gd7f21ae documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+g19b877c
+                0.post1+gd7f21ae
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -111,11 +111,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#setup-py">setup.py</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#install-package">install package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-package">Install package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#practice-with-c-and-python-community-eigne-and-numpy">Practice with C and Python community: Eigne and Numpy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-get-eigen-library">How to get Eigen library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-get-numpy-package">How to get numpy package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-get-cpp-std-libray">How to get Cpp std libray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-get-cpp-std-libray">How to get cpp std libray</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#when-you-use-cdef">When you use cdef</a></li>
@@ -256,12 +256,11 @@ location.</p></li>
 </section>
 </section>
 <section id="install-package">
-<h2>install package<a class="headerlink" href="#install-package" title="Permalink to this heading">¶</a></h2>
-<p>Run command below
-.. code:: bash</p>
-<blockquote>
-<div><p>$ python setup.py build_ext –inplace</p>
-</div></blockquote>
+<h2>Install package<a class="headerlink" href="#install-package" title="Permalink to this heading">¶</a></h2>
+<p>Run command below</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python setup.py build_ext --inplace
+</pre></div>
+</div>
 </section>
 <section id="practice-with-c-and-python-community-eigne-and-numpy">
 <h2>Practice with C and Python community: Eigne and Numpy<a class="headerlink" href="#practice-with-c-and-python-community-eigne-and-numpy" title="Permalink to this heading">¶</a></h2>
@@ -272,11 +271,12 @@ location.</p></li>
 <h3>How to get numpy package<a class="headerlink" href="#how-to-get-numpy-package" title="Permalink to this heading">¶</a></h3>
 </section>
 <section id="how-to-get-cpp-std-libray">
-<h3>How to get Cpp std libray<a class="headerlink" href="#how-to-get-cpp-std-libray" title="Permalink to this heading">¶</a></h3>
+<h3>How to get cpp std libray<a class="headerlink" href="#how-to-get-cpp-std-libray" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/wrapping_CPlusPlus.html?highlight=Rectangle#standard-library">https://cython.readthedocs.io/en/latest/src/userguide/wrapping_CPlusPlus.html?highlight=Rectangle#standard-library</a></p>
-<p>The code below perfectly show us the logistic to mix Eigen and Numpy with Cython.</p>
-<p>.pyx file
-<a class="reference external" href="https://github.com/rbdl/rbdl/blob/master/python/rbdl-wrapper.pyx#L1331">https://github.com/rbdl/rbdl/blob/master/python/rbdl-wrapper.pyx#L1331</a></p>
+<p>A code here also work as good examples on how to declare C++ classes.</p>
+<p>The code below perfectly show us the logistic to mix Eigen and Numpy with Cython. It trys call a <em>CalcPointAcceleration</em> from python which transfers all variables to cpp and use some cpp source code with Eigen do real math calculation and then transfer variables back to Numpy.</p>
+<p>.pyx file is in
+<a class="reference external" href="https://github.com/rbdl/rbdl/blob/master/python/rbdl-wrapper.pyx#L1873">https://github.com/rbdl/rbdl/blob/master/python/rbdl-wrapper.pyx#L1873</a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">cimport</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="n">cimport</span> <span class="n">csvd</span>
@@ -301,19 +301,20 @@ location.</p></li>
             <span class="p">))</span>
 </pre></div>
 </div>
+<p>If we look close of return line, from inside to outside:</p>
 <ol class="arabic simple">
-<li><p>Call NumpyToEigen-ish function</p></li>
-<li><p>Call Actuall function by cSomething.function name. This function is shown in</p></li>
+<li><p>Call NumpyToEigen-ish function, here it call <em>NumpyToVectorNd</em></p></li>
+<li><p>Call Actuall function by <em>crbdl.function</em> name. This <em>function</em> is shown in</p></li>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><p>cSomething.pxd by cdef and cdef extern from “&lt;HEADER.h&gt;” namespace “&lt;NAMESPACE&gt;”:</p></li>
+<li><p>crbdl.pxd by cdef and cdef extern from “&lt;HEADER.h&gt;” namespace “&lt;NAMESPACE&gt;”:</p></li>
 <li><p>.h file</p></li>
 <li><p>.cpp file</p></li>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="3">
-<li><p>Call EigenToNumpy-ish function</p></li>
+<li><p>Call EigenToNumpy-ish function, here it call <em>Vector2dToNumpy</em></p></li>
 </ol>
 <p>.h file
 <a class="reference external" href="https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/include/rbdl/Kinematics.h#L270">https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/include/rbdl/Kinematics.h#L270</a></p>
@@ -341,8 +342,7 @@ location.</p></li>
 </pre></div>
 </div>
 <p>.pxd file
-<a class="reference external" href="https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/python/crbdl.pxd#L254">https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/python/crbdl.pxd#L254</a>
-.. code:</p>
+<a class="reference external" href="https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/python/crbdl.pxd#L254">https://github.com/rbdl/rbdl/blob/242bf36fbae13ef2b67414e23844f59f97d24ea1/python/crbdl.pxd#L254</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s2">&quot;&lt;rbdl/Kinematics.h&gt;&quot;</span> <span class="n">namespace</span> <span class="s2">&quot;RigidBodyDynamics&quot;</span><span class="p">:</span>
     <span class="n">cdef</span> <span class="n">Vector3d</span> <span class="n">CalcPointAcceleration</span> <span class="p">(</span><span class="n">Model</span><span class="o">&amp;</span> <span class="n">model</span><span class="p">,</span>
       <span class="n">const</span> <span class="n">VectorNd</span> <span class="o">&amp;</span><span class="n">q</span><span class="p">,</span>
