@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+gf81c1bf documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+g1a90aaf documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+gf81c1bf
+                0.post1+g1a90aaf
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -111,7 +111,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#setup-py">setup.py</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#install-package">Install package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-package">Install package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#use-setup-cfg-to-make-things-easy">Use setup.cfg to make things easy</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#practice-with-c-and-python-community-eigne-and-numpy">Practice with C and Python community: Eigne and Numpy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-get-eigen-library">How to get Eigen library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-get-numpy-package">How to get numpy package</a></li>
@@ -162,7 +165,7 @@
 several case that cython might be a really good option.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>You really care about running time instead of engineering time.</p></li>
+<li><p>You care more about running time instead of engineering time.</p></li>
 <li><p>You have conclude that your engineering logic no matter the language you use do works, optimization is next step.</p></li>
 </ul>
 </div></blockquote>
@@ -268,8 +271,20 @@ location.</p></li>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python setup.py build_ext --inplace
 </pre></div>
 </div>
-<p>Also you could config <em>setup.cfg</em> by instruction here
+<section id="use-setup-cfg-to-make-things-easy">
+<h3>Use setup.cfg to make things easy<a class="headerlink" href="#use-setup-cfg-to-make-things-easy" title="Permalink to this heading">¶</a></h3>
+<p>You could config <em>setup.cfg</em> by instruction here
 <a class="reference external" href="https://docs.python.org/3/distutils/configfile.html">https://docs.python.org/3/distutils/configfile.html</a></p>
+<p>For example, the running code above could be configured by <em>setup.cfg</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">build_ext</span><span class="p">]</span>
+<span class="n">inplace</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>and you could just simply run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python setup.py build_ext
+</pre></div>
+</div>
+</section>
 </section>
 <section id="practice-with-c-and-python-community-eigne-and-numpy">
 <h2>Practice with C and Python community: Eigne and Numpy<a class="headerlink" href="#practice-with-c-and-python-community-eigne-and-numpy" title="Permalink to this heading">¶</a></h2>
