@@ -17,3 +17,4 @@ Figure4
    tips_of_slab
    tips_of_under
    tips_of_sloper
+   tips_of_heel_hook
