@@ -14,3 +14,6 @@ Figure4
    opspace
    tips_of_bouldering
    tips_of_bouldering_ch
+   tips_of_slab
+   tips_of_under
+   tips_of_sloper
