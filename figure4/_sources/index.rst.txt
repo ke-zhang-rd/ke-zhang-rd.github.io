@@ -12,6 +12,7 @@ Figure4
    philosophy
    opensource
    opspace
+   good_practice_or_legal
    tips_of_bouldering
    tips_of_bouldering_ch
    tips_of_slab
