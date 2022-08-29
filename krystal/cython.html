@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+gac311db documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+g3f16d5a documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+gac311db
+                0.post1+g3f16d5a
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -307,13 +307,24 @@ location.</p></li>
 <section id="setup-py">
 <h3>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this heading">¶</a></h3>
 <p>make sure code below are in setup.py</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Extension</span>
+
 <span class="kn">from</span> <span class="nn">Cython.Build</span> <span class="kn">import</span> <span class="n">cythonize</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="c1"># ext_modules = [Extension(&quot;rect.pyx&quot;, [&quot;rectangle.cpp&quot;], language=&#39;c++&#39;,)]</span>
 
 <span class="n">setup</span><span class="p">(</span>
-<span class="o">...</span>
-<span class="n">ext_modules</span> <span class="o">=</span> <span class="n">cythonize</span><span class="p">(</span><span class="s1">&#39;example_cython.pyx&#39;</span><span class="p">),</span>
-<span class="o">...</span><span class="p">)</span>
+    <span class="n">ext_modules</span><span class="o">=</span><span class="n">cythonize</span><span class="p">(</span><span class="n">Extension</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
+                                    <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rect.pyx&quot;</span><span class="p">],</span>
+                                    <span class="n">include_dirs</span><span class="o">=</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">get_include</span><span class="p">()],</span>
+                                    <span class="n">language</span><span class="o">=</span><span class="s2">&quot;c++&quot;</span><span class="p">,</span>
+                                    <span class="n">extra_compile_args</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-std=c++11&quot;</span><span class="p">],</span>
+                                    <span class="n">define_macros</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;NPY_NO_DEPRECATED_API&quot;</span><span class="p">,</span> <span class="s2">&quot;NPY_1_7_API_VERSION&quot;</span><span class="p">)],</span>
+                          <span class="p">)</span>
+                <span class="p">)</span>
+
+
+<span class="p">)</span>
 </pre></div>
 </div>
 </section>
