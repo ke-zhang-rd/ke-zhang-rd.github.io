@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+g0031840 documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+gc1c5fc1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+g0031840
+                0.post1+gc1c5fc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -247,9 +247,8 @@ your original .cpp and your .pyx file the same, your .cpp file will be overwritt
 
     <span class="k">return</span> <span class="n">result</span>
 
-<span class="n">cpdef</span> <span class="n">cal</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">var</span><span class="p">)</span> 
-    <span class="k">return</span> <span class="n">Vector4dToNumpy</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">ccal</span><span class="p">(</span><span class="n">NumpyToVector4d</span><span class="p">(</span><span class="n">arr</span><span class="p">)))</span>
+<span class="n">cpdef</span> <span class="n">compute_d</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Vector4dToNumpy</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">ccompute_d</span><span class="p">(</span><span class="n">NumpyToVector4d</span><span class="p">(</span><span class="n">arr</span><span class="p">)))</span>
 
 <span class="n">cdef</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4f</span> <span class="n">NumpyToVector4f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="n">x</span><span class="p">):</span>
   <span class="n">cdef</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4f</span> <span class="n">cx</span>
@@ -265,8 +264,8 @@ your original .cpp and your .pyx file the same, your .cpp file will be overwritt
 
     <span class="k">return</span> <span class="n">result</span>
 
-<span class="n">cpdef</span> <span class="n">calf</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">Vector4fToNumpy</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">ccalf</span><span class="p">(</span><span class="n">NumpyToVector4f</span><span class="p">(</span><span class="n">arr</span><span class="p">)))</span>
+<span class="n">cpdef</span> <span class="n">compute_f</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Vector4fToNumpy</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">ccompute_f</span><span class="p">(</span><span class="n">NumpyToVector4f</span><span class="p">(</span><span class="n">arr</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .cpp file.</p>
