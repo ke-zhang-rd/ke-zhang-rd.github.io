@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+gd95ec6e documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+g0031840 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+gd95ec6e
+                0.post1+g0031840
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -241,7 +241,7 @@ your original .cpp and your .pyx file the same, your .cpp file will be overwritt
   <span class="k">return</span> <span class="n">cx</span>
 
 <span class="n">cdef</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">double</span><span class="p">]</span> <span class="n">Vector4dToNumpy</span> <span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4d</span> <span class="n">cx</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">((</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">((</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;double&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()):</span>
         <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
@@ -259,7 +259,7 @@ your original .cpp and your .pyx file the same, your .cpp file will be overwritt
   <span class="k">return</span> <span class="n">cx</span>
 
 <span class="n">cdef</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="n">Vector4fToNumpy</span> <span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4f</span> <span class="n">cx</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">((</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;f4&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">((</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()):</span>
         <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
