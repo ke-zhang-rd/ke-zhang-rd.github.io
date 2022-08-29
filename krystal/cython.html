@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+g57b72b9 documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+g6a15fd1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+g57b72b9
+                0.post1+g6a15fd1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -203,6 +203,55 @@ your original .cpp and your .pyx file the same, your .cpp file will be overwritt
 </section>
 <section id="pyx-file">
 <h3>.pyx file<a class="headerlink" href="#pyx-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># distutils: language = c++</span>
+
+<span class="n">cimport</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">rectangle</span> <span class="n">cimport</span> <span class="n">Rectangle</span>
+<span class="c1"># rectangle is the name of .pxd from rectangle.pxd</span>
+<span class="c1"># Rectangle is the class name defined by cdef in rectangle.pxd </span>
+
+<span class="n">cimport</span> <span class="n">rectangle</span>
+
+<span class="c1"># Create a Cython extension type which holds a C++ instance</span>
+<span class="c1"># as an attribute and create a bunch of forwarding methods</span>
+<span class="c1"># Python extension type.</span>
+<span class="n">cdef</span> <span class="k">class</span> <span class="nc">PyRectangle</span><span class="p">:</span>
+    <span class="n">cdef</span> <span class="n">Rectangle</span> <span class="n">c_rect</span>  <span class="c1"># Hold a C++ instance which we&#39;re wrapping</span>
+
+    <span class="k">def</span> <span class="nf">__cinit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">int</span> <span class="n">x0</span><span class="p">,</span> <span class="nb">int</span> <span class="n">y0</span><span class="p">,</span> <span class="nb">int</span> <span class="n">x1</span><span class="p">,</span> <span class="nb">int</span> <span class="n">y1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c_rect</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_rect</span><span class="o">.</span><span class="n">getArea</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cdef</span> <span class="nb">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c_rect</span><span class="o">.</span><span class="n">getSize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">width</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">height</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span>
+
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c_rect</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+
+
+<span class="n">cdef</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4d</span> <span class="n">NumpyToVector4d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="n">x</span><span class="p">):</span>
+  <span class="n">cdef</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4d</span> <span class="n">cx</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+  <span class="k">return</span> <span class="n">cx</span>
+
+<span class="n">cdef</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">double</span><span class="p">]</span> <span class="n">Vector4dToNumpy</span> <span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4d</span> <span class="n">cx</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">((</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()):</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">cpdef</span> <span class="n">cal</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">var</span><span class="p">)</span> 
+    <span class="k">return</span> <span class="n">Vector4dToNumpy</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">ccal</span><span class="p">(</span><span class="n">NumpyToVector4d</span><span class="p">(</span><span class="n">arr</span><span class="p">)))</span>
+</pre></div>
+</div>
 <p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .cpp file.</p>
 <p>In my naive understanding, this file contain rewritten python-ish code that matches your function and class
 in c++ files.
@@ -210,6 +259,10 @@ We write it in rect.pyx here while there is convention that is called xxx-wrappe
 <p>At the beginning, you need cimport your c class definition(It represent cpp class in a python/cython class way)
 from pxd module. If you have ‘Rectangle.pxd’, then</p>
 <p>In the python class that we are about to write, you need use cdef to define a python-ish class for latter use.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="k">class</span> <span class="nc">PyRectangle</span><span class="p">:</span>
+    <span class="n">cdef</span> <span class="n">Rectangle</span> <span class="n">c_rect</span>  <span class="c1"># Hold a C++ instance which we&#39;re wrapping</span>
+</pre></div>
+</div>
 <p>which has a c object as an attribute</p>
 <blockquote>
 <div><ul class="simple">
@@ -239,11 +292,6 @@ location.</p></li>
 <li><p>The role of .pxd file is like a shared header file of cython code for convinent of writing .pyx file.</p></li>
 </ul>
 <p>Use c++ file as source</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s2">&quot;Rectangle.cpp&quot;</span><span class="p">:</span>
-  <span class="k">pass</span>
-</pre></div>
-</div>
-<p>Note that when you use <em>cdef extern from</em>, the path that you specify is relative to the current file,</p>
 <p>Declare python/cython class with cdef</p>
 <p>Next we declare each method and private members</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rectangle</span><span class="p">()</span> <span class="k">except</span> <span class="o">+</span>
