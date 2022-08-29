@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+g4e46d23 documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+g6a11d3a documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+g4e46d23
+                0.post1+g6a11d3a
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -106,7 +106,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">cython101</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-architecture-of-a-cython-project">The architecture of a cython project</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#stay-with-h-and-cpp-file">Stay with .h and .cpp file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#construct-pyx-file">construct .pyx file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyx-file">.pyx file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pxd-file">.pxd file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setup-py">setup.py</a></li>
 </ul>
@@ -201,8 +201,8 @@ your original .cpp and your .pyx file the same, your .cpp file will be overwritt
 <h3>Stay with .h and .cpp file<a class="headerlink" href="#stay-with-h-and-cpp-file" title="Permalink to this heading">¶</a></h3>
 <p>The.h files under <em>include</em> and .cpp files under <em>src</em> are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.</p>
 </section>
-<section id="construct-pyx-file">
-<h3>construct .pyx file<a class="headerlink" href="#construct-pyx-file" title="Permalink to this heading">¶</a></h3>
+<section id="pyx-file">
+<h3>.pyx file<a class="headerlink" href="#pyx-file" title="Permalink to this heading">¶</a></h3>
 <p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .cpp file.</p>
 <p>In my naive understanding, this file contain rewritten python-ish code that matches your function and class
 in c++ files.
