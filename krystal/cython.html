@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+gf6fc45f documentation</title>
+  <title>cython101 &mdash; Krystal Python 0.post1+gd29a60c documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+gf6fc45f
+                0.post1+gd29a60c
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -108,10 +108,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#stay-with-h-and-cpp-file">Stay with .h and .cpp file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pyx-file">.pyx file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pxd-file">.pxd file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#setup-py">setup.py</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#install-package">Install package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setup-py">setup.py</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#use-setup-cfg-to-make-things-easy">Use setup.cfg to make things easy</a></li>
 </ul>
 </li>
@@ -304,6 +304,9 @@ location.</p></li>
 </div>
 <p>expcept + here is make sure that python will raise the exception of c++ error</p>
 </section>
+</section>
+<section id="install-package">
+<h2>Install package<a class="headerlink" href="#install-package" title="Permalink to this heading">¶</a></h2>
 <section id="setup-py">
 <h3>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this heading">¶</a></h3>
 <p>make sure code below are in setup.py</p>
@@ -325,14 +328,16 @@ location.</p></li>
 <span class="p">)</span>
 </pre></div>
 </div>
-</section>
-</section>
-<section id="install-package">
-<h2>Install package<a class="headerlink" href="#install-package" title="Permalink to this heading">¶</a></h2>
+<p>Here the meaning of argument</p>
+<ul class="simple">
+<li><p><em>name</em>: A architecture name that seperated by ‘.’(dot), dot is not meaning of file type</p></li>
+<li><p>sources: A list of source file that not being <em>cdef</em> in <em>.pxd</em> file</p></li>
+</ul>
 <p>Run command below</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python setup.py build_ext --inplace
 </pre></div>
 </div>
+</section>
 <section id="use-setup-cfg-to-make-things-easy">
 <h3>Use setup.cfg to make things easy<a class="headerlink" href="#use-setup-cfg-to-make-things-easy" title="Permalink to this heading">¶</a></h3>
 <p>You could config <em>setup.cfg</em> by instruction here
