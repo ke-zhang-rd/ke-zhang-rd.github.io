@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython101 &mdash; Krystal Python 0.post1+g9d5b2b4 documentation</title>
+  <title>cython wrapping a c++ extentsion &mdash; Krystal Python 0.post1+g7b95aec documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+g9d5b2b4
+                0.post1+g7b95aec
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -103,10 +103,12 @@
 <li class="toctree-l1"><a class="reference internal" href="pythontutor.html">pythontutor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rst.html">RST</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ambush.html">ambush</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">cython101</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-architecture-of-a-cython-project">The architecture of a cython project</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#stay-with-h-and-cpp-file">Stay with .h and .cpp file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pyx-file">.pyx file</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cython wrapping a c++ extentsion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#why">Why</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what">What</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-the-architecture-of-a-python-project-with-cython-extension">How: The architecture of a python project with cython extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stay-with-h-and-cpp">Stay with .h and .cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyx">.pyx</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pxd-file">.pxd file</a></li>
 </ul>
 </li>
@@ -128,7 +130,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#def-vs-cdef-vs-cpdef">def vs cdef vs cpdef</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cannot-find-eign-core">Cannot find Eign/Core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-do-i-wrap-a-c-class-with-cython">How do I wrap a C class with cython</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#use-cdef">Use cdef</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-cython-with-jupyter-notebook">Use cython with jupyter notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cython-file-names">cython file names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-py-ext-modules">setup.py ext_modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cython-annotation">cython annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extern-header">extern header</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpp_plus_python.html">Use C++ function/class in python</a></li>
@@ -150,7 +160,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>cython101</li>
+      <li>cython wrapping a c++ extentsion</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cython.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -160,31 +170,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cython101">
-<h1>cython101<a class="headerlink" href="#cython101" title="Permalink to this heading">¶</a></h1>
+  <section id="cython-wrapping-a-c-extentsion">
+<h1>cython wrapping a c++ extentsion<a class="headerlink" href="#cython-wrapping-a-c-extentsion" title="Permalink to this heading">¶</a></h1>
+<p>The index of this document will include</p>
+<p>A general archetecture of cython project</p>
+<p>Should include as much as possible build information here</p>
+<p>A example from example directory</p>
+<p>A real world example from rble lib</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>A numpy <strong>float</strong> is a C <strong>double</strong>!</p>
 </div>
-<p>If you are thinking whether you need cython, in most case, you don’t need it, there are
-several case that cython might be a really good option.</p>
+<section id="why">
+<h2>Why<a class="headerlink" href="#why" title="Permalink to this heading">¶</a></h2>
+<p>If you are thinking whether you need cython, in most case, you don’t need it. Cython might be a good option if both conditions belwo satisfied.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>You care more about running time instead of engineering time.</p></li>
-<li><p>You have conclude that your engineering logic no matter the language you use do works, optimization is next step.</p></li>
+<li><p>You have concluded that your engineering logic works in a slower language, optimization is next step.</p></li>
 </ul>
 </div></blockquote>
-<section id="the-architecture-of-a-cython-project">
-<h2>The architecture of a cython project<a class="headerlink" href="#the-architecture-of-a-cython-project" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="what">
+<h2>What<a class="headerlink" href="#what" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Extension is python module you write in Other language, in here we refer C/C++</p></li>
+<li><p>Cython will just use whatever standard C compiler to compile it to <em>.so</em> file</p></li>
+<li><p>Eventually, python allow you import it</p></li>
+</ol>
+</section>
+<section id="how-the-architecture-of-a-python-project-with-cython-extension">
+<h2>How: The architecture of a python project with cython extension<a class="headerlink" href="#how-the-architecture-of-a-python-project-with-cython-extension" title="Permalink to this heading">¶</a></h2>
+<p>A conoventional architecture and naming rule is shown below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">PROJECT</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">MODULE</span><span class="o">&gt;</span>
     <span class="n">include</span>
-      <span class="o">.</span><span class="n">h</span>
+      <span class="o">&lt;</span><span class="n">REAL_NAME</span><span class="o">&gt;.</span><span class="n">h</span>
     <span class="n">src</span>
-      <span class="o">.</span><span class="n">cpp</span>
+      <span class="o">&lt;</span><span class="n">REAL_NAME</span><span class="o">&gt;.</span><span class="n">cpp</span>
     <span class="n">python</span>
-      <span class="o">.</span><span class="n">pyx</span>
-      <span class="o">.</span><span class="n">pxd</span>
+      <span class="o">&lt;</span><span class="n">REAL_NAME</span><span class="o">&gt;</span><span class="n">_wrapper</span><span class="o">.</span><span class="n">pyx</span>
+      <span class="o">&lt;</span><span class="n">REAL_NAME</span><span class="o">&gt;</span><span class="n">_interface</span><span class="o">.</span><span class="n">pxd</span>
     <span class="n">tests</span>
       <span class="o">.</span><span class="n">py</span>
   <span class="n">setup</span><span class="o">.</span><span class="n">py</span>
@@ -192,25 +218,29 @@ several case that cython might be a really good option.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Important! Do not name the .pyx file the same as your .cpp file! When the cythonize function is
-called later, a new .cpp file with the same name as your .pyx file is generated. If you name both
-your original .cpp and your .pyx file the same, your .cpp file will be overwritten! Which is bad.</p>
-<p>Though there is tldr <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/external_C_code.html#resolving-naming-conflicts-c-name-specifications">solution</a>.</p>
+<p>Important! DO NOT name the <em>.pyx</em> file the same as your <em>.cpp</em> file! When the cythonize function is
+called later, a new <em>.cpp</em> file with the same name as your <em>.pyx</em> file is generated. If you name both
+your original <em>.cpp</em> and your <em>.pyx</em> file the same, your <em>.cpp</em> file will be overwritten! Which is bad.</p>
+<p>Though there is tldr <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/external_C_code.html#resolving-naming-conflicts-c-name-specifications">solution</a> if you really need to name them exactly same.</p>
 </div>
-<section id="stay-with-h-and-cpp-file">
-<h3>Stay with .h and .cpp file<a class="headerlink" href="#stay-with-h-and-cpp-file" title="Permalink to this heading">¶</a></h3>
-<p>The.h files under <em>include</em> and .cpp files under <em>src</em> are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.</p>
+<p>A work flow shown below:</p>
+<a class="reference internal image-reference" href="_images/cython.svg"><img alt="_images/cython.svg" class="align-center" src="_images/cython.svg" width="1000" /></a>
+<section id="stay-with-h-and-cpp">
+<h3>Stay with .h and .cpp<a class="headerlink" href="#stay-with-h-and-cpp" title="Permalink to this heading">¶</a></h3>
+<p>The <em>.h</em> files in <em>include</em> and <em>.cpp</em> files in <em>src</em> are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.</p>
 </section>
-<section id="pyx-file">
-<h3>.pyx file<a class="headerlink" href="#pyx-file" title="Permalink to this heading">¶</a></h3>
+<section id="pyx">
+<h3>.pyx<a class="headerlink" href="#pyx" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="../../examples/cython/compute_wrapper.pyx">compute_wrapper.pyx</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># distutils: language = c++</span>
 
 <span class="n">cimport</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">rectangle</span> <span class="n">cimport</span> <span class="n">Rectangle</span>
+<span class="kn">from</span> <span class="nn">compute_interface</span> <span class="n">cimport</span> <span class="n">Rectangle</span>
+<span class="kn">from</span> <span class="nn">compute_interface</span> <span class="n">cimport</span> <span class="n">Vec4d</span><span class="p">,</span> <span class="n">Vec4f</span>
+<span class="kn">from</span> <span class="nn">compute_interface</span> <span class="n">cimport</span> <span class="n">ccompute_d</span><span class="p">,</span> <span class="n">ccompute_f</span>
 <span class="c1"># rectangle is the name of .pxd from rectangle.pxd</span>
 <span class="c1"># Rectangle is the class name defined by cdef in rectangle.pxd </span>
 
-<span class="n">cimport</span> <span class="n">rectangle</span>
 
 <span class="c1"># Create a Cython extension type which holds a C++ instance</span>
 <span class="c1"># as an attribute and create a bunch of forwarding methods</span>
@@ -233,14 +263,14 @@ your original .cpp and your .pyx file the same, your .cpp file will be overwritt
         <span class="bp">self</span><span class="o">.</span><span class="n">c_rect</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
 
 
-<span class="n">cdef</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4d</span> <span class="n">NumpyToVector4d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="n">x</span><span class="p">):</span>
-  <span class="n">cdef</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4d</span> <span class="n">cx</span>
+<span class="n">cdef</span> <span class="n">Vec4d</span> <span class="n">NumpyToVector4d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="n">x</span><span class="p">):</span>
+  <span class="n">cdef</span> <span class="n">Vec4d</span> <span class="n">cx</span>
   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
     <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
   <span class="k">return</span> <span class="n">cx</span>
 
-<span class="n">cdef</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">double</span><span class="p">]</span> <span class="n">Vector4dToNumpy</span> <span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4d</span> <span class="n">cx</span><span class="p">):</span>
+<span class="n">cdef</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">double</span><span class="p">]</span> <span class="n">Vector4dToNumpy</span> <span class="p">(</span><span class="n">Vec4d</span> <span class="n">cx</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">((</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;double&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()):</span>
         <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -248,16 +278,16 @@ your original .cpp and your .pyx file the same, your .cpp file will be overwritt
     <span class="k">return</span> <span class="n">result</span>
 
 <span class="n">cpdef</span> <span class="n">compute_d</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">Vector4dToNumpy</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">ccompute_d</span><span class="p">(</span><span class="n">NumpyToVector4d</span><span class="p">(</span><span class="n">arr</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">Vector4dToNumpy</span><span class="p">(</span><span class="n">ccompute_d</span><span class="p">(</span><span class="n">NumpyToVector4d</span><span class="p">(</span><span class="n">arr</span><span class="p">)))</span>
 
-<span class="n">cdef</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4f</span> <span class="n">NumpyToVector4f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="n">x</span><span class="p">):</span>
-  <span class="n">cdef</span> <span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4f</span> <span class="n">cx</span>
+<span class="n">cdef</span> <span class="n">Vec4f</span> <span class="n">NumpyToVector4f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="n">x</span><span class="p">):</span>
+  <span class="n">cdef</span> <span class="n">Vec4f</span> <span class="n">cx</span>
   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
     <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
   <span class="k">return</span> <span class="n">cx</span>
 
-<span class="n">cdef</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="n">Vector4fToNumpy</span> <span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">Vec4f</span> <span class="n">cx</span><span class="p">):</span>
+<span class="n">cdef</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="n">Vector4fToNumpy</span> <span class="p">(</span><span class="n">Vec4f</span> <span class="n">cx</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">((</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">cx</span><span class="o">.</span><span class="n">rows</span><span class="p">()):</span>
         <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -265,15 +295,15 @@ your original .cpp and your .pyx file the same, your .cpp file will be overwritt
     <span class="k">return</span> <span class="n">result</span>
 
 <span class="n">cpdef</span> <span class="n">compute_f</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">Vector4fToNumpy</span><span class="p">(</span><span class="n">rectangle</span><span class="o">.</span><span class="n">ccompute_f</span><span class="p">(</span><span class="n">NumpyToVector4f</span><span class="p">(</span><span class="n">arr</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">Vector4fToNumpy</span><span class="p">(</span><span class="n">ccompute_f</span><span class="p">(</span><span class="n">NumpyToVector4f</span><span class="p">(</span><span class="n">arr</span><span class="p">)))</span>
 </pre></div>
 </div>
-<p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .cpp file.</p>
+<p>Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .cpp file. When I said wrapping C function,
+I mean we define a python function and inside it, we just call our c function.</p>
 <p>In my naive understanding, this file contain rewritten python-ish code that matches your function and class
-in c++ files.
-We write it in rect.pyx here while there is convention that is called xxx-wrapper.pyx.</p>
+in c++ files.</p>
 <p>At the beginning, you need cimport your c class definition(It represent cpp class in a python/cython class way)
-from pxd module. If you have ‘Rectangle.pxd’, then</p>
+from pxd module. If you have ‘compute_interface.pxd’, then</p>
 <p>In the python class that we are about to write, you need use cdef to define a python-ish class for latter use.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="k">class</span> <span class="nc">PyRectangle</span><span class="p">:</span>
     <span class="n">cdef</span> <span class="n">Rectangle</span> <span class="n">c_rect</span>  <span class="c1"># Hold a C++ instance which we&#39;re wrapping</span>
@@ -339,7 +369,13 @@ location.</p></li>
                                     <span class="n">extra_compile_args</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-std=c++11&quot;</span><span class="p">],</span>
                                     <span class="n">define_macros</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;NPY_NO_DEPRECATED_API&quot;</span><span class="p">,</span>
                                                     <span class="s2">&quot;NPY_1_7_API_VERSION&quot;</span><span class="p">)]</span>
-                                    <span class="p">)</span>
+                                    <span class="p">),</span>
+                          <span class="n">compiler_directives</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;language_level&#39;</span><span class="p">:</span> <span class="s1">&#39;3str&#39;</span><span class="p">}</span>
+                          <span class="c1"># This is for eliminate warning, though it is not</span>
+                          <span class="c1"># very necessary.</span>
+                          <span class="c1"># FutureWarning: Cython directive &#39;language_level&#39;</span>
+                          <span class="c1"># not set, using &#39;3str&#39; for now (Py3). This has</span>
+                          <span class="c1"># changed from earlier releases!</span>
                           <span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
@@ -349,21 +385,33 @@ location.</p></li>
 <li><p><em>name</em>: A architecture name that seperated by ‘.’(dot), dot is not meaning of file type</p></li>
 <li><p>sources: A list of source file that not being <em>cdef</em> in <em>.pxd</em> file</p></li>
 </ul>
-<p>Run command below</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python setup.py build_ext --inplace
+<p>A minimal command run is below</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python setup.py build_ext
+</pre></div>
+</div>
+<p>However if you need run the so in current file, you need add <em>–inplace</em> flag and if you wanna force to recompile each time, you need <em>–force</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python setup.py build_ext --inplace --force
 </pre></div>
 </div>
 </section>
 <section id="use-setup-cfg-to-make-things-easy">
 <h3>Use setup.cfg to make things easy<a class="headerlink" href="#use-setup-cfg-to-make-things-easy" title="Permalink to this heading">¶</a></h3>
+<p>There are tons of flag, so to make it easy, you could write all options and flag in a <em>setup.cfg</em>.</p>
 <p>You could config <em>setup.cfg</em> by instruction here
 <a class="reference external" href="https://docs.python.org/3/distutils/configfile.html">https://docs.python.org/3/distutils/configfile.html</a></p>
-<p>For example, the running code above could be configured by <em>setup.cfg</em></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">build_ext</span><span class="p">]</span>
-<span class="n">inplace</span><span class="o">=</span><span class="mi">1</span>
+<p>For example, configure by <em>setup.cfg</em> in a format like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">command</span><span class="p">]</span>
+<span class="n">option</span><span class="o">=</span><span class="n">value</span>
+<span class="o">...</span>
 </pre></div>
 </div>
-<p>and you could just simply run</p>
+<p>the running code above could be configured</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">build_ext</span><span class="p">]</span>
+<span class="n">inplace</span><span class="o">=</span><span class="mi">1</span>
+      <span class="n">force</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>and you could just run and the flags will add to the end automatically</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python setup.py build_ext
 </pre></div>
 </div>
@@ -485,13 +533,18 @@ The directive is prefered to setup in setup.py by this
 </section>
 <section id="def-vs-cdef-vs-cpdef">
 <h2>def vs cdef vs cpdef<a class="headerlink" href="#def-vs-cdef-vs-cpdef" title="Permalink to this heading">¶</a></h2>
-<p>cdef is basiclly define a function that only workable inside package. it cannot be used by python directly. If you wanna use it by python directly, aka
+<p><strong>cdef</strong> is basiclly define a function that only workable inside package. it cannot be used by python directly. It is local to current file. If you wanna use it by python directly, aka
 do something like below</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pkg.pyx_module</span> <span class="kn">import</span> <span class="n">function_defined_inside_pyx</span>
 <span class="n">function_defined_inside_pyx</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The function_defined_inside_pyx has to be defined by <em>cpdef</em>.</p>
+<p>The function_defined_inside_pyx has to be defined by <strong>cpdef</strong>.
+<strong>cpdef</strong> could be called by local C and externally Python</p>
+<p>Q: Why don’t always use <strong>cpdef</strong></p>
+<p><strong>cpdef</strong> has some constrain in taking argument, it cannot take some C argument like pointers, ex float * x
+other than that, yes, you could always use cpdef.</p>
+<p>Thing to remember is always use <strong>def</strong> and <strong>cpdef</strong> to expose function to outside</p>
 </section>
 <section id="cannot-find-eign-core">
 <h2>Cannot find Eign/Core<a class="headerlink" href="#cannot-find-eign-core" title="Permalink to this heading">¶</a></h2>
@@ -564,6 +617,45 @@ In this case the whole output looks like</p>
 <span class="n">error</span><span class="p">:</span> <span class="n">command</span> <span class="s1">&#39;/usr/bin/clang&#39;</span> <span class="n">failed</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">1</span>
 </pre></div>
 </div>
+<section id="use-cdef">
+<h3>Use cdef<a class="headerlink" href="#use-cdef" title="Permalink to this heading">¶</a></h3>
+<p>If something both exist in C and python, C take privilege, ex, float is C float</p>
+</section>
+<section id="use-cython-with-jupyter-notebook">
+<h3>Use cython with jupyter notebook<a class="headerlink" href="#use-cython-with-jupyter-notebook" title="Permalink to this heading">¶</a></h3>
+<p>in the top of notebook
+%%load_ext cythonmagic</p>
+<p>%%cython
+write your code</p>
+</section>
+<section id="cython-file-names">
+<h3>cython file names<a class="headerlink" href="#cython-file-names" title="Permalink to this heading">¶</a></h3>
+<p>You don’t have to use .pyx , any .py files are ok for cython</p>
+</section>
+<section id="setup-py-ext-modules">
+<h3>setup.py ext_modules<a class="headerlink" href="#setup-py-ext-modules" title="Permalink to this heading">¶</a></h3>
+<p>You could compile multiple extensions by</p>
+<p>cythonize([“.pyx”, “.pyx”])</p>
+</section>
+<section id="cython-annotation">
+<h3>cython annotation<a class="headerlink" href="#cython-annotation" title="Permalink to this heading">¶</a></h3>
+<p>cython -a .pyx</p>
+</section>
+<section id="extern-header">
+<h3>extern header<a class="headerlink" href="#extern-header" title="Permalink to this heading">¶</a></h3>
+<p>cdef extern from “string.h”</p>
+<blockquote>
+<div><p>int strlen(char* s)</p>
+</div></blockquote>
+<p>strlen here is kinda of redundant, yes!. kinda</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>cython is welcome to more automation but it’s time expensive</p></li>
+<li><p>here, it’s more like checking purpose to check strlen you will use is matching the thing in you c header file</p></li>
+<li><p>you could only declare whatever you need, not all of them</p></li>
+</ul>
+</div></blockquote>
+</section>
 </section>
 </section>
 

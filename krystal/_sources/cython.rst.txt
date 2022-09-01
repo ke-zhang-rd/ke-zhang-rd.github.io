@@ -1,66 +1,101 @@
-**************************
-cython101
-**************************
+********************************
+cython wrapping a c++ extentsion
+********************************
+
+The index of this document will include
+
+
+A general archetecture of cython project
+
+
+
+Should include as much as possible build information here
+
+
+A example from example directory
+
+
+
+A real world example from rble lib
 
 .. warning::
   
   A numpy **float** is a C **double**!
+  
 
-If you are thinking whether you need cython, in most case, you don't need it, there are
-several case that cython might be a really good option.
+Why
+===
+
+If you are thinking whether you need cython, in most case, you don't need it. Cython might be a good option if both conditions belwo satisfied.
 
   * You care more about running time instead of engineering time.
-  * You have conclude that your engineering logic no matter the language you use do works, optimization is next step.
+  * You have concluded that your engineering logic works in a slower language, optimization is next step.
 
 
-The architecture of a cython project
-====================================
+What
+====
+
+1. Extension is python module you write in Other language, in here we refer C/C++
+2. Cython will just use whatever standard C compiler to compile it to *.so* file
+3. Eventually, python allow you import it
+
+
+How: The architecture of a python project with cython extension
+===============================================================
+
+A conoventional architecture and naming rule is shown below:
 
 .. code::
 
   <PROJECT>
     <MODULE>
       include
-        .h
+        <REAL_NAME>.h
       src
-        .cpp
+        <REAL_NAME>.cpp
       python
-        .pyx
-        .pxd
+        <REAL_NAME>_wrapper.pyx
+        <REAL_NAME>_interface.pxd
       tests
         .py
     setup.py
 
 .. warning::
 
-  Important! Do not name the .pyx file the same as your .cpp file! When the cythonize function is
-  called later, a new .cpp file with the same name as your .pyx file is generated. If you name both
-  your original .cpp and your .pyx file the same, your .cpp file will be overwritten! Which is bad.
+  Important! DO NOT name the *.pyx* file the same as your *.cpp* file! When the cythonize function is
+  called later, a new *.cpp* file with the same name as your *.pyx* file is generated. If you name both
+  your original *.cpp* and your *.pyx* file the same, your *.cpp* file will be overwritten! Which is bad.
   
-  Though there is tldr `solution <https://cython.readthedocs.io/en/latest/src/userguide/external_C_code.html#resolving-naming-conflicts-c-name-specifications>`_.
-
-Stay with .h and .cpp file
---------------------------
-The.h files under *include* and .cpp files under *src* are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.
+  Though there is tldr `solution <https://cython.readthedocs.io/en/latest/src/userguide/external_C_code.html#resolving-naming-conflicts-c-name-specifications>`_ if you really need to name them exactly same.
 
 
+A work flow shown below:
+
+.. image:: ../images/cython.svg
+    :width: 1000
+    :align: center
 
 
+Stay with .h and .cpp
+---------------------
+The *.h* files in *include* and *.cpp* files in *src* are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.
 
 
-.pyx file
----------
+.pyx
+----
+
+`compute_wrapper.pyx <../../examples/cython/compute_wrapper.pyx>`_
 
 .. literalinclude:: ../../examples/cython/compute_wrapper.pyx
 
-Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .cpp file.
+Here we are basiclly write python code(Cython extension type) as a wrapper to wrap the logic of .cpp file. When I said wrapping C function,
+I mean we define a python function and inside it, we just call our c function.
 
 In my naive understanding, this file contain rewritten python-ish code that matches your function and class
-in c++ files. 
-We write it in rect.pyx here while there is convention that is called xxx-wrapper.pyx.
+in c++ files.
 
 At the beginning, you need cimport your c class definition(It represent cpp class in a python/cython class way)
-from pxd module. If you have 'Rectangle.pxd', then
+from pxd module. If you have 'compute_interface.pxd', then
 
 .. code
   from <PXD_FILE_NAME> cimport <THING_DEFINED_BY_cdef>
@@ -140,30 +175,68 @@ Here the meaning of argument
 
 
 
-Run command below
+A minimal command run is below
 
 .. code:: bash
   
-  $ python setup.py build_ext --inplace
+  $ python setup.py build_ext
+
+However if you need run the so in current file, you need add *--inplace* flag and if you wanna force to recompile each time, you need *--force*
+
+.. code:: bash
+
+	$ python setup.py build_ext --inplace --force
+	
 
 Use setup.cfg to make things easy
 ---------------------------------
 
+There are tons of flag, so to make it easy, you could write all options and flag in a *setup.cfg*.
+
 You could config *setup.cfg* by instruction here
 https://docs.python.org/3/distutils/configfile.html
 
-For example, the running code above could be configured by *setup.cfg*
+For example, configure by *setup.cfg* in a format like
+
+.. code::
+
+	[command]
+	option=value
+	...
+
+the running code above could be configured
 
 .. code::
   
   [build_ext]
   inplace=1
+	force=1
   
-and you could just simply run
+and you could just run and the flags will add to the end automatically
 
 .. code:: bash
   
   $ python setup.py build_ext
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Practice with C and Python community: Eigne and Numpy
 =====================================================
@@ -297,7 +370,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilati
 def vs cdef vs cpdef
 ====================
 
-cdef is basiclly define a function that only workable inside package. it cannot be used by python directly. If you wanna use it by python directly, aka
+**cdef** is basiclly define a function that only workable inside package. it cannot be used by python directly. It is local to current file. If you wanna use it by python directly, aka
 do something like below
 
 .. code:: python
@@ -305,8 +378,17 @@ do something like below
   from pkg.pyx_module import function_defined_inside_pyx
   function_defined_inside_pyx(...)
 
-The function_defined_inside_pyx has to be defined by *cpdef*.
-  
+The function_defined_inside_pyx has to be defined by **cpdef**.
+**cpdef** could be called by local C and externally Python
+
+Q: Why don't always use **cpdef**
+
+**cpdef** has some constrain in taking argument, it cannot take some C argument like pointers, ex float * x
+other than that, yes, you could always use cpdef.
+
+Thing to remember is always use **def** and **cpdef** to expose function to outside
+
+
 Cannot find Eign/Core
 =====================
 https://github.com/opencv/opencv/issues/14868
@@ -392,3 +474,58 @@ In this case the whole output looks like
 		 ^~~~~~~~~~~~~~~~~~~~~
 	1 error generated.
 	error: command '/usr/bin/clang' failed with exit code 1
+	
+	
+	
+	
+	
+	
+Use cdef
+--------
+
+If something both exist in C and python, C take privilege, ex, float is C float
+
+
+
+Use cython with jupyter notebook
+--------------------------------
+in the top of notebook
+%%load_ext cythonmagic
+
+
+%%cython
+write your code
+
+cython file names
+-----------------
+
+You don't have to use .pyx , any .py files are ok for cython
+
+setup.py ext_modules
+--------------------
+
+You could compile multiple extensions by 
+
+cythonize([".pyx", ".pyx"])
+
+cython annotation
+-----------------
+
+cython -a .pyx
+
+
+
+extern header
+-------------
+
+cdef extern from "string.h"
+
+  int strlen(char* s)
+  
+  
+strlen here is kinda of redundant, yes!. kinda
+
+	* cython is welcome to more automation but it's time expensive
+	* here, it's more like checking purpose to check strlen you will use is matching the thing in you c header file
+	* you could only declare whatever you need, not all of them
+
