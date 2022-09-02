@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cython wrapping a c++ extentsion &mdash; Krystal Python 0.post1+g7b95aec documentation</title>
+  <title>cython wrapping a c++ extentsion &mdash; Krystal Python 0.post1+g48dda58 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+g7b95aec
+                0.post1+g48dda58
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -333,14 +333,20 @@ location.</p></li>
 </section>
 <section id="pxd-file">
 <h3>.pxd file<a class="headerlink" href="#pxd-file" title="Permalink to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>Here we are basiclly write Cython code(Cython extension type) as a wrapper to wrap the logic of .h file.</p></li>
-<li><p>The role of .pxd file is like a shared header file of cython code for convinent of writing .pyx file.</p></li>
+<p>The role of .pxd file is like a shared header file of cython code</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>It is a shared inclusing</p></li>
+<li><p>It give you a chance to select what you wanna declare from C external, not always all</p></li>
 </ul>
-<p>Use c++ file as source</p>
-<p>Declare python/cython class with cdef</p>
+</div></blockquote>
+<p>Use c++ file as source. Declare python/cython class with cdef</p>
+<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">cdef</span> <span class="kr">extern</span> <span class="k">from</span> <span class="s">&quot;Rectangle.h&quot;</span> <span class="n">namespace</span> <span class="s">&quot;shapes&quot;</span><span class="p">:</span>
+  <span class="k">cdef</span> <span class="kt">cppclass</span> <span class="nf">Rectangle</span><span class="p">:</span>
+</pre></div>
+</div>
 <p>Next we declare each method and private members</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rectangle</span><span class="p">()</span> <span class="k">except</span> <span class="o">+</span>
+<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="n">Rectangle</span><span class="p">()</span> <span class="k">except</span> <span class="o">+</span>
 <span class="n">Rectangle</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">except</span> <span class="o">+</span>
 <span class="nb">int</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span>
 <span class="nb">int</span> <span class="n">getArea</span><span class="p">()</span>
@@ -348,7 +354,7 @@ location.</p></li>
 <span class="n">void</span> <span class="n">move</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>expcept + here is make sure that python will raise the exception of c++ error</p>
+<p><em>expcept +</em> here is make sure that python will raise the exception of c++ error.</p>
 </section>
 </section>
 <section id="install-package">
@@ -382,8 +388,8 @@ location.</p></li>
 </div>
 <p>Here the meaning of argument</p>
 <ul class="simple">
-<li><p><em>name</em>: A architecture name that seperated by ‘.’(dot), dot is not meaning of file type</p></li>
-<li><p>sources: A list of source file that not being <em>cdef</em> in <em>.pxd</em> file</p></li>
+<li><p><strong>name</strong>: A architecture name that seperated by ‘.’(dot), dot is not meaning of file type</p></li>
+<li><p><strong>sources</strong>: A list of source files that not being <em>cdef</em> in <em>.pxd</em> file</p></li>
 </ul>
 <p>A minimal command run is below</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python setup.py build_ext
@@ -406,9 +412,9 @@ location.</p></li>
 </pre></div>
 </div>
 <p>the running code above could be configured</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">build_ext</span><span class="p">]</span>
-<span class="n">inplace</span><span class="o">=</span><span class="mi">1</span>
-      <span class="n">force</span><span class="o">=</span><span class="mi">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>      <span class="o">[</span>build_ext<span class="o">]</span>
+<span class="nv">inplace</span><span class="o">=</span><span class="m">1</span>
+      <span class="nv">force</span><span class="o">=</span><span class="m">1</span>
 </pre></div>
 </div>
 <p>and you could just run and the flags will add to the end automatically</p>
