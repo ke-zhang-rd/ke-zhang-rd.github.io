@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cython: Wrap a C++ extentsion of Python &mdash; Krystal Python 0.post1+g2743e5a documentation</title>
+  <title>Cython: Wrap a C++ extentsion of Python &mdash; Krystal Python 0.post1+g27e793d documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+g2743e5a
+                0.post1+g27e793d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -106,6 +106,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#why">Why</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what">What</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-the-architecture-of-a-python-project-with-cython-extension">How: The architecture of a python project with cython extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#a-work-flow">A work flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#orgnize">Orgnize</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stay-with-h-and-cpp">Stay with .h and .cpp</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pyx">.pyx</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pxd-file">.pxd file</a></li>
@@ -193,7 +195,7 @@
 <section id="what">
 <h2>What<a class="headerlink" href="#what" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
-<li><p>Extension is python module you write in Other language, in here we refer C/C++</p></li>
+<li><p>Extension is python module you write in other language, in here we refer C/C++</p></li>
 <li><p>Cython will just use whatever standard C compiler to compile it to <em>.so</em> file</p></li>
 <li><p>Eventually, python allow you import it</p></li>
 </ol>
@@ -222,10 +224,18 @@ called later, a new <em>.cpp</em> file with the same name as your <em>.pyx</em> 
 your original <em>.cpp</em> and your <em>.pyx</em> file the same, your <em>.cpp</em> file will be overwritten! Which is bad.</p>
 <p>Though there is tldr <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/external_C_code.html#resolving-naming-conflicts-c-name-specifications">solution</a> if you really need to name them exactly same.</p>
 </div>
-<p>A work flow shown below:</p>
+<section id="a-work-flow">
+<h3>A work flow<a class="headerlink" href="#a-work-flow" title="Permalink to this heading">¶</a></h3>
 <a class="reference internal image-reference" href="_images/cython.svg"><img alt="_images/cython.svg" class="align-center" src="_images/cython.svg" width="1000" /></a>
+</section>
+<section id="orgnize">
+<h3>Orgnize<a class="headerlink" href="#orgnize" title="Permalink to this heading">¶</a></h3>
 <p>A Cython module can be split into two parts: a definition file with a .pxd suffix, containing C declarations that are to be available to other Cython modules, and an implementation file with a .pyx/.py suffix, containing everything else. When a module wants to use something declared in another module’s definition file, it imports it using the cimport statement or using special cython.cimports package.</p>
 <p>A .pxd file that consists solely of extern declarations does not need to correspond to an actual .pyx/.py file or Python module. This can make it a convenient place to put common declarations, for example declarations of functions from an external library that one wants to use in several modules.</p>
+<p>When you cimport a module called modulename, the Cython compiler searches for a file called modulename.pxd. It searches for this file along the path for include files (as specified by -I command line options or the include_path option to cythonize()), as well as sys.path.</p>
+<p>Using package_data to install .pxd files in your setup.py script allows other packages to cimport items from your module as a dependency.</p>
+<p>Also, whenever you compile a file modulename.pyx/modulename.py, the corresponding definition file modulename.pxd is first searched for along the include path (but not sys.path), and if found, it is processed before processing the .pyx file.</p>
+</section>
 <section id="stay-with-h-and-cpp">
 <h3>Stay with .h and .cpp<a class="headerlink" href="#stay-with-h-and-cpp" title="Permalink to this heading">¶</a></h3>
 <p>The <em>.h</em> files in <em>include</em> and <em>.cpp</em> files in <em>src</em> are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.</p>
@@ -334,7 +344,7 @@ location.</p></li>
 </section>
 <section id="pxd-file">
 <h3>.pxd file<a class="headerlink" href="#pxd-file" title="Permalink to this heading">¶</a></h3>
-<p>The role of .pxd file is like a shared header file of cython code</p>
+<p>It is a definition file, the meanding of “d” in “pxd”. The role of .pxd file is like a shared header file of cython code,</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>It is a shared inclusing</p></li>
