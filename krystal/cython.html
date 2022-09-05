@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cython: Wrap a C++ extentsion of Python &mdash; Krystal Python 0.post1+ge04d259 documentation</title>
+  <title>Cython: Wrap a C++ extentsion of Python &mdash; Krystal Python 0.post1+g5953065 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+ge04d259
+                0.post1+g5953065
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -114,6 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#install-package">Install package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#setup-py">setup.py</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#use-setup-cfg-to-make-things-easy">Use setup.cfg to make things easy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-cython-with-jupyter-notebook-ipython">Use cython with jupyter notebook/ipython</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#practice-with-c-and-python-community-eigne-and-numpy">Practice with C and Python community: Eigne and Numpy</a><ul>
@@ -131,7 +132,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#how-do-i-wrap-a-c-class-with-cython">How do I wrap a C class with cython</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#use-cdef">Use cdef</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#use-cython-with-jupyter-notebook">Use cython with jupyter notebook</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cython-file-names">cython file names</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setup-py-ext-modules">setup.py ext_modules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cython-annotation">cython annotation</a></li>
@@ -438,6 +438,20 @@ location.</p></li>
 </pre></div>
 </div>
 </section>
+<section id="use-cython-with-jupyter-notebook-ipython">
+<h3>Use cython with jupyter notebook/ipython<a class="headerlink" href="#use-cython-with-jupyter-notebook-ipython" title="Permalink to this heading">¶</a></h3>
+<p>in the top of notebook/ipython
+.. code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">load_ext</span> <span class="n">cythonmagic</span>
+</pre></div>
+</div>
+<p>In the top your code cell or ipython
+.. code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">cython</span>
+<span class="c1"># write your code</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="practice-with-c-and-python-community-eigne-and-numpy">
 <h2>Practice with C and Python community: Eigne and Numpy<a class="headerlink" href="#practice-with-c-and-python-community-eigne-and-numpy" title="Permalink to this heading">¶</a></h2>
@@ -642,13 +656,6 @@ In this case the whole output looks like</p>
 <section id="use-cdef">
 <h3>Use cdef<a class="headerlink" href="#use-cdef" title="Permalink to this heading">¶</a></h3>
 <p>If something both exist in C and python, C take privilege, ex, float is C float</p>
-</section>
-<section id="use-cython-with-jupyter-notebook">
-<h3>Use cython with jupyter notebook<a class="headerlink" href="#use-cython-with-jupyter-notebook" title="Permalink to this heading">¶</a></h3>
-<p>in the top of notebook
-%%load_ext cythonmagic</p>
-<p>%%cython
-write your code</p>
 </section>
 <section id="cython-file-names">
 <h3>cython file names<a class="headerlink" href="#cython-file-names" title="Permalink to this heading">¶</a></h3>
