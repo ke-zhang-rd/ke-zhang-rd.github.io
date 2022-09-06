@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cython: Wrap a C++ extentsion of Python &mdash; Krystal Python 0.post1+g482e4b3 documentation</title>
+  <title>Cython: Wrap a C++ extentsion of Python &mdash; Krystal Python 0.post1+gcfcd279 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+g482e4b3
+                0.post1+gcfcd279
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -402,7 +402,16 @@ Next we declare each method and private members</p>
 
 <span class="n">setup</span><span class="p">(</span>
     <span class="n">ext_modules</span><span class="o">=</span><span class="n">cythonize</span><span class="p">(</span><span class="n">Extension</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;compute_wrapper&quot;</span><span class="p">,</span>
-                                    <span class="n">sources</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;compute_wrapper.pyx&quot;</span><span class="p">],</span>
+                                    <span class="n">sources</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;compute_wrapper.pyx&quot;</span><span class="p">,</span>
+                                             <span class="s2">&quot;compute.cpp&quot;</span><span class="p">],</span>
+                                    <span class="c1"># Either put .cpp sources file here</span>
+                                    <span class="c1"># OR by using directive in .pyx file,</span>
+                                    <span class="c1">#       # directive: sources = compute.cpp</span>
+                                    <span class="c1">#</span>
+                                    <span class="c1"># OR by putting code inside .pxd file</span>
+                                    <span class="c1">#       cdef extern from &quot;compute.cpp&quot;:</span>
+                                    <span class="c1">#           pass</span>
+                                    <span class="c1">#</span>
                                     <span class="n">include_dirs</span><span class="o">=</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">get_include</span><span class="p">()],</span>
                                     <span class="n">language</span><span class="o">=</span><span class="s2">&quot;c++&quot;</span><span class="p">,</span>
                                     <span class="n">extra_compile_args</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-std=c++11&quot;</span><span class="p">],</span>
