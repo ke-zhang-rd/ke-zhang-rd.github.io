@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cython: Wrap a C++ extentsion of Python &mdash; Krystal Python 0.post1+gcfcd279 documentation</title>
+  <title>Cython: Wrap a C++ extentsion of Python &mdash; Krystal Python 0.post1+g7e502e4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Krystal Python
           </a>
               <div class="version">
-                0.post1+gcfcd279
+                0.post1+g7e502e4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -355,6 +355,35 @@ location.</p></li>
 <li><p>It give you a chance to select what you wanna declare from C external, not always all</p></li>
 </ul>
 </div></blockquote>
+<p>There are multiple ways to refer the cpp source file</p>
+<ul>
+<li><dl>
+<dt>Put .cpp sources file here as argument of <em>sources</em> of Extension in setup.py</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Extension</span><span class="p">(</span>
+                                        <span class="o">...</span>
+                                        <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="s2">&quot;&lt;SOURCE_FILE&gt;.cpp&quot;</span><span class="p">],</span>
+                                        <span class="o">...</span>
+                                        <span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Use directive in .pyx file,</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># directive: sources = compute.cpp</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Putting code inside .pxd file</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s2">&quot;compute.cpp&quot;</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
 <p>Use c++ file as source. Declare python/cython class with cdef</p>
 <div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">cdef</span> <span class="kr">extern</span> <span class="k">from</span> <span class="s">&quot;Rectangle.h&quot;</span> <span class="n">namespace</span> <span class="s">&quot;shapes&quot;</span><span class="p">:</span>
   <span class="k">cdef</span> <span class="kt">cppclass</span> <span class="nf">Rectangle</span><span class="p">:</span>
