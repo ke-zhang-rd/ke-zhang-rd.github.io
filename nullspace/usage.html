@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Usage &mdash; nullspace 0.post1+g5ce3d15 documentation</title>
+  <title>Usage &mdash; nullspace 0.post1+g2bfb8a8 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -14,10 +14,8 @@
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -33,22 +31,30 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> nullspace
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            nullspace
           </a>
               <div class="version">
-                0.post1+g5ce3d15
+                0.post1+g2bfb8a8
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nullspace.__init__.autodiff_svd"><code class="docutils literal notranslate"><span class="pre">autodiff_svd()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="controlflow.html">Control Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot.html">plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autodiffsvd.html">autodiffsvd</a></li>
@@ -71,8 +77,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Usage</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -123,7 +129,7 @@ which is more effeciency since all free variables q take advantages of same
 intermedia svd result, U_star, S_star and V_star. It returns ecomonic result
 which means ‘full_matrices=False’ in corresponding ‘numpy.linalg.svd’</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>A</strong><span class="classifier">(m, n) Matrix</span></dt><dd><p>A sympy symbolic 2D Matrix, which should be legal for SVD later.</p>
 </dd>
@@ -134,7 +140,7 @@ which means ‘full_matrices=False’ in corresponding ‘numpy.linalg.svd’</p
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>du</strong><span class="classifier">(Q, M, K) array</span></dt><dd><p>Partial derivatives/gradient of U with respect to each variables in q star.
 Each variable matches a (M, K) matrix. Q is number of variables. Return
@@ -155,7 +161,7 @@ symbolic=True</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html#numpy.linalg.svd" title="(in NumPy v1.23)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.linalg.svd</span></code></a></dt><dd><p>Similar function in numpy.</p>
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html#numpy.linalg.svd" title="(in NumPy v1.24)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.linalg.svd</span></code></a></dt><dd><p>Similar function in numpy.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">sympy.Array</span></code></dt><dd><p>3D tensor in sympy.</p>
 </dd>
@@ -164,15 +170,17 @@ symbolic=True</p>
 </dl>
 </div>
 <p class="rubric">References</p>
-<dl class="citation">
-<dt class="label" id="ra792cd0aecc6-1"><span class="brackets">1</span></dt>
-<dd><p>James Townsend. Differentiating the Singular Value Decomposition.</p>
-</dd>
-<dt class="label" id="ra792cd0aecc6-2"><span class="brackets">2</span></dt>
-<dd><p>Mike Giles. An extended collection of matrix derivative results
+<div role="list" class="citation-list">
+<div class="citation" id="ra792cd0aecc6-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>James Townsend. Differentiating the Singular Value Decomposition.</p>
+</div>
+<div class="citation" id="ra792cd0aecc6-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Mike Giles. An extended collection of matrix derivative results
 for forward and reverse mode algorithmic differentiation.</p>
-</dd>
-</dl>
+</div>
+</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">Matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span> <span class="o">=</span> <span class="n">symbols</span> <span class="p">(</span><span class="s2">&quot;q0, q1&quot;</span><span class="p">)</span>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Control Flow &mdash; nullspace 0.post1+g2bfb8a8 documentation</title>
+  <title>Philosophy &mdash; nullspace 0.post1+g2bfb8a8 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="plot" href="plot.html" />
-    <link rel="prev" title="Usage" href="usage.html" /> 
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="nullspace Documentation" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,10 +49,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Philosophy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controlflow.html">Control Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot.html">plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="autodiffsvd.html">autodiffsvd</a></li>
 <li class="toctree-l1"><a class="reference internal" href="links_params.html">A Example of links_params</a></li>
@@ -75,9 +78,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Control Flow</li>
+      <li class="breadcrumb-item active">Philosophy</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/controlflow.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/philosophy.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -109,17 +112,36 @@
     text-align: unset;
 }
 </style>
-<section id="control-flow">
-<h1>Control Flow<a class="headerlink" href="#control-flow" title="Permalink to this heading">¶</a></h1>
-<a class="reference internal image-reference" href="_images/NullspaceControlFlow.svg"><img alt="_images/NullspaceControlFlow.svg" class="align-center" src="_images/NullspaceControlFlow.svg" width="1000" /></a>
+<section id="philosophy">
+<h1>Philosophy<a class="headerlink" href="#philosophy" title="Permalink to this heading">¶</a></h1>
+<p>If there are multiple end effectors need to coordinate move together. If we define it in a seriously way. There are a Object define by the
+connection(virtual connection) between ee. This Object could have a orientation and position if a frame fix on it.</p>
+<p>If the number of end effector(num)
+N = 2, X is a line
+N = 3, X is a triangle
+N = 4, X is a tetrahedron</p>
+<p>In a prioritized tasks definition:
+We might have a tasks from higher priority to lower:</p>
+<blockquote>
+<div><p>1.fixed distance between each end effectors, that’s conbination of N
+2.there is a target position of Object
+3.there is a target orientation Object</p>
+</div></blockquote>
+<p>These tasks could be achieved by nullspace method</p>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<p>Humanoid robot hand(3 fingers)
+There is a triangle between 3 fingers. If you coordinate control task 2 and 3 together by considering lead of screw, bottle cap could be moved very
+decently.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="plot.html" class="btn btn-neutral float-right" title="plot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="nullspace Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
