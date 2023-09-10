@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nullspace Documentation &mdash; nullspace 0.post1+gba9d4d0 documentation</title>
+  <title>autodiffsvd &mdash; nullspace 0.post1+gba9d4d0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -22,7 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Philosophy" href="philosophy.html" /> 
+    <link rel="next" title="SVD pseudo inverse" href="notebooks/pseudoinverse.html" />
+    <link rel="prev" title="Best-Fit Hyperplane" href="bestfithyperplane.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -33,7 +34,7 @@
 
           
           
-          <a href="#" class="icon icon-home">
+          <a href="index.html" class="icon icon-home">
             nullspace
           </a>
               <div class="version">
@@ -47,7 +48,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
@@ -56,7 +57,10 @@
 <li class="toctree-l1"><a class="reference internal" href="autodiffsvd.html">autodiffsvd</a></li>
 <li class="toctree-l1"><a class="reference internal" href="links_params.html">A Example of links_params</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bestfithyperplane.html">Best-Fit Hyperplane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pseudoinverse.html">autodiffsvd</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">autodiffsvd</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/pseudoinverse.html">SVD pseudo inverse</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="min_versions.html">Minimum Version of Python and NumPy</a></li>
 </ul>
@@ -67,17 +71,17 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">nullspace</a>
+          <a href="index.html">nullspace</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">nullspace Documentation</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">autodiffsvd</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/pseudoinverse.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -85,36 +89,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="nullspace-documentation">
-<h1>nullspace Documentation<a class="headerlink" href="#nullspace-documentation" title="Permalink to this heading">¶</a></h1>
+  <section id="autodiffsvd">
+<h1>autodiffsvd<a class="headerlink" href="#autodiffsvd" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="philosophy.html#examples">Examples</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#nullspace.__init__.autodiff_svd"><code class="docutils literal notranslate"><span class="pre">autodiff_svd()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="controlflow.html">Control Flow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plot.html">plot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autodiffsvd.html">autodiffsvd</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/autodiff_svd.html">Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="links_params.html">A Example of links_params</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bestfithyperplane.html">Best-Fit Hyperplane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pseudoinverse.html">autodiffsvd</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/pseudoinverse.html">SVD pseudo inverse</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="release-history.html#initial-release-yyyy-mm-dd">Initial Release (YYYY-MM-DD)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="min_versions.html">Minimum Version of Python and NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/pseudoinverse.html">SVD pseudo inverse</a></li>
 </ul>
 </div>
 </section>
@@ -123,7 +103,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="philosophy.html" class="btn btn-neutral float-right" title="Philosophy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="bestfithyperplane.html" class="btn btn-neutral float-left" title="Best-Fit Hyperplane" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="notebooks/pseudoinverse.html" class="btn btn-neutral float-right" title="SVD pseudo inverse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

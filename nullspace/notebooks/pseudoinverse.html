@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SVD pseudo inverse &mdash; nullspace 0.post1+gba9d4d0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=6fcf6964"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Release History" href="../release-history.html" />
+    <link rel="prev" title="autodiffsvd" href="../pseudoinverse.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nullspace
+          </a>
+              <div class="version">
+                0.post1+gba9d4d0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlflow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot.html">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autodiffsvd.html">autodiffsvd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links_params.html">A Example of links_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bestfithyperplane.html">Best-Fit Hyperplane</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pseudoinverse.html">autodiffsvd</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SVD pseudo inverse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nullspace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../pseudoinverse.html">autodiffsvd</a></li>
+      <li class="breadcrumb-item active">SVD pseudo inverse</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/pseudoinverse.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="SVD-pseudo-inverse">
+<h1>SVD pseudo inverse<a class="headerlink" href="#SVD-pseudo-inverse" title="Permalink to this heading">¶</a></h1>
+<p>The pseudoinverse gives a “least squared error, minimum-norm” solution: Out of all <span class="math notranslate nohighlight">\(\dot{q}\)</span> vectors at your current <span class="math notranslate nohighlight">\(q\)</span>, the vector</p>
+<div class="math notranslate nohighlight">
+\[\dot{q}_{s} = J^{+}(q)\dot{p}_{\text{in}}\]</div>
+<p>satisfies two conditions:</p>
+<ol class="arabic simple">
+<li><p>Least squared error: There is no <span class="math notranslate nohighlight">\(\dot{q}\)</span> vector which will get closer to <span class="math notranslate nohighlight">\(\dot{p}\)</span> when passed through <span class="math notranslate nohighlight">\(J(q)\)</span>. (I.e. for <span class="math notranslate nohighlight">\(\dot{p}_{s} = J(q)\dot{q}_{s}\)</span>, the normed difference <span class="math notranslate nohighlight">\(\lvert \dot{p}_{\text{in}}-\dot{p}_{s} \rvert\)</span> is smaller than any other <span class="math notranslate nohighlight">\(\lvert \dot{p}_{\text{in}} - \dot{p} \rvert\)</span>.</p></li>
+<li><p>Minimum-norm: Out of all <span class="math notranslate nohighlight">\(\dot{q}\)</span> that satisfy the first condition, <span class="math notranslate nohighlight">\(\dot{q}_{s}\)</span> is the smallest of those vectors. (I.e. <span class="math notranslate nohighlight">\(\lvert \dot{q_{s}}\rvert\)</span> is smaller than <span class="math notranslate nohighlight">\(\lvert \dot{q} \rvert\)</span> for all <span class="math notranslate nohighlight">\(\dot{q}\)</span> that minimize error in <span class="math notranslate nohighlight">\(\dot{p}\)</span>.</p></li>
+</ol>
+<p>At the singularity, the set of achievable velocities loses one dimension (so that there are <span class="math notranslate nohighlight">\(\dot{p}\)</span> that cannot be exactly produced by a <span class="math notranslate nohighlight">\(\dot{q}\)</span>), but for any <span class="math notranslate nohighlight">\(\dot{p}_{\text{in}}\)</span> there is a set of <span class="math notranslate nohighlight">\(\dot{q}\)</span> that all come equally close to producing <span class="math notranslate nohighlight">\(\dot{p}_{\text{in}}\)</span>, and the pseudoinverse picks the smallest (in <span class="math notranslate nohighlight">\(\dot{q}\)</span>-space) of these vectors.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../pseudoinverse.html" class="btn btn-neutral float-left" title="autodiffsvd" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../release-history.html" class="btn btn-neutral float-right" title="Release History" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KZ.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
