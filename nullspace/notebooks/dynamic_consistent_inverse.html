@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamically Consistent Pseudo Inverse &mdash; nullspace 0.post1+g044ba9a documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=2aa50064"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Eigen Chain Multiplication" href="../eigen_chain_multiplication.html" />
+    <link rel="prev" title="Dynamic Consistent Inverse" href="../dynamic_consistent_inverse.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nullspace
+          </a>
+              <div class="version">
+                0.post1+g044ba9a
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlflow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot.html">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autodiff_svd.html">autodiff_svd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links_params.html">A Example of links_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_fit_hyperplane.html">Best Fit Hyperplane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pseudo_inverse.html">pseudo Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../composite_inertia.html">composite_inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dof_computation.html">DOF Computation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dynamically Consistent Pseudo Inverse</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#1.-Mapping">1. Mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#1.-1-Kinematics">1. 1 Kinematics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#1.2-Dynamics">1.2 Dynamics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#1.3-Generalize">1.3 Generalize</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2.-Null-space-of-the-Mapping">2. Null space of the Mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#3.-Where-are-we">3. Where are we</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#4.-Extra-dynamic-constrain">4. Extra dynamic constrain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#5.-Conclusion">5. Conclusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#APPENDIX">APPENDIX</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#APPENDIX.A">APPENDIX.A</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quaternion.html">Quaternion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nullspace_basic.html">Nullspace Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nullspace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
+      <li class="breadcrumb-item active">Dynamically Consistent Pseudo Inverse</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/dynamic_consistent_inverse.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Dynamically-Consistent-Pseudo-Inverse">
+<h1>Dynamically Consistent Pseudo Inverse<a class="headerlink" href="#Dynamically-Consistent-Pseudo-Inverse" title="Permalink to this heading">¶</a></h1>
+<p>This document introduces the generalized null space formulation of both kinematics and dynamics. Clearly, they share same underlying mathematical foundation. Moreover, In a redundant system, for inverse of <span class="math notranslate nohighlight">\(J\)</span> compliance with operational acceleration constrain, we could deduce the formulation of inverse, <span class="math notranslate nohighlight">\(\bar J\)</span>, by involving mass matrix. <span class="math notranslate nohighlight">\(\bar J\)</span> is named dynamically consistent pseudo-inverse.</p>
+<section id="1.-Mapping">
+<h2>1. Mapping<a class="headerlink" href="#1.-Mapping" title="Permalink to this heading">¶</a></h2>
+<section id="1.-1-Kinematics">
+<h3>1. 1 Kinematics<a class="headerlink" href="#1.-1-Kinematics" title="Permalink to this heading">¶</a></h3>
+<p>In kinematics, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+J\dot q = \dot x
+\end{equation}\]</div>
+<p>in which <span class="math notranslate nohighlight">\(J\)</span> is a Jacobian projection <span class="math notranslate nohighlight">\(\dot q\)</span> is in configuration space <span class="math notranslate nohighlight">\(\dot x\)</span> is in task space</p>
+</section>
+<section id="1.2-Dynamics">
+<h3>1.2 Dynamics<a class="headerlink" href="#1.2-Dynamics" title="Permalink to this heading">¶</a></h3>
+<p>In dynamics, we have <span class="math notranslate nohighlight">\(\tau = J^Tf\)</span> in consistent with general formula, we rewrite it as</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+J^{T\sharp}\tau = f
+\end{equation}\]</div>
+<p>in which <span class="math notranslate nohighlight">\(J^{T\sharp}\)</span> is projection <span class="math notranslate nohighlight">\(\tau\)</span> is joint torque in configuration space <span class="math notranslate nohighlight">\(f\)</span> is operational force in task space</p>
+<p>Notice * <span class="math notranslate nohighlight">\(M^\sharp\)</span> is pseudo-inverse of <span class="math notranslate nohighlight">\(M\)</span>. Here we use <span class="math notranslate nohighlight">\(\sharp\)</span> refer pseudo-inverse while some paper using <span class="math notranslate nohighlight">\(\dagger\)</span>. * <span class="math notranslate nohighlight">\((A^{-1})^T = (A^T)^{-1}\)</span> or <span class="math notranslate nohighlight">\((A^\sharp)^T = (A^T)^\sharp\)</span> and proof is shown in appendix.</p>
+</section>
+<section id="1.3-Generalize">
+<h3>1.3 Generalize<a class="headerlink" href="#1.3-Generalize" title="Permalink to this heading">¶</a></h3>
+<p>Both kinematics and dynamics formulate a mapping from configuration space to task space. The controllable variable is the item in configuration space. In general, the formulation is</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+Pc = t
+\end{equation}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(P\)</span> is a projection. <span class="math notranslate nohighlight">\(P = J\)</span> in kinematics while <span class="math notranslate nohighlight">\(P = J^{T\sharp}\)</span> in dynamics <span class="math notranslate nohighlight">\(c\)</span> is in configuration space <span class="math notranslate nohighlight">\(t\)</span> is in task space</p>
+</section>
+</section>
+<section id="2.-Null-space-of-the-Mapping">
+<h2>2. Null space of the Mapping<a class="headerlink" href="#2.-Null-space-of-the-Mapping" title="Permalink to this heading">¶</a></h2>
+<p>In a redundant system, null space method could be used to achieve manipulation in configuration space without affecting the resulting status in task space. For a matrix transformation like <span class="math notranslate nohighlight">\(Pc = t\)</span>, the null space of <span class="math notranslate nohighlight">\(P\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+N = I - P^{\sharp }P
+\end{equation}\]</div>
+<p>For redundant mechanism, the control of configuration space</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+c = P^\sharp t + (I - P^\sharp P)V_0
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_0\)</span> is a arbitrary value</p>
+<ul class="simple">
+<li><p>For kinematics</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\dot q = J^\sharp \dot x + (I - J^\sharp J)q_0
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>For dynamics,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\tau = J^Tf + (I - J^TJ^{T\sharp})\tau_0
+\end{equation}\]</div>
+</section>
+<section id="3.-Where-are-we">
+<h2>3. Where are we<a class="headerlink" href="#3.-Where-are-we" title="Permalink to this heading">¶</a></h2>
+<p>The whole story start from goal of dynamically control which means solve the torque from a desired trajectory.</p>
+<ul class="simple">
+<li><p>At the very beginning, we have a desired trajectory <span class="math notranslate nohighlight">\(x(t)\)</span>.</p></li>
+<li><p>Then we may close velocity loop of hardware controller by differentiate forward kinematics <span class="math notranslate nohighlight">\(\dot x = J(q) \dot q\)</span> and input <span class="math notranslate nohighlight">\(\dot q = J^{-1}\dot x\)</span> to motor controller.</p></li>
+<li><p>Finally, we may differentiate Jacobin mapping one more time to get the relationship between <span class="math notranslate nohighlight">\(\ddot x\)</span> and <span class="math notranslate nohighlight">\(\ddot q\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\ddot x - \dot J \dot q= J \ddot q
+\end{equation}\]</div>
+<p>* We could calculate <span class="math notranslate nohighlight">\(\ddot q\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\ddot q = J^\sharp(\ddot x - \dot J \dot q)
+\end{equation}\]</div>
+<p>In a redundant system, in theory, there is an infinity of configuration status that could be applied without affecting the resulting status in task space. There are an infinite number of joint torques that could be applied to a redundant manipulator without affecting the resulting forces at the end effector. So there are infinity pseudo-inverse to finish this mission. <strong>PROBLEM 1</strong>: We need to find a pseudo-inverse from all infinity</p>
+<p>Well, my hardware colleague warns me there isn’t such magic in the world to allow me control acceleration directly. He said if I recall <span class="math notranslate nohighlight">\(F = ma\)</span> in junior school, you may understand you have to go through force to control acceleration. In motor case, through <span class="math notranslate nohighlight">\(\tau\)</span> to control <span class="math notranslate nohighlight">\(\ddot q\)</span>. <strong>PROBLEM 2</strong>: To finish control, there is a relationship between <span class="math notranslate nohighlight">\(\ddot q\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> need to be figured.</p>
+</section>
+<section id="4.-Extra-dynamic-constrain">
+<h2>4. Extra dynamic constrain<a class="headerlink" href="#4.-Extra-dynamic-constrain" title="Permalink to this heading">¶</a></h2>
+<p>To emphasis above-mentioned problems, considering the derivative of <span class="math notranslate nohighlight">\(\dot x = J\dot q\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\ddot x - \dot J \dot q= J \ddot q
+\end{equation}\]</div>
+<p>and the dynamic model equation</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+A\ddot q + b + g = \tau
+\end{equation}\]</div>
+<p>bring <span class="math notranslate nohighlight">\(\ddot q\)</span> of second equation to first equation, we get a equation between controllable <span class="math notranslate nohighlight">\(\tau\)</span> and acceleration of task space</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split} \ddot x - \dot J \dot q + JA^{-1}(b + g)
+&amp;= JA^{-1}\tau\\
+&amp;= JA^{-1}[J^Tf + (I - J^TJ^{T\sharp})\tau_0]\\
+&amp;= JA^{-1}J^Tf + JA^{-1}(I - J^TJ^{T\sharp})\tau_0
+\end{split}
+\end{equation}\end{split}\]</div>
+<p>This equation shows that the acceleration in task space is influenced by <span class="math notranslate nohighlight">\(\tau_0\)</span> unless the term involving <span class="math notranslate nohighlight">\(\tau_0\)</span> is 0. For joint torque not to producing any operational acceleration, we must have</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+JA^{-1}[I-J^TJ^{\sharp T}]\tau_0  = 0
+\end{equation}\]</div>
+<p>which result in a unique pseudo-inverse</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+J^\sharp = \bar J = A^{-1}J^T\Lambda
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Lambda = (JA^{-1}J^T)^{-1}\)</span>. This is called <strong>dynamically consistent pseudo-inverse</strong> and usually refer <span class="math notranslate nohighlight">\(\bar J\)</span>. The proof is shown in appendix.</p>
+<p>Now, by using extra dynamical constrain, we get this particular pseudo inverse <span class="math notranslate nohighlight">\(\bar J\)</span> which should be use in control equation <span class="math notranslate nohighlight">\(\ddot q = \bar J (\ddot x - \dot J \dot q)\)</span> and eventually input torque <span class="math notranslate nohighlight">\(\tau\)</span> to motor by <span class="math notranslate nohighlight">\(\tau = A\ddot q + b + g - J^Tf\)</span>.</p>
+</section>
+<section id="5.-Conclusion">
+<h2>5. Conclusion<a class="headerlink" href="#5.-Conclusion" title="Permalink to this heading">¶</a></h2>
+<p>In a redundant system, since there are more controllable joints in configuration space than needed. We could distribute operational space task to configuration space in a smarter way, so-called <em>task oriented</em> control by Oussama Khatib. That means we could use different pseudo inverse achieve different optimized goals. In kinematics, pseudo inverse, <span class="math notranslate nohighlight">\(J^{-1}\)</span>, by SVD minimizes the least square of error. In contrast, dynamic constrain pseudo inverse, <span class="math notranslate nohighlight">\(\bar J\)</span>, by bring mass matrix in
+account to minimizes instantaneous kinetic energy.</p>
+<p>Later Roy Featherstone showed that this <span class="math notranslate nohighlight">\(\bar J\)</span> is independent of load in Roy (1997). This might be a torch of future research.</p>
+</section>
+<section id="APPENDIX">
+<h2>APPENDIX<a class="headerlink" href="#APPENDIX" title="Permalink to this heading">¶</a></h2>
+<section id="APPENDIX.A">
+<h3>APPENDIX.A<a class="headerlink" href="#APPENDIX.A" title="Permalink to this heading">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^T(A^{-1})^T =  (A^{-1}A)^{T} = I^T = I \\
+(A^{-1})^TA^T =  (AA^{-1})^{T} = I^T = I\end{split}\]</div>
+<p>This proves that the inverse of <span class="math notranslate nohighlight">\(A^T\)</span> is <span class="math notranslate nohighlight">\((A^{-1})^T\)</span> ### APPENDIX.B THEOREM: DYNAMIC CONSISTENCY, A generalized inverse that is consistent with the dynamic constraint of equation</p>
+<div class="math notranslate nohighlight">
+\[[JA^{-1} - (JA^{-1}J^T)J^{\sharp T}]\tau_0 = 0\]</div>
+<p>is unique and is given by</p>
+<div class="math notranslate nohighlight">
+\[J^\sharp = \bar J = A^{-1}J^T\Lambda\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\Lambda = (JA^{-1}J^T)^{-1}\]</div>
+<p>PROOF To achieve</p>
+<div class="math notranslate nohighlight">
+\[[JA^{-1} - (JA^{-1}J^T)J^{\sharp T}]\tau_0 = 0\]</div>
+<p>by definition</p>
+<div class="math notranslate nohighlight">
+\[\Lambda^{-1} = JA^{-1}J^T\]</div>
+<p>the constrain equation premultiplies of <span class="math notranslate nohighlight">\(\tau_0\)</span> has be 0, that is</p>
+<div class="math notranslate nohighlight">
+\[JA^{-1} - \Lambda^{-1}J^{\sharp T} = 0\]</div>
+<p>So, we get</p>
+<div class="math notranslate nohighlight">
+\[J^{\sharp T} = \Lambda JA^{-1}\]</div>
+<p>Considering inertial matrix <span class="math notranslate nohighlight">\(A\)</span> is a symmetric positive define matrix(aka <span class="math notranslate nohighlight">\(A^T = A\)</span>), finally we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split} J^\sharp = (J^{\sharp T})^T
+&amp;=(\Lambda JA^{-1})^T\\
+&amp;=A^{-T}J^T\Lambda^T\\
+&amp;=A^{-1}J^T((JA^{-1}J^T)^{-1})^T\\
+&amp;=A^{-1}J^T((JA^{-1}J^T)^T)^{-1}\\
+&amp;=A^{-1}J^T(JA^{-T}J^T)^{-1}\\
+&amp;=A^{-1}J^T(JA^{-1}J^T)^{-1}\\
+&amp;=A^{-1}J^T\Lambda
+\end{split}\end{split}\]</div>
+<p>Reference [1] Khatib, O. 1995. Inertial properties in robotic manipulation: an object-level framework. Int. J. Robot. [2] Featherstone, R., and Khatib, O. 1997. Load Independence of the Dynamically Consistent Inverse of the Jacobian Matrix. Int. J. Robot.</p>
+<p>Weita 2021/11/20</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../dynamic_consistent_inverse.html" class="btn btn-neutral float-left" title="Dynamic Consistent Inverse" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../eigen_chain_multiplication.html" class="btn btn-neutral float-right" title="Eigen Chain Multiplication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KZ.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

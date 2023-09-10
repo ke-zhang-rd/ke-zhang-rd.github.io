@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eigen_chain_multiplication &mdash; nullspace 0.post1+g044ba9a documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=2aa50064"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Eigen Matrix Practice" href="../eigen_matrix_practice.html" />
+    <link rel="prev" title="Eigen Chain Multiplication" href="../eigen_chain_multiplication.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nullspace
+          </a>
+              <div class="version">
+                0.post1+g044ba9a
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlflow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot.html">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autodiff_svd.html">autodiff_svd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links_params.html">A Example of links_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_fit_hyperplane.html">Best Fit Hyperplane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pseudo_inverse.html">pseudo Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../composite_inertia.html">composite_inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dof_computation.html">DOF Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../eigen_chain_multiplication.html">Eigen Chain Multiplication</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">eigen_chain_multiplication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Theory">Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Code">Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Clean">Clean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quaternion.html">Quaternion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nullspace_basic.html">Nullspace Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nullspace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
+      <li class="breadcrumb-item active">eigen_chain_multiplication</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/eigen_chain_multiplication.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="eigen_chain_multiplication">
+<h1>eigen_chain_multiplication<a class="headerlink" href="#eigen_chain_multiplication" title="Permalink to this heading">¶</a></h1>
+<p>The idea comes from Dynamic Programming of matrix chain multiplication.</p>
+<section id="Theory">
+<h2>Theory<a class="headerlink" href="#Theory" title="Permalink to this heading">¶</a></h2>
+<p>Clearly, matrix chain multiplication could be optimized depend on the shape of each matrix and associative property of multiple operator. XYZ = (XY)Z = X(YZ) In matrix case, their type and shape are defined below.</p>
+<p>X float 200x200 Y float 200x200 Z float 200x1</p>
+<p>We will exam the cost of time of different associative orders. Before start, there are several setup steps</p>
+</section>
+<section id="Setup">
+<h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this heading">¶</a></h2>
+<p>You need install cpu frequency control tool <strong>cpufreq</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt install cpufreq
+</pre></div>
+</div>
+<p>Setup cpu to <strong>performance</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo su
+sudo bash -c &#39;for ((i=0;i&lt;$(nproc);i++)); do cpufreq-set -c $i -g performance; done&#39;
+</pre></div>
+</div>
+<p>To best show the differenece between different orders, we need big matrix. By default <em>EIGEN_STACK_ALLOCATION_LIMIT</em> is limit of all memory you could use to store matrix. Its default value is 131072 which could store 131072 / sizeof(float) = 32768 <span class="math notranslate nohighlight">\(\approx\)</span> 181 x 181. So if we wanna 200x200 float matrix, we need set <em>EIGEN_STACK_ALLOCATION_LIMIT</em> to 0 by</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#define EIGEN_STACK_ALLOCATION_LIMIT 0
+</pre></div>
+</div>
+<p>Notice this has to be happen before you include Eigen header files.</p>
+</section>
+<section id="Code">
+<h2>Code<a class="headerlink" href="#Code" title="Permalink to this heading">¶</a></h2>
+<p>Eventually, the <strong>test.cc</strong> looks</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#include &lt;iostream&gt;
+#include &lt;chrono&gt;
+#define EIGEN_STACK_ALLOCATION_LIMIT 0
+
+#include &lt;Eigen/Dense&gt;
+using namespace std;
+using namespace Eigen;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::duration;
+using std::chrono::microseconds;
+
+int main() {
+  double _total = 0.0;
+  Eigen::Matrix&lt;float, 200, 200&gt; X, Y;
+  Eigen::Matrix&lt;float, 200, 1&gt; Z, tmp;
+  X = Eigen::Matrix&lt;float, 200, 200&gt;::Random();
+  Y = Eigen::Matrix&lt;float, 200, 200&gt;::Random();
+  Z = Eigen::Matrix&lt;float, 200, 1&gt;::Random();
+  for (int i = 0; i &lt; 50; i++) {
+    auto t1 = high_resolution_clock::now();
+    tmp = (X * Y) * Z;
+    auto t2 = high_resolution_clock::now();
+    duration&lt;double, std::micro&gt; mc_double = t2 - t1;
+    _total += mc_double.count();
+  }
+  cout  &lt;&lt; _total &lt;&lt; endl;
+  return 0;
+}
+</pre></div>
+</div>
+<p>with <strong>makefile</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>output:test.cc
+    g++ -Wall -o output test.cc -I. -std=c++17
+</pre></div>
+</div>
+<p>Compile</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<p>Run</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./output
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1.32664e+06
+</pre></div>
+</div>
+<p>If we update line 22</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tmp = X * (Y * Z);
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>11270.1
+</pre></div>
+</div>
+</section>
+<section id="Clean">
+<h2>Clean<a class="headerlink" href="#Clean" title="Permalink to this heading">¶</a></h2>
+<p>Setup cpu back to <strong>powersave</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo su
+sudo bash -c &#39;for ((i=0;i&lt;$(nproc);i++)); do cpufreq-set -c $i -g powersave; done&#39;
+</pre></div>
+</div>
+</section>
+<section id="Conclusion">
+<h2>Conclusion<a class="headerlink" href="#Conclusion" title="Permalink to this heading">¶</a></h2>
+<p>In threoy, the first associative order should do 200x200x200 + 200x200x1 mulitplications. The later one should do 200x200x1 + 200x200x1 multiplication.</p>
+<p>(200x200x200 + 200x200x1) / (200x200x1 + 200x200x1) = 100.5 1.32664e+06/11270.1 = 132</p>
+<p>So the reality are pretty close to theory. Moreover, performance of reality is even better.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../eigen_chain_multiplication.html" class="btn btn-neutral float-left" title="Eigen Chain Multiplication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../eigen_matrix_practice.html" class="btn btn-neutral float-right" title="Eigen Matrix Practice" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KZ.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

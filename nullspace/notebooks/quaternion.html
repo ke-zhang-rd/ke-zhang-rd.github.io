@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quaternion &mdash; nullspace 0.post1+g044ba9a documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=2aa50064"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nullspace Basic" href="../nullspace_basic.html" />
+    <link rel="prev" title="Quaternion" href="../quaternion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nullspace
+          </a>
+              <div class="version">
+                0.post1+g044ba9a
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlflow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot.html">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autodiff_svd.html">autodiff_svd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links_params.html">A Example of links_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_fit_hyperplane.html">Best Fit Hyperplane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pseudo_inverse.html">pseudo Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../composite_inertia.html">composite_inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dof_computation.html">DOF Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../quaternion.html">Quaternion</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quaternion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Algebra">Algebra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Conjugate">Conjugate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Norm">Norm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Inverse">Inverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Identity">Identity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Associativity">Associativity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Distributive">Distributive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Commutative">Commutative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Vector">Vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Rotation-Matrix">Rotation Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#From-quaternion-to-a-rotation-matrix">From quaternion to a rotation matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#From-a-rotation-matrix-of-angles-to-a-quaternion">From a rotation matrix of angles to a quaternion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#From-Euler-angles-to-a-quaternion">From Euler angles to a quaternion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nullspace_basic.html">Nullspace Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nullspace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../quaternion.html">Quaternion</a></li>
+      <li class="breadcrumb-item active">Quaternion</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/quaternion.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Quaternion">
+<h1>Quaternion<a class="headerlink" href="#Quaternion" title="Permalink to this heading">¶</a></h1>
+<p>Quaternion is a adding operator Group. It isn’t a Field and the missing part is commutative of multiplication.</p>
+<section id="Format">
+<h2>Format<a class="headerlink" href="#Format" title="Permalink to this heading">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[q = a + bi + cj + dk\]</div>
+</section>
+<section id="Algebra">
+<h2>Algebra<a class="headerlink" href="#Algebra" title="Permalink to this heading">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}i^2 = j^2 = k^2 = −1\\
+ij = k, ji = −k\\
+jk = i, kj = − i\\
+ki = j, ik = − j\end{split}\]</div>
+</section>
+<section id="Conjugate">
+<h2>Conjugate<a class="headerlink" href="#Conjugate" title="Permalink to this heading">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[q^* = a - bi - cj - dk\]</div>
+</section>
+<section id="Norm">
+<h2>Norm<a class="headerlink" href="#Norm" title="Permalink to this heading">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\|q\|=\sqrt{a^2 + b^2 + c^2 + d^2}\]</div>
+</section>
+<section id="Inverse">
+<h2>Inverse<a class="headerlink" href="#Inverse" title="Permalink to this heading">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[q^{-1} = \frac {q^*} {\|q\|^2} = \frac {a - bi - cj - dk} {a^2 + b^2 + c^2 + d^2}\]</div>
+<div class="math notranslate nohighlight">
+\[qq^{−1} = q^{−1}q = 1\]</div>
+</section>
+<section id="Identity">
+<h2>Identity<a class="headerlink" href="#Identity" title="Permalink to this heading">¶</a></h2>
+<p>For adding group, the identity element is real number <span class="math notranslate nohighlight">\(0\)</span>. For multiplication, the identity element is real number <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</section>
+<section id="Associativity">
+<h2>Associativity<a class="headerlink" href="#Associativity" title="Permalink to this heading">¶</a></h2>
+<p>The associativity holds for every <span class="math notranslate nohighlight">\(x, y, z \in G\)</span> in both adding and multiplication:</p>
+<div class="math notranslate nohighlight">
+\[x \ast (y \ast z) = (x \ast y) \ast z\]</div>
+</section>
+<section id="Distributive">
+<h2>Distributive<a class="headerlink" href="#Distributive" title="Permalink to this heading">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[p(q + r) = pq + pr\]</div>
+</section>
+<section id="Commutative">
+<h2>Commutative<a class="headerlink" href="#Commutative" title="Permalink to this heading">¶</a></h2>
+<p>Only true for adding</p>
+<div class="math notranslate nohighlight">
+\[p + q = q + p\]</div>
+<p>Not true for multiplication.</p>
+<div class="math notranslate nohighlight">
+\[pq \neq qp\]</div>
+<p>DO NOT USE <span class="math notranslate nohighlight">\(p/q\)</span> since it isn’t clear whether it is <span class="math notranslate nohighlight">\(pq^{-1}\)</span> or <span class="math notranslate nohighlight">\(q^{-1}q\)</span>.</p>
+<p>## Quaternions for rotations</p>
+</section>
+<section id="Vector">
+<h2>Vector<a class="headerlink" href="#Vector" title="Permalink to this heading">¶</a></h2>
+<p>A vector in three-dimensional space can be expressed as a <strong>pure quaternion</strong>, a quaternion with no real part: <span class="math notranslate nohighlight">\(q = 0 + bi + cj + dk\)</span>.</p>
+</section>
+<section id="Rotation-Matrix">
+<h2>Rotation Matrix<a class="headerlink" href="#Rotation-Matrix" title="Permalink to this heading">¶</a></h2>
+<p>A rotation can be expressed by a quaternion <span class="math notranslate nohighlight">\(q\)</span> if</p>
+<div class="math notranslate nohighlight">
+\[\|q\| = 1\]</div>
+</section>
+<section id="From-quaternion-to-a-rotation-matrix">
+<h2>From quaternion to a rotation matrix<a class="headerlink" href="#From-quaternion-to-a-rotation-matrix" title="Permalink to this heading">¶</a></h2>
+<p>A rotation from one coordinate frame <span class="math notranslate nohighlight">\(A\)</span> to another frame <span class="math notranslate nohighlight">\(B\)</span> is given by the conjugation operation of transform quaternion <span class="math notranslate nohighlight">\(q_R\)</span> :</p>
+<div class="math notranslate nohighlight">
+\[q_B = q_Rq_Aq^*_R\]</div>
+<p>Assuming <span class="math notranslate nohighlight">\(q_A\)</span> represent a vector or a point in <span class="math notranslate nohighlight">\(R^3\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}q_A = xi + yj + zk \\
+q_R = a + bi + cj + dk\end{split}\]</div>
+<p>The transform result is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split} q_B =  q_Rq_Aq^*_R
+&amp;= (a + bi + cj + dk)( xi + yj + zk )(a − bi − cj − dk)\\
+&amp;= [x(a^2 + b^2 − c^2 − d^2) + 2y(bc − ad) + 2z(ac + bd)]i\\
+&amp;+ [2x(ad + bc) + y(a^2 − b^2 + c^2 − d^2) + 2z(cd − ab)]j\\
+&amp;+ [2x(bd − ac) + 2y(ab + cd) + z(a^2 − b^2 − c^2 + d^2)]k
+\end{split}\end{split}\]</div>
+<p>If we express this in a matrix formulation</p>
+<div class="math notranslate nohighlight">
+\[q_B = Mq_A\]</div>
+<p>in which</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}M =
+\begin{bmatrix}
+a^2 + b^2 − c^2 − d^2 &amp; 2(bc − ad) &amp; 2(ac + bd) \\
+2(ad + bc) &amp; a^2 − b^2 + c^2 − d^2 &amp;  2(cd − ab) \\
+2(bd - ac) &amp; 2(ab + cd) &amp; a^2 − b^2 − c^2 + d^2
+\end{bmatrix}\end{split}\]</div>
+</section>
+<section id="From-a-rotation-matrix-of-angles-to-a-quaternion">
+<h2>From a rotation matrix of angles to a quaternion<a class="headerlink" href="#From-a-rotation-matrix-of-angles-to-a-quaternion" title="Permalink to this heading">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split} Trace(M)
+&amp; = M_{11} + M_{22} + M_{33} \\
+&amp; = 2(3a^2 + b^2 + c^2 + d^2 - 1.5) \\
+&amp; = 2(3a^2 + (1 - a^2) - 1.5 \\
+&amp; = 2(2a^2 - 0.5) \\
+&amp; = 4a^2 - 1
+\end{split}\end{split}\]</div>
+<p>We can solve this equation for <span class="math notranslate nohighlight">\(a\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[|a| = \sqrt\frac{Trace(M) + 1} 4\]</div>
+<p>Once we have <span class="math notranslate nohighlight">\(a\)</span>, we can obtain <span class="math notranslate nohighlight">\(b\)</span> from <span class="math notranslate nohighlight">\(M_{11}\)</span></p>
+<div class="math notranslate nohighlight">
+\[M_{11} = 2(a^2 + b^2 - 0.5) = 2(\frac{Trace(M) + 1}4 + b^2 - 0.5)\]</div>
+<div class="math notranslate nohighlight">
+\[|b| = \sqrt{\frac{M_{11}} 2 + \frac {1 - Trace(M)} 4}\]</div>
+<p>Similarly, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> can be computed from <span class="math notranslate nohighlight">\(M_{22}\)</span> and <span class="math notranslate nohighlight">\(M_{33}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[|c| = \sqrt{\frac{M_{22}} 2 + \frac {1 - Trace(M)} 4}\]</div>
+<div class="math notranslate nohighlight">
+\[|d| = \sqrt{\frac{M_{33}} 2 + \frac {1 - Trace(M)} 4}\]</div>
+</section>
+<section id="From-Euler-angles-to-a-quaternion">
+<h2>From Euler angles to a quaternion<a class="headerlink" href="#From-Euler-angles-to-a-quaternion" title="Permalink to this heading">¶</a></h2>
+<p>The general logic is simple 1. From Euler angels, construct its rotation matrix. 2. Convert rotation matrix to quaternion.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../quaternion.html" class="btn btn-neutral float-left" title="Quaternion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../nullspace_basic.html" class="btn btn-neutral float-right" title="Nullspace Basic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KZ.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

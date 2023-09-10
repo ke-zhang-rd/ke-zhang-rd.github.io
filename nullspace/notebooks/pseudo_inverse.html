@@ -4,12 +4,11 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Derivative of Angular Momentum &mdash; nullspace 0.post1+g044ba9a documentation</title>
+  <title>SVD pseudo inverse &mdash; nullspace 0.post1+g044ba9a documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -25,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="composite_inertia" href="../composite_inertia.html" />
-    <link rel="prev" title="angular_momentum_derivative" href="../angular_momentum_derivative.html" /> 
+    <link rel="next" title="angular_momentum_derivative" href="../angular_momentum_derivative.html" />
+    <link rel="prev" title="pseudo Inverse" href="../pseudo_inverse.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,17 +59,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../autodiff_svd.html">autodiff_svd</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../links_params.html">A Example of links_params</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../best_fit_hyperplane.html">Best Fit Hyperplane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pseudo_inverse.html">pseudo Inverse</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Derivative of Angular Momentum</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Background">Background</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Question">Question</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Result">Result</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Derive">Derive</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pseudo_inverse.html">pseudo Inverse</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SVD pseudo inverse</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../composite_inertia.html">composite_inertia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dof_computation.html">DOF Computation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
@@ -96,10 +89,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
-      <li class="breadcrumb-item active">Derivative of Angular Momentum</li>
+          <li class="breadcrumb-item"><a href="../pseudo_inverse.html">pseudo Inverse</a></li>
+      <li class="breadcrumb-item active">SVD pseudo inverse</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/notebooks/angular_momentum_derivative.ipynb.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/notebooks/pseudo_inverse.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -107,78 +100,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Derivative-of-Angular-Momentum">
-<h1>Derivative of Angular Momentum<a class="headerlink" href="#Derivative-of-Angular-Momentum" title="Permalink to this heading">¶</a></h1>
-<section id="Background">
-<h2>Background<a class="headerlink" href="#Background" title="Permalink to this heading">¶</a></h2>
-<p>The derivative of momentum is torque. So we may always see equation like</p>
+  <section id="SVD-pseudo-inverse">
+<h1>SVD pseudo inverse<a class="headerlink" href="#SVD-pseudo-inverse" title="Permalink to this heading">¶</a></h1>
+<p>The pseudoinverse gives a “least squared error, minimum-norm” solution: Out of all <span class="math notranslate nohighlight">\(\dot{q}\)</span> vectors at your current <span class="math notranslate nohighlight">\(q\)</span>, the vector</p>
 <div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t}(Iw) = \sum\limits_{i = 1}^{n}r_i\times f_i\]</div>
-</section>
-<section id="Question">
-<h2>Question<a class="headerlink" href="#Question" title="Permalink to this heading">¶</a></h2>
-<p>What is the derivative of angular momentum?</p>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t}L  ?or \frac{{\rm d}}{{\rm d}t} (Iw)?\]</div>
-</section>
-<section id="Result">
-<h2>Result<a class="headerlink" href="#Result" title="Permalink to this heading">¶</a></h2>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t}(Iw) = I \dot w + w\times (Iw)\]</div>
-</section>
-<section id="Derive">
-<h2>Derive<a class="headerlink" href="#Derive" title="Permalink to this heading">¶</a></h2>
-<p><em>No problem can be solved from the same level of consciousness that created it.</em></p>
-<div align="right"><p>— Albert Einstein</p>
-<p>To derive the equations:</p>
-<ol class="arabic">
-<li><p>The <span class="math notranslate nohighlight">\(I_{body}\)</span> which is a constant inertia tensor described in body frame. The <span class="math notranslate nohighlight">\(R(t)\)</span> is rotation matrix relative to world frame.</p></li>
-<li><p>To find the inertia tensor in world frame you need the transformation</p>
-<div class="math notranslate nohighlight">
-\[I(t)=R(t)I_{body}R(t)^T\]</div>
-</li>
-<li><p>The body at this moment has angular velocity <span class="math notranslate nohighlight">\(\omega(t)\)</span> described in world frame.</p></li>
-<li><p>The derivative of rotation matrix <span class="math notranslate nohighlight">\(R(t)\)</span></p>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t} R(t) = \omega(t) \times R(t)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\times\)</span> is the vector cross product.</p>
-</li>
-<li><p>The derivative of inertia tensor is derived with the chain rule</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
-\frac{\rm d}{{\rm d}t} I(t) &amp; = \frac{\rm d}{{\rm d}t} \left( R(t) I_{body} R(t)^T\right) = \frac{{\rm d}R(t)}{{\rm d}t} I_{body} R(t)^T + R(t) I_{body} \frac{{\rm d}R(t)}{{\rm d}t}^T \\
-&amp; = (\omega\times R(t)) I_{body} R(t)^T + R(t) I_{body} (\omega\times R(t))^T) \\
-&amp; = \omega \times I(t) - I(t) \omega \times
-\end{split}\end{split}\]</div>
-</li>
-<li><p>The derivative of angular momentum is derived with the chain rule</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
-\frac{{\rm d}}{{\rm d}t} L &amp;= I(t) \frac{{\rm d} \omega(t)}{{\rm d}t} + \frac{{\rm d}I(t) }{{\rm d}t} \omega(t) \\ &amp;= I(t) \dot{\omega} + \left( \omega \times I(t) - I(t) \omega \times \right) \omega
-\end{split}\end{split}\]</div>
-</li>
+\[\dot{q}_{s} = J^{+}(q)\dot{p}_{\text{in}}\]</div>
+<p>satisfies two conditions:</p>
+<ol class="arabic simple">
+<li><p>Least squared error: There is no <span class="math notranslate nohighlight">\(\dot{q}\)</span> vector which will get closer to <span class="math notranslate nohighlight">\(\dot{p}\)</span> when passed through <span class="math notranslate nohighlight">\(J(q)\)</span>. (I.e. for <span class="math notranslate nohighlight">\(\dot{p}_{s} = J(q)\dot{q}_{s}\)</span>, the normed difference <span class="math notranslate nohighlight">\(\lvert \dot{p}_{\text{in}}-\dot{p}_{s} \rvert\)</span> is smaller than any other <span class="math notranslate nohighlight">\(\lvert \dot{p}_{\text{in}} - \dot{p} \rvert\)</span>.</p></li>
+<li><p>Minimum-norm: Out of all <span class="math notranslate nohighlight">\(\dot{q}\)</span> that satisfy the first condition, <span class="math notranslate nohighlight">\(\dot{q}_{s}\)</span> is the smallest of those vectors. (I.e. <span class="math notranslate nohighlight">\(\lvert \dot{q_{s}}\rvert\)</span> is smaller than <span class="math notranslate nohighlight">\(\lvert \dot{q} \rvert\)</span> for all <span class="math notranslate nohighlight">\(\dot{q}\)</span> that minimize error in <span class="math notranslate nohighlight">\(\dot{p}\)</span>.</p></li>
 </ol>
-<div class="math notranslate nohighlight">
-\[\boxed{\tau = \dot{L}  = I(t) \dot{\omega} + \omega \times I(t) \omega}\]</div>
-<p>The last is Euler’s equations of rotational motion.</p>
-<p>Weita 2021/12/03</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</div>
-</section>
+<p>At the singularity, the set of achievable velocities loses one dimension (so that there are <span class="math notranslate nohighlight">\(\dot{p}\)</span> that cannot be exactly produced by a <span class="math notranslate nohighlight">\(\dot{q}\)</span>), but for any <span class="math notranslate nohighlight">\(\dot{p}_{\text{in}}\)</span> there is a set of <span class="math notranslate nohighlight">\(\dot{q}\)</span> that all come equally close to producing <span class="math notranslate nohighlight">\(\dot{p}_{\text{in}}\)</span>, and the pseudoinverse picks the smallest (in <span class="math notranslate nohighlight">\(\dot{q}\)</span>-space) of these vectors.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../angular_momentum_derivative.html" class="btn btn-neutral float-left" title="angular_momentum_derivative" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../composite_inertia.html" class="btn btn-neutral float-right" title="composite_inertia" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../pseudo_inverse.html" class="btn btn-neutral float-left" title="pseudo Inverse" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../angular_momentum_derivative.html" class="btn btn-neutral float-right" title="angular_momentum_derivative" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

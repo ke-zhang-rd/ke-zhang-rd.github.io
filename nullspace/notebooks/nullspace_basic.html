@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The role of thumb &mdash; nullspace 0.post1+g044ba9a documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=2aa50064"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Release History" href="../release-history.html" />
+    <link rel="prev" title="Nullspace Basic" href="../nullspace_basic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nullspace
+          </a>
+              <div class="version">
+                0.post1+g044ba9a
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlflow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot.html">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autodiff_svd.html">autodiff_svd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links_params.html">A Example of links_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_fit_hyperplane.html">Best Fit Hyperplane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pseudo_inverse.html">pseudo Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../composite_inertia.html">composite_inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dof_computation.html">DOF Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quaternion.html">Quaternion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../nullspace_basic.html">Nullspace Basic</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The role of thumb</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Multi-tasks-Architecture---Null-space-projection">Multi-tasks Architecture - Null space projection</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#What">What</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#How">How</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nullspace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../nullspace_basic.html">Nullspace Basic</a></li>
+      <li class="breadcrumb-item active">The role of thumb</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/nullspace_basic.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="The-role-of-thumb">
+<h1>The role of thumb<a class="headerlink" href="#The-role-of-thumb" title="Permalink to this heading">¶</a></h1>
+<p>The lower priority task is satisfied only in the null space of the higher priority task, the concept being extensible to multiple tasks.</p>
+<p><span class="math notranslate nohighlight">\(J(I-J^{\dagger}J) = 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(N = I - J^{\dagger}J\)</span></p>
+<p>For equation:</p>
+<div class="math notranslate nohighlight">
+\[\dot{q} = J^\dagger\dot{r} + (I- J^\dagger J)q_0\]</div>
+<p>Properties of <span class="math notranslate nohighlight">\(N = I - J^\dagger J\)</span> * symmetric aka Hermitian <span class="math notranslate nohighlight">\(N = N^T\)</span> * idempotent: <span class="math notranslate nohighlight">\(N^2 = N\)</span> * <span class="math notranslate nohighlight">\(N^\dagger = N\)</span> * <span class="math notranslate nohighlight">\(J^\dagger\dot{r}\)</span> is orthogonal to <span class="math notranslate nohighlight">\((I- J^\dagger J)q_0\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Delta q_i\)</span> is eventually returned variable, it means the <span class="math notranslate nohighlight">\(\Delta q\)</span> iterative result after achieve <span class="math notranslate nohighlight">\(i\)</span>-th task. It comes from <span class="math notranslate nohighlight">\(\Delta q_{i-1}\)</span> with</p>
+<p><strong>Here i and i-1 refer to i-th task ans i-1 th task</strong></p>
+<section id="Multi-tasks-Architecture---Null-space-projection">
+<h2>Multi-tasks Architecture - Null space projection<a class="headerlink" href="#Multi-tasks-Architecture---Null-space-projection" title="Permalink to this heading">¶</a></h2>
+<section id="What">
+<h3>What<a class="headerlink" href="#What" title="Permalink to this heading">¶</a></h3>
+<p>When we deal with robot control problem, we may have multi-tasks. For example, we need end-effector at certain location and if possible in a special orientation or vice versa. Here we said that location goal has higher priority than orientation task, orientation task is so-called secondary tasks. The whole idea come from “The secondary task movement should not influence prioritized task goal”.</p>
+</section>
+<section id="How">
+<h3>How<a class="headerlink" href="#How" title="Permalink to this heading">¶</a></h3>
+<p>Kim [2] Section IV-A is used to show the details of null space technique and how secondary tasks DO NOT influence prior tasks. #### Definition Before start, we need define null space projection. The null space projection of matrix <span class="math notranslate nohighlight">\(J\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[N = I- J^\dagger J\]</div>
+<section id="Properties-of-null-space-projection">
+<h4>Properties of null space projection<a class="headerlink" href="#Properties-of-null-space-projection" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(JN= 0\)</span></p></li>
+<li><p>Symmetric aka Hermitian <span class="math notranslate nohighlight">\(N = N^T\)</span></p></li>
+<li><p>Idempotent: <span class="math notranslate nohighlight">\(N^2 = N\)</span> This could be easily proved by definition and <span class="math notranslate nohighlight">\(JJ^\dagger J = J\)</span> or <span class="math notranslate nohighlight">\(J^\dagger JJ^\dagger = J^\dagger\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(N^\dagger = N\)</span></p></li>
+<li><p>For equation:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\dot{q} = J^\dagger\dot{r} + (I- J^\dagger J)q_0\]</div>
+<p><span class="math notranslate nohighlight">\(J^\dagger\dot{r}\)</span> is orthogonal to <span class="math notranslate nohighlight">\((I- J^\dagger J)q_0\)</span></p>
+</section>
+<section id="Equation">
+<h4>Equation<a class="headerlink" href="#Equation" title="Permalink to this heading">¶</a></h4>
+<div class="math notranslate nohighlight">
+\[\Delta q_i = \Delta q_{i-1} + J_{i | pre}^\dagger(e - J_i\Delta q_{i-1})\]</div>
+<div class="math notranslate nohighlight">
+\[N_0 = I - J_0^\dagger J_0\]</div>
+<p>Notice <span class="math notranslate nohighlight">\(J_0 = J_c\)</span> here</p>
+<p>With assumption <span class="math notranslate nohighlight">\(J_i \Delta q_i = \Delta x_i\)</span></p>
+<p>When <span class="math notranslate nohighlight">\(i = 0\)</span> <span class="math notranslate nohighlight">\(\Delta q_0 = J_0^{\dagger} \Delta x_0\)</span></p>
+<p><strong>When :math:`i = 1`</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split} \Delta q_1
+&amp;=\Delta q_0 + J_{1 | pre}^\dagger \Delta x_1\\
+&amp;=\Delta q_0 + (J_1N_0)^\dagger \Delta x_1\\
+&amp;=\Delta q_0 + N_0(J_1N_0)^\dagger \Delta x_1\\
+\end{split}
+\end{equation}\end{split}\]</div>
+<p>Notice we use a magic property, if <span class="math notranslate nohighlight">\(C\)</span> is <strong>idempotent</strong> and <strong>Hermitian</strong>, then</p>
+<div class="math notranslate nohighlight">
+\[C(BC)^\dagger = (BC)^\dagger\]</div>
+<p>which is mentioned in “Task-priority formulations for the kinematic control of highly redundant articulated structures” and proved in “Obstacle Avoidance for Kinematically Redundant Manipulators in Dynamically Varying Environments”</p>
+<p>Considering <span class="math notranslate nohighlight">\(J_0(I - J_0^\dagger J_0) = 0\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split} J_0\Delta q_1
+&amp;=  J_0\Delta q_0 + J_0N_0(J_1N_0)^\dagger \Delta x_1\\
+&amp;= J_0\Delta q_0\\
+&amp;=\Delta x_0
+\end{split}
+\end{equation}\end{split}\]</div>
+<p>Here we proof that our <span class="math notranslate nohighlight">\(\Delta q_1\)</span> <strong>DO NOT</strong> influence achievement of <span class="math notranslate nohighlight">\(\Delta x_0\)</span>. In other words, task 1’s q result doesn’t influence task 0.</p>
+<p>Before start iterating, it’s necessary to emphasis that delta q1 we get here isn’t for task 1 but a really nice q after first iteration that could achieve all previous tasks(task0 + task1). From here we could think the tasks before i = 2 as one big task</p>
+<p><strong>When :math:`i = 2`</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split} \Delta q_2
+&amp;=\Delta q_1 + J_{2 | pre}^\dagger \Delta x_2\\
+&amp;=\Delta q_1 + (J_2N_1)^\dagger \Delta x_2\\
+&amp;=\Delta q_1 + N_1(J_2N_1)^\dagger \Delta x_2\\
+\end{split}
+\end{equation}\end{split}\]</div>
+<p>J1 equation still hold</p>
+<p>since <span class="math notranslate nohighlight">\(N_1 = N_0 -(J_1N_0)^\dagger(J_1N_0)\)</span> again since <span class="math notranslate nohighlight">\(N_1 = N_0 - N_0(J_1N_0)^\dagger(J_1N_0)\)</span> or <span class="math notranslate nohighlight">\(N_1 = N_0 [I - (J_1N_0)^\dagger(J_1N_0)]\)</span> So <span class="math notranslate nohighlight">\(J_0N_1 = 0\)</span></p>
+<p>The equation become</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split} J_0\Delta q_2
+&amp;= J_0\Delta q_1 + J_0N_1(J_2N_1)^\dagger \Delta x_2\\
+&amp;=\Delta x_0 + 0\\
+&amp;=\Delta x_0
+\end{split}
+\end{equation}\end{split}\]</div>
+<p><strong>When :math:`i`</strong></p>
+<p>How to understand i and i-1</p>
+<p>i is for i-th articulated task result, it’s the effect of all tasks from 0, 1….i, not only i-th task.</p>
+<p>Reconsidering equation</p>
+<div class="math notranslate nohighlight">
+\[\Delta q_i - \Delta q_{i-1} = J_{i | pre}^\dagger(e - J_i\Delta q_{i-1})\]</div>
+<p>The actual q change achieved by i-th task is <span class="math notranslate nohighlight">\(\Delta q_i - \Delta q_{i-1}\)</span></p>
+<p>In right side</p>
+<p><span class="math notranslate nohighlight">\(e\)</span> is all error we have <span class="math notranslate nohighlight">\(J_i\Delta q_{i-1}\)</span> are errors has been eliminated by first i-1th tasks.</p>
+<p><span class="math notranslate nohighlight">\(e - J_i\Delta q_{i-1}\)</span> is actual <span class="math notranslate nohighlight">\(\ x_i\)</span> for i-th task</p>
+<p>[1] A. Liégeois, “Automatic supervisory control of the coDeltanfigura- tion and behavior of multibo dy mechanisms,” IEEE Trans. Sys. Man Cybernet., vol. 7, pp. 868–871, 1977.</p>
+<p>[3] A. A. Maciejewski and C. A. Klein, “Obstacle avoidance for kinematically redundant manipulators in dynamically varying environments,” Int. J. Robot. Res., vol. 4, no. 3, pp. 109–117, 1985.</p>
+<p>[2] Highly Dynamic Quadruped Locomotion via Whole-Body Impulse Control and Model Predictive Control</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../nullspace_basic.html" class="btn btn-neutral float-left" title="Nullspace Basic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../release-history.html" class="btn btn-neutral float-right" title="Release History" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KZ.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

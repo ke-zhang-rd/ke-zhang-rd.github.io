@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Derivative of Angular Momentum &mdash; nullspace 0.post1+g044ba9a documentation</title>
+  <title>CompositeInertia &mdash; nullspace 0.post1+g044ba9a documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="composite_inertia" href="../composite_inertia.html" />
-    <link rel="prev" title="angular_momentum_derivative" href="../angular_momentum_derivative.html" /> 
+    <link rel="next" title="DOF Computation" href="../dof_computation.html" />
+    <link rel="prev" title="composite_inertia" href="../composite_inertia.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -61,17 +61,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../links_params.html">A Example of links_params</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../best_fit_hyperplane.html">Best Fit Hyperplane</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pseudo_inverse.html">pseudo Inverse</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Derivative of Angular Momentum</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Background">Background</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Question">Question</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Result">Result</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Derive">Derive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../composite_inertia.html">composite_inertia</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CompositeInertia</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../composite_inertia.html">composite_inertia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dof_computation.html">DOF Computation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
@@ -96,10 +90,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
-      <li class="breadcrumb-item active">Derivative of Angular Momentum</li>
+          <li class="breadcrumb-item"><a href="../composite_inertia.html">composite_inertia</a></li>
+      <li class="breadcrumb-item active">CompositeInertia</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/notebooks/angular_momentum_derivative.ipynb.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/notebooks/composite_inertia.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -107,61 +101,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Derivative-of-Angular-Momentum">
-<h1>Derivative of Angular Momentum<a class="headerlink" href="#Derivative-of-Angular-Momentum" title="Permalink to this heading">¶</a></h1>
-<section id="Background">
-<h2>Background<a class="headerlink" href="#Background" title="Permalink to this heading">¶</a></h2>
-<p>The derivative of momentum is torque. So we may always see equation like</p>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t}(Iw) = \sum\limits_{i = 1}^{n}r_i\times f_i\]</div>
-</section>
-<section id="Question">
-<h2>Question<a class="headerlink" href="#Question" title="Permalink to this heading">¶</a></h2>
-<p>What is the derivative of angular momentum?</p>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t}L  ?or \frac{{\rm d}}{{\rm d}t} (Iw)?\]</div>
-</section>
-<section id="Result">
-<h2>Result<a class="headerlink" href="#Result" title="Permalink to this heading">¶</a></h2>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t}(Iw) = I \dot w + w\times (Iw)\]</div>
-</section>
-<section id="Derive">
-<h2>Derive<a class="headerlink" href="#Derive" title="Permalink to this heading">¶</a></h2>
-<p><em>No problem can be solved from the same level of consciousness that created it.</em></p>
-<div align="right"><p>— Albert Einstein</p>
-<p>To derive the equations:</p>
-<ol class="arabic">
-<li><p>The <span class="math notranslate nohighlight">\(I_{body}\)</span> which is a constant inertia tensor described in body frame. The <span class="math notranslate nohighlight">\(R(t)\)</span> is rotation matrix relative to world frame.</p></li>
-<li><p>To find the inertia tensor in world frame you need the transformation</p>
-<div class="math notranslate nohighlight">
-\[I(t)=R(t)I_{body}R(t)^T\]</div>
-</li>
-<li><p>The body at this moment has angular velocity <span class="math notranslate nohighlight">\(\omega(t)\)</span> described in world frame.</p></li>
-<li><p>The derivative of rotation matrix <span class="math notranslate nohighlight">\(R(t)\)</span></p>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t} R(t) = \omega(t) \times R(t)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\times\)</span> is the vector cross product.</p>
-</li>
-<li><p>The derivative of inertia tensor is derived with the chain rule</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
-\frac{\rm d}{{\rm d}t} I(t) &amp; = \frac{\rm d}{{\rm d}t} \left( R(t) I_{body} R(t)^T\right) = \frac{{\rm d}R(t)}{{\rm d}t} I_{body} R(t)^T + R(t) I_{body} \frac{{\rm d}R(t)}{{\rm d}t}^T \\
-&amp; = (\omega\times R(t)) I_{body} R(t)^T + R(t) I_{body} (\omega\times R(t))^T) \\
-&amp; = \omega \times I(t) - I(t) \omega \times
-\end{split}\end{split}\]</div>
-</li>
-<li><p>The derivative of angular momentum is derived with the chain rule</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
-\frac{{\rm d}}{{\rm d}t} L &amp;= I(t) \frac{{\rm d} \omega(t)}{{\rm d}t} + \frac{{\rm d}I(t) }{{\rm d}t} \omega(t) \\ &amp;= I(t) \dot{\omega} + \left( \omega \times I(t) - I(t) \omega \times \right) \omega
-\end{split}\end{split}\]</div>
-</li>
-</ol>
-<div class="math notranslate nohighlight">
-\[\boxed{\tau = \dot{L}  = I(t) \dot{\omega} + \omega \times I(t) \omega}\]</div>
-<p>The last is Euler’s equations of rotational motion.</p>
-<p>Weita 2021/12/03</p>
+  <section id="CompositeInertia">
+<h1>CompositeInertia<a class="headerlink" href="#CompositeInertia" title="Permalink to this heading">¶</a></h1>
+<p>Generally there are two algorithm to calculate robot dynamics.</p>
+<p>Featherstone’s algorithm Lagrangian method</p>
+<p>Fetherstone’s algorithm best practice is so-called Articulated-Body Algorithm which is described in forward_dynamics_propagation.md</p>
+<p>Here we discuss a most import part in Lagrangian method. how to get composite inertia.</p>
+<p>Theory</p>
+<p>Pseudo</p>
+<p>Code H = 0 for <span class="math notranslate nohighlight">\(i = 1\)</span> to <span class="math notranslate nohighlight">\(N_B\)</span>   <span class="math notranslate nohighlight">\(I^c_i = I_i\)</span> end for i = N_B to 1     if <span class="math notranslate nohighlight">\(\lambda(i) \ne 0\)</span> <span class="math notranslate nohighlight">\(\qquad I^A_{\lambda(i)} = I^A_{\lambda(i)} + {}^{\lambda(i)}X^*_i I^c_i \space {}^iX_{\lambda(i)}\)</span> end Generally there are two algorithm to calculate robot dynamics.</p>
+<p>Featherstone’s algorithm Lagrangian method</p>
+<p>Fetherstone’s algorithm best practice is so-called Articulated-Body Algorithm which is described in forward_dynamics_propagation.md</p>
+<p>Here we discuss a most import part in Lagrangian method. how to get composite inertia.</p>
+<p>Theory</p>
+<p>Pseudo</p>
+<p>Code H = 0 for <span class="math notranslate nohighlight">\(i = 1\)</span> to <span class="math notranslate nohighlight">\(N_B\)</span>   <span class="math notranslate nohighlight">\(I^c_i = I_i\)</span> end for i = N_B to 1     if <span class="math notranslate nohighlight">\(\lambda(i) \ne 0\)</span> <span class="math notranslate nohighlight">\(\qquad I^A_{\lambda(i)} = I^A_{\lambda(i)} + {}^{\lambda(i)}X^*_i I^c_i \space {}^iX_{\lambda(i)}\)</span> end</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -171,14 +125,13 @@
 </div>
 </div>
 </section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../angular_momentum_derivative.html" class="btn btn-neutral float-left" title="angular_momentum_derivative" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../composite_inertia.html" class="btn btn-neutral float-right" title="composite_inertia" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../composite_inertia.html" class="btn btn-neutral float-left" title="composite_inertia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../dof_computation.html" class="btn btn-neutral float-right" title="DOF Computation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

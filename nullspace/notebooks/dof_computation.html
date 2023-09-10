@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOF discussion of quadruped &mdash; nullspace 0.post1+g044ba9a documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=2aa50064"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dynamic Consistent Inverse" href="../dynamic_consistent_inverse.html" />
+    <link rel="prev" title="DOF Computation" href="../dof_computation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            nullspace
+          </a>
+              <div class="version">
+                0.post1+g044ba9a
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlflow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot.html">plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autodiff_svd.html">autodiff_svd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links_params.html">A Example of links_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../best_fit_hyperplane.html">Best Fit Hyperplane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pseudo_inverse.html">pseudo Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../composite_inertia.html">composite_inertia</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../dof_computation.html">DOF Computation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DOF discussion of quadruped</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Formula">Formula</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Case-study">Case study</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DOF-of-quadruped-base-body-with-4-legs-on-the-ground.">DOF of quadruped base body with 4 legs on the ground.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DOF-of-quadruped-base-body-with-3-legs-on-the-ground.">DOF of quadruped base body with 3 legs on the ground.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DOF-of-quadruped-base-body-with-2-legs-on-the-ground.">DOF of quadruped base body with 2 legs on the ground.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DOF-of-quadruped-base-body-with-1-legs-on-the-ground.">DOF of quadruped base body with 1 legs on the ground.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DOF-of-quadruped-base-body-with-0-legs-on-the-ground.">DOF of quadruped base body with 0 legs on the ground.</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Is-it-over-actuated?-Is-it-under-actuated?">Is it over-actuated? Is it under-actuated?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quaternion.html">Quaternion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nullspace_basic.html">Nullspace Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">nullspace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../dof_computation.html">DOF Computation</a></li>
+      <li class="breadcrumb-item active">DOF discussion of quadruped</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/dof_computation.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="DOF-discussion-of-quadruped">
+<h1>DOF discussion of quadruped<a class="headerlink" href="#DOF-discussion-of-quadruped" title="Permalink to this heading">¶</a></h1>
+<section id="Formula">
+<h2>Formula<a class="headerlink" href="#Formula" title="Permalink to this heading">¶</a></h2>
+<p>With basic mechanism formula</p>
+<div class="math notranslate nohighlight">
+\[\sigma = 6m - \sum_{i=1}^n p_i\]</div>
+<p>where</p>
+<p><span class="math notranslate nohighlight">\(\sigma\)</span>, DOF <span class="math notranslate nohighlight">\(m\)</span>, number of movable parts (links) <span class="math notranslate nohighlight">\(p_i\)</span>, number of degree constrained by <span class="math notranslate nohighlight">\(i\)</span>-th kinematic pair(joint or contact). <span class="math notranslate nohighlight">\(n\)</span>, total number of kinematic pairs</p>
+<p>In special, rotation joint, <span class="math notranslate nohighlight">\(p_i = 5\)</span> point contact, <span class="math notranslate nohighlight">\(p_i = 3\)</span></p>
+</section>
+<section id="Case-study">
+<h2>Case study<a class="headerlink" href="#Case-study" title="Permalink to this heading">¶</a></h2>
+<section id="DOF-of-quadruped-base-body-with-4-legs-on-the-ground.">
+<h3>DOF of quadruped base body with 4 legs on the ground.<a class="headerlink" href="#DOF-of-quadruped-base-body-with-4-legs-on-the-ground." title="Permalink to this heading">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(m = 13\)</span> number of rotation joint(<span class="math notranslate nohighlight">\(p_i = 5\)</span>), <span class="math notranslate nohighlight">\(n_1 = 12\)</span> number of point contact(<span class="math notranslate nohighlight">\(p_i = 3\)</span>), <span class="math notranslate nohighlight">\(n_2 = 4\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split}
+\sigma
+&amp;= 6 \cdot 13 - 5 \cdot 12 - 3 \cdot4\\
+&amp;=6
+\end{split}
+\end{equation}\end{split}\]</div>
+</section>
+<section id="DOF-of-quadruped-base-body-with-3-legs-on-the-ground.">
+<h3>DOF of quadruped base body with 3 legs on the ground.<a class="headerlink" href="#DOF-of-quadruped-base-body-with-3-legs-on-the-ground." title="Permalink to this heading">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(m = 10\)</span> number of rotation joint(<span class="math notranslate nohighlight">\(p_i = 5\)</span>), <span class="math notranslate nohighlight">\(n_1 = 9\)</span> number of point contact(<span class="math notranslate nohighlight">\(p_i = 3\)</span>), <span class="math notranslate nohighlight">\(n_2 = 3\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split}
+\sigma
+&amp;= 6 \cdot 10 - 5 \cdot 9 - 3 \cdot3\\
+&amp;=6
+\end{split}
+\end{equation}\end{split}\]</div>
+</section>
+<section id="DOF-of-quadruped-base-body-with-2-legs-on-the-ground.">
+<h3>DOF of quadruped base body with 2 legs on the ground.<a class="headerlink" href="#DOF-of-quadruped-base-body-with-2-legs-on-the-ground." title="Permalink to this heading">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(m = 7\)</span> number of rotation joint(<span class="math notranslate nohighlight">\(p_i = 5\)</span>), <span class="math notranslate nohighlight">\(n_1 = 6\)</span> number of point contact(<span class="math notranslate nohighlight">\(p_i = 3\)</span>), <span class="math notranslate nohighlight">\(n_2 = 2\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split}
+\sigma
+&amp;= 6 \cdot 7 - 5 \cdot 6 - 3 \cdot2\\
+&amp;=6
+\end{split}
+\end{equation}\end{split}\]</div>
+</section>
+<section id="DOF-of-quadruped-base-body-with-1-legs-on-the-ground.">
+<h3>DOF of quadruped base body with 1 legs on the ground.<a class="headerlink" href="#DOF-of-quadruped-base-body-with-1-legs-on-the-ground." title="Permalink to this heading">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(m = 4\)</span> number of rotation joint(<span class="math notranslate nohighlight">\(p_i = 5\)</span>), <span class="math notranslate nohighlight">\(n_1 = 3\)</span> number of point contact(<span class="math notranslate nohighlight">\(p_i = 3\)</span>), <span class="math notranslate nohighlight">\(n_2 = 1\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split}
+\sigma
+&amp;= 6 \cdot 4 - 5 \cdot 3 - 3 \cdot1\\
+&amp;=6
+\end{split}
+\end{equation}\end{split}\]</div>
+</section>
+<section id="DOF-of-quadruped-base-body-with-0-legs-on-the-ground.">
+<h3>DOF of quadruped base body with 0 legs on the ground.<a class="headerlink" href="#DOF-of-quadruped-base-body-with-0-legs-on-the-ground." title="Permalink to this heading">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(m = 1\)</span> number of rotation joint(<span class="math notranslate nohighlight">\(p_i = 5\)</span>), <span class="math notranslate nohighlight">\(n_1 = 0\)</span> number of point contact(<span class="math notranslate nohighlight">\(p_i = 3\)</span>), <span class="math notranslate nohighlight">\(n_2 = 0\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\begin{split}
+\sigma
+&amp;= 6 \cdot 1 - 5 \cdot 0 - 3 \cdot0\\
+&amp;=6
+\end{split}
+\end{equation}\end{split}\]</div>
+</section>
+</section>
+<section id="Is-it-over-actuated?-Is-it-under-actuated?">
+<h2>Is it over-actuated? Is it under-actuated?<a class="headerlink" href="#Is-it-over-actuated?-Is-it-under-actuated?" title="Permalink to this heading">¶</a></h2>
+<p>Quadruped with <strong>0 leg</strong> on the ground: <strong>under-actuated</strong> Quadruped with <strong>1 leg</strong> on the ground: <strong>under-actuated</strong> Quadruped with <strong>2 cross legs</strong> on the ground: <strong>under-actuated</strong></p>
+<p>There are 6 actuator by two Ab/ad Quadruped with <strong>3 legs</strong> on the ground: <strong>over-actuated but NOT redundancy</strong> Think 3 legs case as 2 cross legs with 1 more leg. After 2 cross legs configuration is determined, the orientation and position of base body is determined. Then the location that connect to 3rd leg is determined. If ground is in reachable domain, <span class="math notranslate nohighlight">\(\ast\)</span>for certain ground contact point, the configuration of 3rd leg has to be determined.</p>
+<p>So, in this case, even we have 9 actuator with 6DOF, actuators are not independent and there isn’t redundancy.</p>
+<p>Quadruped with <strong>4 legs</strong> on the ground: <strong>over-actuated but NOT redundancy</strong> Same reason like 3 legs</p>
+<p><span class="math notranslate nohighlight">\(\ast\)</span> Notice: <strong>certain ground contact point</strong>, in the background of stand phase, the contact point is fixed and we are controlling the orientation or position of base body.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../dof_computation.html" class="btn btn-neutral float-left" title="DOF Computation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../dynamic_consistent_inverse.html" class="btn btn-neutral float-right" title="Dynamic Consistent Inverse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KZ.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

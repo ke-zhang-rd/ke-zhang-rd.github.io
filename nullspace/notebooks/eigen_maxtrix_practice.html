@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Derivative of Angular Momentum &mdash; nullspace 0.post1+g044ba9a documentation</title>
+  <title>How to construct matrix &mdash; nullspace 0.post1+g044ba9a documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="composite_inertia" href="../composite_inertia.html" />
-    <link rel="prev" title="angular_momentum_derivative" href="../angular_momentum_derivative.html" /> 
+    <link rel="next" title="Quaternion" href="../quaternion.html" />
+    <link rel="prev" title="Eigen Matrix Practice" href="../eigen_matrix_practice.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -61,21 +61,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../links_params.html">A Example of links_params</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../best_fit_hyperplane.html">Best Fit Hyperplane</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pseudo_inverse.html">pseudo Inverse</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Derivative of Angular Momentum</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Background">Background</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Question">Question</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Result">Result</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Derive">Derive</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../composite_inertia.html">composite_inertia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dof_computation.html">DOF Computation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../eigen_matrix_practice.html">Eigen Matrix Practice</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to construct matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Difference-of-block-operator">Difference of block operator</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../quaternion.html">Quaternion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nullspace_basic.html">Nullspace Basic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-history.html">Release History</a></li>
@@ -96,10 +91,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
-      <li class="breadcrumb-item active">Derivative of Angular Momentum</li>
+          <li class="breadcrumb-item"><a href="../eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
+      <li class="breadcrumb-item active">How to construct matrix</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/notebooks/angular_momentum_derivative.ipynb.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/notebooks/eigen_maxtrix_practice.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -107,61 +102,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Derivative-of-Angular-Momentum">
-<h1>Derivative of Angular Momentum<a class="headerlink" href="#Derivative-of-Angular-Momentum" title="Permalink to this heading">¶</a></h1>
-<section id="Background">
-<h2>Background<a class="headerlink" href="#Background" title="Permalink to this heading">¶</a></h2>
-<p>The derivative of momentum is torque. So we may always see equation like</p>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t}(Iw) = \sum\limits_{i = 1}^{n}r_i\times f_i\]</div>
+  <section id="How-to-construct-matrix">
+<h1>How to construct matrix<a class="headerlink" href="#How-to-construct-matrix" title="Permalink to this heading">¶</a></h1>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>know shape at compile time</p></th>
+<th class="head"><p>NOT know</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>small size (around 4x4)</p></td>
+<td><p>Matrix&lt;T, rows, cols&gt; m</p></td>
+<td><p>Matrix&lt;T, -1, -1&gt; m</p></td>
+</tr>
+<tr class="row-odd"><td><p>large size</p></td>
+<td><p>Matrix&lt;T, -1, -1&gt; m(rows, cols)</p></td>
+<td><p>Matrix&lt;T, -1, -1&gt; m</p></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="Question">
-<h2>Question<a class="headerlink" href="#Question" title="Permalink to this heading">¶</a></h2>
-<p>What is the derivative of angular momentum?</p>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t}L  ?or \frac{{\rm d}}{{\rm d}t} (Iw)?\]</div>
-</section>
-<section id="Result">
-<h2>Result<a class="headerlink" href="#Result" title="Permalink to this heading">¶</a></h2>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t}(Iw) = I \dot w + w\times (Iw)\]</div>
-</section>
-<section id="Derive">
-<h2>Derive<a class="headerlink" href="#Derive" title="Permalink to this heading">¶</a></h2>
-<p><em>No problem can be solved from the same level of consciousness that created it.</em></p>
-<div align="right"><p>— Albert Einstein</p>
-<p>To derive the equations:</p>
-<ol class="arabic">
-<li><p>The <span class="math notranslate nohighlight">\(I_{body}\)</span> which is a constant inertia tensor described in body frame. The <span class="math notranslate nohighlight">\(R(t)\)</span> is rotation matrix relative to world frame.</p></li>
-<li><p>To find the inertia tensor in world frame you need the transformation</p>
-<div class="math notranslate nohighlight">
-\[I(t)=R(t)I_{body}R(t)^T\]</div>
-</li>
-<li><p>The body at this moment has angular velocity <span class="math notranslate nohighlight">\(\omega(t)\)</span> described in world frame.</p></li>
-<li><p>The derivative of rotation matrix <span class="math notranslate nohighlight">\(R(t)\)</span></p>
-<div class="math notranslate nohighlight">
-\[\frac{{\rm d}}{{\rm d}t} R(t) = \omega(t) \times R(t)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\times\)</span> is the vector cross product.</p>
-</li>
-<li><p>The derivative of inertia tensor is derived with the chain rule</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
-\frac{\rm d}{{\rm d}t} I(t) &amp; = \frac{\rm d}{{\rm d}t} \left( R(t) I_{body} R(t)^T\right) = \frac{{\rm d}R(t)}{{\rm d}t} I_{body} R(t)^T + R(t) I_{body} \frac{{\rm d}R(t)}{{\rm d}t}^T \\
-&amp; = (\omega\times R(t)) I_{body} R(t)^T + R(t) I_{body} (\omega\times R(t))^T) \\
-&amp; = \omega \times I(t) - I(t) \omega \times
-\end{split}\end{split}\]</div>
-</li>
-<li><p>The derivative of angular momentum is derived with the chain rule</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{split}
-\frac{{\rm d}}{{\rm d}t} L &amp;= I(t) \frac{{\rm d} \omega(t)}{{\rm d}t} + \frac{{\rm d}I(t) }{{\rm d}t} \omega(t) \\ &amp;= I(t) \dot{\omega} + \left( \omega \times I(t) - I(t) \omega \times \right) \omega
-\end{split}\end{split}\]</div>
-</li>
-</ol>
-<div class="math notranslate nohighlight">
-\[\boxed{\tau = \dot{L}  = I(t) \dot{\omega} + \omega \times I(t) \omega}\]</div>
-<p>The last is Euler’s equations of rotational motion.</p>
-<p>Weita 2021/12/03</p>
+<section id="Difference-of-block-operator">
+<h1>Difference of block operator<a class="headerlink" href="#Difference-of-block-operator" title="Permalink to this heading">¶</a></h1>
+<p>m.block&lt;p, q&gt;(i, j)</p>
+<p>m.block&lt;i, j, p, q&gt;</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -171,14 +136,13 @@
 </div>
 </div>
 </section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../angular_momentum_derivative.html" class="btn btn-neutral float-left" title="angular_momentum_derivative" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../composite_inertia.html" class="btn btn-neutral float-right" title="composite_inertia" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../eigen_matrix_practice.html" class="btn btn-neutral float-left" title="Eigen Matrix Practice" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../quaternion.html" class="btn btn-neutral float-right" title="Quaternion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
