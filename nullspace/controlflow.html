@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Control Flow &mdash; nullspace 0.post1+gd07a1b8 documentation</title>
+  <title>Control Flow &mdash; nullspace 0.post1+gff424fb documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -13,7 +13,7 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=730996bc"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=551d4e97"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=4825356b"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -22,7 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Plot" href="plot.html" />
+    <link rel="next" title="Visualization" href="visualization.html" />
     <link rel="prev" title="Usage" href="usage.html" /> 
 </head>
 
@@ -38,7 +38,7 @@
             nullspace
           </a>
               <div class="version">
-                0.post1+gd07a1b8
+                0.post1+gff424fb
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -52,14 +52,17 @@
 <li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Control Flow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Control Flow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#control-variables">Control Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-update">Error Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fixed-foot-distance-nullspace-controller-jacobian">Fixed Foot Distance Nullspace Controller(Jacobian)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best_fit_plane.html">Best Fit Plane</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/autodiff_svd.html">Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="autodiff_svd.html">autodiff_svd</a></li>
 <li class="toctree-l1"><a class="reference internal" href="robot_descriptor.html">A Example of Robot Descriptor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="links_params.html">A Example of links_params</a></li>
-<li class="toctree-l1"><a class="reference internal" href="best_fit_hyperplane.html">Best Fit Hyperplane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pseudo_inverse.html">pseudo Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/pseudo_inverse.html">SVD pseudo inverse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="angular_momentum_derivative.html">angular_momentum_derivative</a></li>
 <li class="toctree-l1"><a class="reference internal" href="composite_inertia.html">composite_inertia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dof_computation.html">DOF Computation</a></li>
@@ -112,6 +115,49 @@
 <p>We convert our target(no matter what which coordinate in which coordinate) to target of Support rigid on
 Boday coordinate. And the current Support rigid on Body coordinate is very easy calculated by forward
 kinematics. The error could be achieved to pass to nullspace controller.</p>
+<section id="control-variables">
+<h2>Control Variables<a class="headerlink" href="#control-variables" title="Permalink to this heading">¶</a></h2>
+<p>The control is based on simple formula</p>
+<blockquote>
+<div><p>$$dq = J^{-1}e$$</p>
+</div></blockquote>
+<p>It has two parts, the Jacobian and error which has been demonstrated in chapter below.</p>
+</section>
+<section id="error-update">
+<h2>Error Update<a class="headerlink" href="#error-update" title="Permalink to this heading">¶</a></h2>
+<p>The error is described by orientation and position of Support virtual coordinate relative to Base.</p>
+<p>In this chapter we are talking about the coordination fixed on virtual rigid object relative to
+base.</p>
+<p>We need:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A origin point</p></li>
+<li><p>two axis direction(third one could be derived by cross production operation)</p></li>
+</ul>
+</div></blockquote>
+<p>The origin point is the centroid point of all end effectors.</p>
+<p>We define the <em>normal/Z</em> vector by finding the best fitting plane.</p>
+<p>Then we need find a vector inside the best-fitting-plane. Actually, it doesn’t really matter how you
+define this vector since the difference between current status and target status is all we need.</p>
+<p>But we people tend to like the axis that match/align with robot mechanical structuer. Here we use left
+bound in eagle view as <em>Y</em> axis</p>
+</section>
+<section id="fixed-foot-distance-nullspace-controller-jacobian">
+<h2>Fixed Foot Distance Nullspace Controller(Jacobian)<a class="headerlink" href="#fixed-foot-distance-nullspace-controller-jacobian" title="Permalink to this heading">¶</a></h2>
+<p>This is prioritized tasks controller and it has 3 tasks from higher to lower order:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Keep foot distance unchanged</p></li>
+<li><p>Approach to Orientation target(described by Support on Body)</p></li>
+<li><p>Approach to Position target(described by Support on Body)</p></li>
+</ol>
+</div></blockquote>
+<p>Of course, since this is a nullspace controller, the second task will be achieved in the nullspace of
+first task. The third task will be achived in the nullspaces of first and second.</p>
+<p>We need calculate the Jacobian matrix of each task.</p>
+<p>Notice in second task, we use the normal/Z axis from best fitting plane which is derived from SVD. So,
+the derivative of this nomral/Z axis require a calculation of <em>dU</em> from SVD. Here we use autodiff of SVD.</p>
+</section>
 </section>
 
 
@@ -119,7 +165,7 @@ kinematics. The error could be achieved to pass to nullspace controller.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="plot.html" class="btn btn-neutral float-right" title="Plot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="visualization.html" class="btn btn-neutral float-right" title="Visualization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
