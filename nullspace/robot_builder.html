@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nullspace Documentation &mdash; nullspace 0.post1+gc47f9a2 documentation</title>
+  <title>robotBuilder &mdash; nullspace 0.post1+gc47f9a2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -22,7 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Philosophy" href="philosophy.html" /> 
+    <link rel="next" title="Quaternion" href="notebooks/quaternion.html" />
+    <link rel="prev" title="Usage" href="autodiff_svd.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -33,7 +34,7 @@
 
           
           
-          <a href="#" class="icon icon-home">
+          <a href="index.html" class="icon icon-home">
             nullspace
           </a>
               <div class="version">
@@ -61,9 +62,12 @@
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Source Code</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="autodiff_svd.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="robot_builder.html">robotBuilder</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">robotBuilder</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nullspace.models.structure.robotBuilder"><code class="docutils literal notranslate"><span class="pre">robotBuilder()</span></code></a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Robotics Guide</span></p>
 <ul>
@@ -84,17 +88,17 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">nullspace</a>
+          <a href="index.html">nullspace</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">nullspace Documentation</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">robotBuilder</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/robot_builder.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -102,51 +106,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="nullspace-documentation">
-<h1>nullspace Documentation<a class="headerlink" href="#nullspace-documentation" title="Permalink to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/virtual_rigid_kinematics.html">Virtual Rigid Kinematics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="controlflow.html">Control Flow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="robot_descriptor.html">A Example of Robot Descriptor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="error_update.html">Error Update</a></li>
-<li class="toctree-l1"><a class="reference internal" href="best_fit_plane.html">Best Fit Plane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nullspace_basic.html">Nullspace Basic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/autodiff_svd.html">Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Source Code</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="autodiff_svd.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="robot_builder.html">robotBuilder</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Robotics Guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/quaternion.html">Quaternion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="angular_momentum_derivative.html">angular_momentum_derivative</a></li>
-<li class="toctree-l1"><a class="reference internal" href="composite_inertia.html">composite_inertia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dof_computation.html">DOF Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a></li>
-<li class="toctree-l1"><a class="reference internal" href="min_versions.html">Minimum Version of Python and NumPy</a></li>
-</ul>
-</div>
+  <section id="robotbuilder">
+<h1>robotBuilder<a class="headerlink" href="#robotbuilder" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="nullspace.models.structure.robotBuilder">
+<span class="sig-prename descclassname"><span class="pre">nullspace.models.structure.</span></span><span class="sig-name descname"><span class="pre">robotBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nullspace/models/structure.html#robotBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nullspace.models.structure.robotBuilder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="philosophy.html" class="btn btn-neutral float-right" title="Philosophy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="autodiff_svd.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="notebooks/quaternion.html" class="btn btn-neutral float-right" title="Quaternion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

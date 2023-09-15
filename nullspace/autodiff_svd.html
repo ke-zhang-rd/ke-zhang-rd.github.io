@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>autodiff_svd &mdash; nullspace 0.post1+gd07a1b8 documentation</title>
+  <title>Usage &mdash; nullspace 0.post1+gc47f9a2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -13,7 +13,7 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=730996bc"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=4b12c3c1"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=4825356b"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="A Example of Robot Descriptor" href="robot_descriptor.html" />
-    <link rel="prev" title="Automatic Differentiating(AD) of Singular Value Decomposition(SVD)" href="notebooks/autodiff_svd.html" /> 
+    <link rel="next" title="robotBuilder" href="robot_builder.html" />
+    <link rel="prev" title="Visualization" href="visualization.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,7 +38,7 @@
             nullspace
           </a>
               <div class="version">
-                0.post1+gd07a1b8
+                0.post1+gc47f9a2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -48,29 +48,36 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/virtual_rigid_kinematics.html">Virtual Rigid Kinematics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controlflow.html">Control Flow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plot.html">Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robot_descriptor.html">A Example of Robot Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="error_update.html">Error Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best_fit_plane.html">Best Fit Plane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nullspace_basic.html">Nullspace Basic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/autodiff_svd.html">Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">autodiff_svd</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/autodiff_svd.html">Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source Code</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nullspace.__init__.autodiff_svd"><code class="docutils literal notranslate"><span class="pre">autodiff_svd()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="robot_descriptor.html">A Example of Robot Descriptor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="links_params.html">A Example of links_params</a></li>
-<li class="toctree-l1"><a class="reference internal" href="best_fit_hyperplane.html">Best Fit Hyperplane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pseudo_inverse.html">pseudo Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robot_builder.html">robotBuilder</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Robotics Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/quaternion.html">Quaternion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="angular_momentum_derivative.html">angular_momentum_derivative</a></li>
 <li class="toctree-l1"><a class="reference internal" href="composite_inertia.html">composite_inertia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dof_computation.html">DOF Computation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quaternion.html">Quaternion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nullspace_basic.html">Nullspace Basic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="min_versions.html">Minimum Version of Python and NumPy</a></li>
 </ul>
@@ -89,7 +96,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">autodiff_svd</li>
+      <li class="breadcrumb-item active">Usage</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/autodiff_svd.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -99,18 +106,107 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="autodiff-svd">
-<h1>autodiff_svd<a class="headerlink" href="#autodiff-svd" title="Permalink to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h1>
+<p>Installation:</p>
+<p>At the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install nullspace
+</pre></div>
 </div>
+<p>Start by importing nullspace.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nullspace</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="nullspace.__init__.autodiff_svd">
+<span class="sig-prename descclassname"><span class="pre">nullspace.__init__.</span></span><span class="sig-name descname"><span class="pre">autodiff_svd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_star</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbolic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nullspace/__init__.html#autodiff_svd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nullspace.__init__.autodiff_svd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Automatic Differentiating of svd.</p>
+<p>It takes matrix A, return differentiation of U, S and V with respect to
+specific q value q_star. U, S and VT(V.T) are result of standard SVD.
+This method is implemented in reverse mode in terms of auto diff conventions
+which is more effeciency since all free variables q take advantages of same
+intermedia svd result, U_star, S_star and V_star. It returns ecomonic result
+which means ‘full_matrices=False’ in corresponding ‘numpy.linalg.svd’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>A</strong><span class="classifier">(m, n) Matrix</span></dt><dd><p>A sympy symbolic 2D Matrix, which should be legal for SVD later.</p>
+</dd>
+<dt><strong>q_star</strong><span class="classifier">dict</span></dt><dd><p>A dict from sympy symbolic variable to value.</p>
+</dd>
+<dt><strong>symbolic</strong><span class="classifier">bool, optional</span></dt><dd><p>Control return type. Return numerical result, numpy.ndarray, if true
+(default), otherwise return symbolic result, sympy.Array.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>du</strong><span class="classifier">(Q, M, K) array</span></dt><dd><p>Partial derivatives/gradient of U with respect to each variables in q star.
+Each variable matches a (M, K) matrix. Q is number of variables. Return
+sympy.Array if symbolic=True.</p>
+</dd>
+<dt><strong>ds</strong><span class="classifier">(0, K, K) array</span></dt><dd><p>Partial derivatives/gradient of S with respect to each variables in q star,
+Each variable matches a (M, K) matrix. K = min(M, N). (…, K, K) is a strict
+diagonal matrix which is quaranteed by Hadamard operation. check examples
+for details. Return ‘sympy.Array’ if symbolic=True.</p>
+</dd>
+<dt><strong>dv</strong><span class="classifier">(Q, N, K) array</span></dt><dd><p>Partial derivatives/gradient of V(NOT VT) with respect to each variables in
+q_star. Each variable matches a (N, K) matrix. Return ‘sympy.Array’ if
+symbolic=True</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html#numpy.linalg.svd" title="(in NumPy v1.25)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.linalg.svd</span></code></a></dt><dd><p>Similar function in numpy.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">sympy.Array</span></code></dt><dd><p>3D tensor in sympy.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">sympy.Matrix.jacobian</span></code></dt><dd><p>jacobian calculation in sympy.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="ra792cd0aecc6-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>James Townsend. Differentiating the Singular Value Decomposition.</p>
+</div>
+<div class="citation" id="ra792cd0aecc6-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Mike Giles. An extended collection of matrix derivative results
+for forward and reverse mode algorithmic differentiation.</p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span> <span class="o">=</span> <span class="n">symbols</span> <span class="p">(</span><span class="s2">&quot;q0, q1&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="n">q</span> <span class="n">star</span> <span class="o">=</span> <span class="p">(</span><span class="n">q0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">q1</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="gp">... </span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">2</span><span class="o">*</span><span class="n">q0</span><span class="p">,</span>          <span class="mi">1</span><span class="p">,</span>    <span class="n">q0</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">q1</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">q0</span><span class="p">)</span> <span class="o">+</span> <span class="n">q1</span><span class="p">],</span>
+<span class="go">               [q0**2 - q1**2,  2*q1, 2*q0 + q1**3, cos(q0) + q1],</span>
+<span class="go">               [q0**2 + q1**2,  2,    3,            sin(q0) + cos(q1)]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">du</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">dv</span> <span class="o">=</span> <span class="n">autodiff</span> <span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q_star</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">du</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 3)</span>
+<span class="go">&gt;&gt;&gt;dv.shape</span>
+<span class="go">(2, 4, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">du_sym</span><span class="p">,</span> <span class="n">ds_sym</span><span class="p">,</span> <span class="n">dv_sym</span> <span class="o">=</span> <span class="n">autodiff_svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q_star</span><span class="p">,</span> <span class="n">symbolic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="notebooks/autodiff_svd.html" class="btn btn-neutral float-left" title="Automatic Differentiating(AD) of Singular Value Decomposition(SVD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="robot_descriptor.html" class="btn btn-neutral float-right" title="A Example of Robot Descriptor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="visualization.html" class="btn btn-neutral float-left" title="Visualization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="robot_builder.html" class="btn btn-neutral float-right" title="robotBuilder" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

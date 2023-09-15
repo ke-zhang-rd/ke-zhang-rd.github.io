@@ -7,24 +7,38 @@ nullspace Documentation
 =======================
 
 .. toctree::
-   :maxdepth: 2
-   
+   :caption: User Guide
+   :maxdepth: 1
+
    philosophy
-   installation
-   usage
+   install
+   examples/virtual_rigid_kinematics.ipynb
    controlflow
-   visualization
-   best_fit_plane
-   notebooks/autodiff_svd.ipynb
    robot_descriptor
-   notebooks/pseudo_inverse.ipynb
+   error_update
+   best_fit_plane
+   nullspace_basic
+   notebooks/autodiff_svd.ipynb
+   visualization
+
+.. toctree::
+   :caption: Source Code
+   :maxdepth: 1
+
+   autodiff_svd    
+   robot_builder
+
+.. toctree::
+   :caption: Robotics Guide
+   :maxdepth: 1
+
+   notebooks/quaternion.ipynb
    angular_momentum_derivative
    composite_inertia
    dof_computation
    dynamic_consistent_inverse
    eigen_chain_multiplication
    eigen_matrix_practice
-   quaternion
-   nullspace_basic
+   
    release-history
    min_versions

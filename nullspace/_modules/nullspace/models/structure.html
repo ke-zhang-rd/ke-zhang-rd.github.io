@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nullspace.models.structure &mdash; nullspace 0.post1+gc47f9a2 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=4b12c3c1"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            nullspace
+          </a>
+              <div class="version">
+                0.post1+gc47f9a2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/virtual_rigid_kinematics.html">Virtual Rigid Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../controlflow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot_descriptor.html">A Example of Robot Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../error_update.html">Error Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../best_fit_plane.html">Best Fit Plane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nullspace_basic.html">Nullspace Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks/autodiff_svd.html">Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../visualization.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../autodiff_svd.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot_builder.html">robotBuilder</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Robotics Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks/quaternion.html">Quaternion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../angular_momentum_derivative.html">angular_momentum_derivative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../composite_inertia.html">composite_inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dof_computation.html">DOF Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">nullspace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nullspace.models.structure</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nullspace.models.structure</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">eye</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">simplify</span><span class="p">,</span> <span class="n">ZeroMatrix</span>
+
+<span class="kn">from</span> <span class="nn">nullspace.se3</span> <span class="kn">import</span> <span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span><span class="p">,</span> <span class="n">SXForm</span><span class="p">,</span> <span class="n">getr</span><span class="p">,</span> <span class="n">perfect_Ez_pi</span>
+
+
+<span class="c1"># Robot model, without link length</span>
+
+<span class="c1"># q0 - q11 are all joint of legs. q0-q2 is joints of Leg0, etc.</span>
+<span class="n">q_sym</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;q0:12&#39;</span><span class="p">)</span>
+<span class="n">tmp1</span> <span class="o">=</span> <span class="n">Ex</span>
+<span class="n">tmp2</span> <span class="o">=</span> <span class="n">Ey</span>
+
+
+<div class="viewcode-block" id="robotBuilder"><a class="viewcode-back" href="../../../robot_builder.html#nullspace.models.structure.robotBuilder">[docs]</a><span class="k">def</span> <span class="nf">robotBuilder</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">except</span> <span class="n">yaml</span><span class="o">.</span><span class="n">YAMLError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
+
+    <span class="n">q_sym</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;q0:12&#39;</span><span class="p">)</span>
+    <span class="n">SX</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">perfect_Ez_pi</span><span class="p">,</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">5</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">6</span><span class="p">])],</span>
+          <span class="p">[</span><span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">perfect_Ez_pi</span><span class="p">,</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">4</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">4</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">5</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">6</span><span class="p">])],</span>
+          <span class="p">[</span><span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">6</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">perfect_Ez_pi</span><span class="p">,</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">7</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">4</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">5</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">8</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">6</span><span class="p">])],</span>
+          <span class="p">[</span><span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">9</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">perfect_Ez_pi</span><span class="p">,</span> <span class="n">out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">10</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]),</span>
+           <span class="n">SXForm</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">5</span><span class="p">])(</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">11</span><span class="p">]),</span> <span class="n">ZeroMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">SXForm</span><span class="p">(</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">out</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">6</span><span class="p">])]]</span>
+
+    <span class="n">ee</span> <span class="o">=</span> <span class="p">[[</span><span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">6</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))],</span>
+          <span class="p">[</span><span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">6</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]))],</span>
+          <span class="p">[</span><span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">6</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]))],</span>
+          <span class="p">[</span><span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">])),</span>
+           <span class="n">simplify</span><span class="p">(</span><span class="n">getr</span><span class="p">(</span><span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">6</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">SX</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">]))]]</span>
+    <span class="k">return</span> <span class="n">ee</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, KZ.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

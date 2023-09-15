@@ -15,4 +15,3 @@ Start by importing nullspace.
 
     import nullspace
 
-.. autofunction:: nullspace.__init__.autodiff_svd
