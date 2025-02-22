@@ -1,25 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Descriptor &mdash; Krystal Python 0.post1+g7e502e4 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Descriptor &mdash; Krystal Python 0.post1+gc2b0a60 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=4f0ebec5"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,14 +39,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: #ff8fbe" >
-            <a href="index.html" class="icon icon-home"> Krystal Python
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Krystal Python
           </a>
-              <div class="version">
-                0.post1+g7e502e4
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -128,8 +129,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Descriptor</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Descriptor</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/descriptor.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -140,9 +141,9 @@
            <div itemprop="articleBody">
              
   <section id="descriptor">
-<h1>Descriptor<a class="headerlink" href="#descriptor" title="Permalink to this heading">¶</a></h1>
+<h1>Descriptor<a class="headerlink" href="#descriptor" title="Permalink to this heading"></a></h1>
 <section id="what-is-descriptor">
-<h2>What is descriptor<a class="headerlink" href="#what-is-descriptor" title="Permalink to this heading">¶</a></h2>
+<h2>What is descriptor<a class="headerlink" href="#what-is-descriptor" title="Permalink to this heading"></a></h2>
 <p>Descriptor is a instance of class with certain methods. There are two kind of descriptor.</p>
 <ul class="simple">
 <li><p>non-data descriptor: Only <code class="docutils literal notranslate"><span class="pre">__get__</span></code> is defined in class.</p></li>
@@ -150,38 +151,38 @@
 </ul>
 </section>
 <section id="object-attribute-lookup">
-<h2>Object attribute lookup<a class="headerlink" href="#object-attribute-lookup" title="Permalink to this heading">¶</a></h2>
+<h2>Object attribute lookup<a class="headerlink" href="#object-attribute-lookup" title="Permalink to this heading"></a></h2>
 <img alt="_images/object-attribute-lookup-v3.png" class="align-center" src="_images/object-attribute-lookup-v3.png" />
 <p><code class="docutils literal notranslate"><span class="pre">Class.__dict__</span></code> is not a real dict but a special dict proxy that will also look in all the base classes.</p>
 <p>For clarity I’ve simplified things to Class.__dict__[‘foobar’] but in reality the __dict__ proxy object is not used, but instead all the logic is inlined: attributes are looked up on the class of the object in the order of the __mro__ via typeobject.c:_PyType_Lookup (called from object.c: _PyObject_GenericGetAttrWithDict).</p>
 </section>
 <section id="when-you-need-descriptor">
-<h2>When you need descriptor<a class="headerlink" href="#when-you-need-descriptor" title="Permalink to this heading">¶</a></h2>
+<h2>When you need descriptor<a class="headerlink" href="#when-you-need-descriptor" title="Permalink to this heading"></a></h2>
 <p>Based on above lookup figure, if you need extra operation when you do <code class="docutils literal notranslate"><span class="pre">obj.attr</span></code>, you could use descriptor.</p>
 </section>
 <section id="how-to-write-a-descriptor">
-<h2>How to write a descriptor<a class="headerlink" href="#how-to-write-a-descriptor" title="Permalink to this heading">¶</a></h2>
+<h2>How to write a descriptor<a class="headerlink" href="#how-to-write-a-descriptor" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># lazy_properties.py</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="k">class</span> <span class="nc">LazyProperty</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LazyProperty</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="vm">__name__</span>
 
-    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;__get__&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
 
 
-<span class="k">class</span> <span class="nc">DeepThought</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DeepThought</span><span class="p">:</span>
 
     <span class="nd">@LazyProperty</span>
-    <span class="k">def</span> <span class="nf">meaning_of_life</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">meaning_of_life</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;func&quot;</span><span class="p">)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">42</span>
@@ -206,9 +207,9 @@
 </div>
 <p>Decorator is just a syntax suger. <code class="docutils literal notranslate"><span class="pre">LazyProperty</span></code> get a function and return a object. It could be translated to:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
-<span class="k">class</span> <span class="nc">DeepThought</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DeepThought</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">meaning_of_life</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">meaning_of_life</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;func&quot;</span><span class="p">)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">42</span>
@@ -228,7 +229,7 @@
 </dd>
 </dl>
 <p>Most tricky part is in code below:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;get&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
     <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>

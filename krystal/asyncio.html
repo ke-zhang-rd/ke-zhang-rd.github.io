@@ -1,25 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>asyncio &mdash; Krystal Python 0.post1+g7e502e4 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>asyncio &mdash; Krystal Python 0.post1+gc2b0a60 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=4f0ebec5"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,14 +39,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: #ff8fbe" >
-            <a href="index.html" class="icon icon-home"> Krystal Python
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Krystal Python
           </a>
-              <div class="version">
-                0.post1+g7e502e4
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -132,8 +133,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>asyncio</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">asyncio</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/asyncio.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,31 +145,31 @@
            <div itemprop="articleBody">
              
   <section id="asyncio">
-<h1>asyncio<a class="headerlink" href="#asyncio" title="Permalink to this heading">¶</a></h1>
+<h1>asyncio<a class="headerlink" href="#asyncio" title="Permalink to this heading"></a></h1>
 <section id="what-is-asyncio">
-<h2>What is asyncio<a class="headerlink" href="#what-is-asyncio" title="Permalink to this heading">¶</a></h2>
+<h2>What is asyncio<a class="headerlink" href="#what-is-asyncio" title="Permalink to this heading"></a></h2>
 <p>Async is simply not-sync. Synchronous means in order. So asynchronous menas not in order.
 A synchronous programme logic is as simple as function: Enter it, run it then return it. From outside view of function, functions runs one by one. You need wait one finished to start another one. The previous function block running.
 Well async allow you run multiple coroutine(name for async function) concurrently.</p>
 </section>
 <section id="what-is-coroutine">
-<h2>What is coroutine<a class="headerlink" href="#what-is-coroutine" title="Permalink to this heading">¶</a></h2>
+<h2>What is coroutine<a class="headerlink" href="#what-is-coroutine" title="Permalink to this heading"></a></h2>
 <p>Just define function by <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span></code>. Then we call it a coroutine.</p>
 </section>
 <section id="how-to-run-coroutine-concurrently">
-<h2>How to run coroutine concurrently<a class="headerlink" href="#how-to-run-coroutine-concurrently" title="Permalink to this heading">¶</a></h2>
+<h2>How to run coroutine concurrently<a class="headerlink" href="#how-to-run-coroutine-concurrently" title="Permalink to this heading"></a></h2>
 <p>By using <code class="docutils literal notranslate"><span class="pre">asyncio.gather</span></code>, coroutines are running concurrently.</p>
 </section>
 <section id="a-minimum-example">
-<h2>A minimum example<a class="headerlink" href="#a-minimum-example" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<h2>A minimum example<a class="headerlink" href="#a-minimum-example" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">worker</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">worker</span><span class="p">():</span>
   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;One&quot;</span><span class="p">)</span>
   <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Two&quot;</span><span class="p">)</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
   <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">worker</span><span class="p">(),</span> <span class="n">worker</span><span class="p">(),</span> <span class="n">worker</span><span class="p">())</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
@@ -195,22 +196,22 @@ Well async allow you run multiple coroutine(name for async function) concurrentl
 </ul>
 </section>
 <section id="the-reason-of-concurrently">
-<h2>The reason of concurrently<a class="headerlink" href="#the-reason-of-concurrently" title="Permalink to this heading">¶</a></h2>
+<h2>The reason of concurrently<a class="headerlink" href="#the-reason-of-concurrently" title="Permalink to this heading"></a></h2>
 <p>Why coroutine ran concurrently, there are two concepts, task and future.</p>
 <p>Task is a bad name. When coroutine become a task, it actually already start running. This is usually being done by <code class="docutils literal notranslate"><span class="pre">create_task</span></code>.</p>
 </section>
 <section id="why-we-need-await">
-<h2>Why we need await<a class="headerlink" href="#why-we-need-await" title="Permalink to this heading">¶</a></h2>
+<h2>Why we need await<a class="headerlink" href="#why-we-need-await" title="Permalink to this heading"></a></h2>
 <p>A example without await</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">say_after</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">say_after</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span><span class="s1">&#39;Start say_after(</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">delay</span><span class="p">,</span><span class="n">what</span><span class="p">))</span>
     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span><span class="n">what</span><span class="p">)</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="s1">&#39;Before creating tasks.&#39;</span><span class="p">)</span>
     <span class="n">task1</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">say_after</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">))</span>
@@ -236,15 +237,9 @@ Total time elapsed: 0.00 seconds
 </div>
 </section>
 <section id="when-you-use-asyncio">
-<h2>When you use asyncio<a class="headerlink" href="#when-you-use-asyncio" title="Permalink to this heading">¶</a></h2>
+<h2>When you use asyncio<a class="headerlink" href="#when-you-use-asyncio" title="Permalink to this heading"></a></h2>
 <p>Solutions choice of CPU bound and IO bound problem.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 11%" />
-<col style="width: 28%" />
-<col style="width: 45%" />
-<col style="width: 16%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"></th>
 <th class="head"><div class="line-block">
@@ -282,13 +277,13 @@ Total time elapsed: 0.00 seconds
 </table>
 </section>
 <section id="design-pattern">
-<h2>Design Pattern<a class="headerlink" href="#design-pattern" title="Permalink to this heading">¶</a></h2>
+<h2>Design Pattern<a class="headerlink" href="#design-pattern" title="Permalink to this heading"></a></h2>
 <p>Running Tasks Concurrently</p>
 <p>#1</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">()</span>
   <span class="k">await</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
   <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
 
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
@@ -300,10 +295,10 @@ When a coroutine is wrapped into a Task with functions like asyncio.create_task(
 Coroutine start to run immedietely by <code class="docutils literal notranslate"><span class="pre">create_task</span></code> and <code class="docutils literal notranslate"><span class="pre">await</span></code> make it hand control back to loop.
 So <code class="docutils literal notranslate"><span class="pre">Task</span></code> is neither a object or a status but a RUNNING stuff. When you create it, it start running immediately.</p>
 <p><code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">container</span></code> is actually wait. container(a future-like obj) is waiting to be filled. You could use container.result() to check coroutine’s return.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">()</span>
   <span class="k">await</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
   <span class="n">task1</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">func</span><span class="p">())</span>
   <span class="n">task2</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">func</span><span class="p">())</span>
   <span class="k">await</span> <span class="n">task1</span>
@@ -313,14 +308,14 @@ So <code class="docutils literal notranslate"><span class="pre">Task</span></cod
 </pre></div>
 </div>
 <p>Notice:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">say_after</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">say_after</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">what</span><span class="p">)</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;started at </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%X</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">task1</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">say_after</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">))</span>

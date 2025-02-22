@@ -1,25 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deepcopy vs Shallow copy &mdash; Krystal Python 0.post1+g7e502e4 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Deepcopy vs Shallow copy &mdash; Krystal Python 0.post1+gc2b0a60 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=4f0ebec5"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,14 +39,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: #ff8fbe" >
-            <a href="index.html" class="icon icon-home"> Krystal Python
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Krystal Python
           </a>
-              <div class="version">
-                0.post1+g7e502e4
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -127,8 +128,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Deepcopy vs Shallow copy</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Deepcopy vs Shallow copy</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/copy.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -139,9 +140,9 @@
            <div itemprop="articleBody">
              
   <section id="deepcopy-vs-shallow-copy">
-<h1>Deepcopy vs Shallow copy<a class="headerlink" href="#deepcopy-vs-shallow-copy" title="Permalink to this heading">¶</a></h1>
+<h1>Deepcopy vs Shallow copy<a class="headerlink" href="#deepcopy-vs-shallow-copy" title="Permalink to this heading"></a></h1>
 <section id="shallow-copy">
-<h2>Shallow copy<a class="headerlink" href="#shallow-copy" title="Permalink to this heading">¶</a></h2>
+<h2>Shallow copy<a class="headerlink" href="#shallow-copy" title="Permalink to this heading"></a></h2>
 <p>Shallow copy, means not deep enough, means <em>internal object</em> isn’t copied. Object in both old container and new container will change together.
 <code class="docutils literal notranslate"><span class="pre">obj</span></code> will change together in <code class="docutils literal notranslate"><span class="pre">obj</span></code>, <code class="docutils literal notranslate"><span class="pre">var</span></code> and <code class="docutils literal notranslate"><span class="pre">var_cp</span></code> in below example.</p>
 <div class="admonition tip">
@@ -172,9 +173,9 @@
 </div>
 </section>
 <section id="deep-copy">
-<h2>Deep copy<a class="headerlink" href="#deep-copy" title="Permalink to this heading">¶</a></h2>
+<h2>Deep copy<a class="headerlink" href="#deep-copy" title="Permalink to this heading"></a></h2>
 <p>Deepcopy create totally independent object from top to bottom. You could do <code class="docutils literal notranslate"><span class="pre">deepcopy</span></code> by builtin module <code class="docutils literal notranslate"><span class="pre">copy</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
 <span class="n">var</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="n">var_dpcp</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
@@ -190,7 +191,7 @@
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">¶</a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <p>Reference is just a alternative name of orignal object. Assignment create a reference.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
 <span class="n">var</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -208,10 +209,6 @@
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 67%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>operator</strong></p></th>
 <th class="head"><p><strong>meaning</strong></p></th>

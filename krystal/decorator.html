@@ -1,25 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Decorator &mdash; Krystal Python 0.post1+g7e502e4 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Decorator &mdash; Krystal Python 0.post1+gc2b0a60 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=4f0ebec5"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,14 +39,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: #ff8fbe" >
-            <a href="index.html" class="icon icon-home"> Krystal Python
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Krystal Python
           </a>
-              <div class="version">
-                0.post1+g7e502e4
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -131,8 +132,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Decorator</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Decorator</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/decorator.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -143,11 +144,11 @@
            <div itemprop="articleBody">
              
   <section id="decorator">
-<h1>Decorator<a class="headerlink" href="#decorator" title="Permalink to this heading">¶</a></h1>
+<h1>Decorator<a class="headerlink" href="#decorator" title="Permalink to this heading"></a></h1>
 <section id="syntax">
-<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading">¶</a></h2>
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dec</span>
-<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
   <span class="o">...</span>
 
 <span class="c1"># Still called by</span>
@@ -166,7 +167,7 @@
 </div>
 <p>Decorator doesn’t mean to change name, <code class="docutils literal notranslate"><span class="pre">foo</span></code> is still <code class="docutils literal notranslate"><span class="pre">foo</span></code>. So the thing below <code class="docutils literal notranslate"><span class="pre">&#64;dec</span></code> is the input of decorator. In above example, it accepts a <strong>func</strong> and return a <strong>new func</strong>. Decorator also accept arguments.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dec</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="n">something</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
   <span class="o">...</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">func</span><span class="p">()</span>
@@ -182,10 +183,10 @@
 <p>It reveals the logic under the hood is calculating function call <code class="docutils literal notranslate"><span class="pre">dec(a=something)</span></code> first which returns the true decorator.</p>
 </section>
 <section id="chained-decorators">
-<h2>Chained decorators<a class="headerlink" href="#chained-decorators" title="Permalink to this heading">¶</a></h2>
+<h2>Chained decorators<a class="headerlink" href="#chained-decorators" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@outside</span>
 <span class="nd">@inside</span>
-<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
   <span class="o">...</span>
 </pre></div>
 </div>
@@ -195,17 +196,17 @@
 </div>
 </section>
 <section id="write-a-decorator">
-<h2>Write a decorator<a class="headerlink" href="#write-a-decorator" title="Permalink to this heading">¶</a></h2>
+<h2>Write a decorator<a class="headerlink" href="#write-a-decorator" title="Permalink to this heading"></a></h2>
 <p>When you try to write a decorator <code class="docutils literal notranslate"><span class="pre">dec</span></code>, Let’s assume: <strong>it accepts a func and returns a func</strong>. So initially, it should looks like:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
   <span class="o">...</span>
   <span class="k">return</span> <span class="n">newfunc</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">newfunc</span></code> is a function which needs to be defined inside <code class="docutils literal notranslate"><span class="pre">dec</span></code>. So it looks like:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="o">...</span>
-    <span class="k">def</span> <span class="nf">newfunc</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">newfunc</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
         <span class="o">...</span>
     <span class="k">return</span> <span class="n">newfunc</span>
 </pre></div>
@@ -216,9 +217,9 @@
 <li><p>Keep in mind <code class="docutils literal notranslate"><span class="pre">newfunc</span></code> is the function returned at the end. In definition, <code class="docutils literal notranslate"><span class="pre">newfunc</span></code> need to pass any arguments it accepts to <code class="docutils literal notranslate"><span class="pre">func</span></code>. So <code class="docutils literal notranslate"><span class="pre">*args</span></code> and <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> should be used.</p></li>
 </ol>
 <p>#1 makes it look like:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="o">...</span>
-    <span class="k">def</span> <span class="nf">newfunc</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">newfunc</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
         <span class="o">...</span>
         <span class="n">func</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
         <span class="o">...</span>
@@ -226,9 +227,9 @@
 </pre></div>
 </div>
 <p>#2 makes it looks like:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="o">...</span>
-    <span class="k">def</span> <span class="nf">newfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">newfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="o">...</span>
         <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="o">...</span>
@@ -236,15 +237,15 @@
 </pre></div>
 </div>
 <p>Eventually, a runable decorator example shows below:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">newfunc</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">newfunc</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;calling func&#39;</span><span class="p">)</span>
         <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;end func&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">newfunc</span>
 
 <span class="nd">@dec</span>
-<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="p">()</span>
@@ -255,9 +256,9 @@
 </div>
 </section>
 <section id="write-a-decorator-with-parameters">
-<h2>Write a decorator with parameters<a class="headerlink" href="#write-a-decorator-with-parameters" title="Permalink to this heading">¶</a></h2>
+<h2>Write a decorator with parameters<a class="headerlink" href="#write-a-decorator-with-parameters" title="Permalink to this heading"></a></h2>
 <p>Again, It runs the function with parameters first which return true decorator. So the definition looks like:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dec</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
 
   <span class="c1"># Write a decorator definition inside and return it.</span>
 
@@ -265,11 +266,11 @@
 </pre></div>
 </div>
 <p>If we put true decorator definition inside, it will looks like. (<code class="docutils literal notranslate"><span class="pre">...</span></code> might involve using <code class="docutils literal notranslate"><span class="pre">param</span></code>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dec</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
   <span class="o">...</span>
-  <span class="k">def</span> <span class="nf">newdec</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">newdec</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
     <span class="o">...</span>
-    <span class="k">def</span> <span class="nf">newfunc</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">newfunc</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
       <span class="o">...</span>
       <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
       <span class="o">...</span>
@@ -281,15 +282,15 @@
 </div>
 </section>
 <section id="class-decorator">
-<h2>Class decorator<a class="headerlink" href="#class-decorator" title="Permalink to this heading">¶</a></h2>
+<h2>Class decorator<a class="headerlink" href="#class-decorator" title="Permalink to this heading"></a></h2>
 <p>Class decorator is nothing more. If a function’s decorator is a function that accepts a function and returns a new function. Then class’s decorator is a function that accepts a class and returns a new class.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dec</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-    <span class="k">class</span> <span class="nc">newcls</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">newcls</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="n">attr</span> <span class="o">=</span> <span class="mi">100</span>
     <span class="k">return</span> <span class="n">newcls</span>
 
 <span class="nd">@dec</span>
-<span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">:</span>
     <span class="k">pass</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
@@ -299,21 +300,21 @@
 </div>
 </section>
 <section id="make-any-callable-become-a-decorator">
-<h2>Make any callable become a decorator<a class="headerlink" href="#make-any-callable-become-a-decorator" title="Permalink to this heading">¶</a></h2>
+<h2>Make any callable become a decorator<a class="headerlink" href="#make-any-callable-become-a-decorator" title="Permalink to this heading"></a></h2>
 <p>Let’s go back to the beginning of decorator syntax, <code class="docutils literal notranslate"><span class="pre">func</span> <span class="pre">=</span> <span class="pre">dec(func)</span></code>. Here <code class="docutils literal notranslate"><span class="pre">dec</span></code> has to be callable, clearly function is callable, so in above example decorator is a <em>function</em>/<em>class</em> that accepts X and return a new-X. However, pure function is not the only callable thing. When construct a instance, You use <em>CLASS</em> in a callable way.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dec1</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dec1</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;__init__&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;__call__&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
 <span class="nd">@Dec1</span>
-<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -324,21 +325,21 @@
 </div>
 <p>In this example, we implicit have <code class="docutils literal notranslate"><span class="pre">foo</span> <span class="pre">=</span> <span class="pre">Dec1(foo)</span></code> on global level. <code class="docutils literal notranslate"><span class="pre">foo</span></code> become a instance of <code class="docutils literal notranslate"><span class="pre">Dec1</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">func</span> <span class="pre">=</span> <span class="pre">dec(func)</span></code> happend inside Class, on the left hand side, <code class="docutils literal notranslate"><span class="pre">func</span></code> become a class attribute. When you use func, instead of call <code class="docutils literal notranslate"><span class="pre">func()</span></code>, you need <code class="docutils literal notranslate"><span class="pre">obj.func</span></code>. This gives us a chance to sneak true function object inside return value of <code class="docutils literal notranslate"><span class="pre">__get__</span></code>, aka <strong>non-data descriptor</strong>. This is exactly logic under the hood of <code class="docutils literal notranslate"><span class="pre">staticmethod</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dec2</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dec2</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;__init__&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
 
-    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;__get__&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span>
 
 
-<span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">:</span>
 
     <span class="nd">@Dec2</span>
-    <span class="k">def</span> <span class="nf">func2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">func2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;func2&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
@@ -347,11 +348,11 @@
 </div>
 <p>In this example, we implicit have func2 = Dec2(func2) inside class C. func2 is a class attribute in C. And most important func2 is a <em>non-data descriptor</em> defined by <code class="docutils literal notranslate"><span class="pre">__get__</span></code> method in class <code class="docutils literal notranslate"><span class="pre">Dec2</span></code>.</p>
 <p>When you write a decorator e.g. <code class="docutils literal notranslate"><span class="pre">Dec</span></code>, <code class="docutils literal notranslate"><span class="pre">Dec</span></code> has to be <strong>callable</strong> to achive <code class="docutils literal notranslate"><span class="pre">Dec(...)</span></code>. But what is returned and how to use returned value is depend on you. If you want, you could have this(btw, <code class="docutils literal notranslate"><span class="pre">`...`</span></code> below isn’t emoji, but it kind of reflect correct feeling):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dimensionality_reduction_attack</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dimensionality_reduction_attack</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
   <span class="k">return</span> <span class="mi">1</span>
 
 <span class="nd">@dimensionality_reduction_attack</span>
-<span class="k">def</span> <span class="nf">very_funcy_function</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">very_funcy_function</span><span class="p">():</span>
   <span class="o">...</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">very_funcy_function</span>
@@ -359,15 +360,15 @@
 </pre></div>
 </div>
 <p>Finally, I put simplest decorator here for comparasion.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dec3</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec3</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;newfunc&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">newfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">newfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">newfunc</span>
 
 
 <span class="nd">@dec3</span>
-<span class="k">def</span> <span class="nf">func3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">func3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;func3&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 <span class="n">func3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -378,10 +379,10 @@
 <p>I hope you already understand the very beginning statement, decorator is nothing more than <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">dec(X)</span></code>.</p>
 </section>
 <section id="how-to-drive-your-boss-crazy">
-<h2>How to drive your boss crazy<a class="headerlink" href="#how-to-drive-your-boss-crazy" title="Permalink to this heading">¶</a></h2>
+<h2>How to drive your boss crazy<a class="headerlink" href="#how-to-drive-your-boss-crazy" title="Permalink to this heading"></a></h2>
 <p>This is <strong>LEGAL</strong> in Python 3.9:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">@</span><span class="p">(</span><span class="k">lambda</span> <span class="n">call</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">func</span><span class="p">:</span> <span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">call</span><span class="p">)()))(</span><span class="s1">&#39;upper&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">greet</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">():</span>
   <span class="k">return</span> <span class="s1">&#39;hello world&#39;</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">greet</span><span class="p">()</span>
