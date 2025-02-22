@@ -1,29 +1,29 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The role of thumb &mdash; nullspace 0.post1+gf55f499 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+  <title>The role of thumb &mdash; nullspace 0.post1+g86e93d8 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d0548302"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../_static/copybutton.js?v=f281be69"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=26809b13"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -42,9 +42,6 @@
           <a href="../index.html" class="icon icon-home">
             nullspace
           </a>
-              <div class="version">
-                0.post1+gf55f499
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -120,29 +117,35 @@
            <div itemprop="articleBody">
              
   <section id="The-role-of-thumb">
-<h1>The role of thumb<a class="headerlink" href="#The-role-of-thumb" title="Permalink to this heading">¶</a></h1>
+<h1>The role of thumb<a class="headerlink" href="#The-role-of-thumb" title="Permalink to this heading"></a></h1>
 <p>The lower priority task is satisfied only in the null space of the higher priority task, the concept being extensible to multiple tasks.</p>
 <p><span class="math notranslate nohighlight">\(J(I-J^{\dagger}J) = 0\)</span></p>
 <p><span class="math notranslate nohighlight">\(N = I - J^{\dagger}J\)</span></p>
 <p>For equation:</p>
 <div class="math notranslate nohighlight">
 \[\dot{q} = J^\dagger\dot{r} + (I- J^\dagger J)q_0\]</div>
-<p>Properties of <span class="math notranslate nohighlight">\(N = I - J^\dagger J\)</span> * symmetric aka Hermitian <span class="math notranslate nohighlight">\(N = N^T\)</span> * idempotent: <span class="math notranslate nohighlight">\(N^2 = N\)</span> * <span class="math notranslate nohighlight">\(N^\dagger = N\)</span> * <span class="math notranslate nohighlight">\(J^\dagger\dot{r}\)</span> is orthogonal to <span class="math notranslate nohighlight">\((I- J^\dagger J)q_0\)</span></p>
+<p>Properties of <span class="math notranslate nohighlight">\(N = I - J^\dagger J\)</span></p>
+<ul class="simple">
+<li><p>symmetric aka Hermitian <span class="math notranslate nohighlight">\(N = N^T\)</span></p></li>
+<li><p>idempotent: <span class="math notranslate nohighlight">\(N^2 = N\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(N^\dagger = N\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(J^\dagger\dot{r}\)</span> is orthogonal to <span class="math notranslate nohighlight">\((I- J^\dagger J)q_0\)</span></p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(\Delta q_i\)</span> is eventually returned variable, it means the <span class="math notranslate nohighlight">\(\Delta q\)</span> iterative result after achieve <span class="math notranslate nohighlight">\(i\)</span>-th task. It comes from <span class="math notranslate nohighlight">\(\Delta q_{i-1}\)</span> with</p>
 <p><strong>Here i and i-1 refer to i-th task ans i-1 th task</strong></p>
 <section id="Multi-tasks-Architecture---Null-space-projection">
-<h2>Multi-tasks Architecture - Null space projection<a class="headerlink" href="#Multi-tasks-Architecture---Null-space-projection" title="Permalink to this heading">¶</a></h2>
+<h2>Multi-tasks Architecture - Null space projection<a class="headerlink" href="#Multi-tasks-Architecture---Null-space-projection" title="Permalink to this heading"></a></h2>
 <section id="What">
-<h3>What<a class="headerlink" href="#What" title="Permalink to this heading">¶</a></h3>
+<h3>What<a class="headerlink" href="#What" title="Permalink to this heading"></a></h3>
 <p>When we deal with robot control problem, we may have multi-tasks. For example, we need end-effector at certain location and if possible in a special orientation or vice versa. Here we said that location goal has higher priority than orientation task, orientation task is so-called secondary tasks. The whole idea come from “The secondary task movement should not influence prioritized task goal”.</p>
 </section>
 <section id="How">
-<h3>How<a class="headerlink" href="#How" title="Permalink to this heading">¶</a></h3>
+<h3>How<a class="headerlink" href="#How" title="Permalink to this heading"></a></h3>
 <p>Kim [2] Section IV-A is used to show the details of null space technique and how secondary tasks DO NOT influence prior tasks. #### Definition Before start, we need define null space projection. The null space projection of matrix <span class="math notranslate nohighlight">\(J\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[N = I- J^\dagger J\]</div>
 <section id="Properties-of-null-space-projection">
-<h4>Properties of null space projection<a class="headerlink" href="#Properties-of-null-space-projection" title="Permalink to this heading">¶</a></h4>
+<h4>Properties of null space projection<a class="headerlink" href="#Properties-of-null-space-projection" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(JN= 0\)</span></p></li>
 <li><p>Symmetric aka Hermitian <span class="math notranslate nohighlight">\(N = N^T\)</span></p></li>
@@ -155,7 +158,7 @@
 <p><span class="math notranslate nohighlight">\(J^\dagger\dot{r}\)</span> is orthogonal to <span class="math notranslate nohighlight">\((I- J^\dagger J)q_0\)</span></p>
 </section>
 <section id="Equation">
-<h4>Equation<a class="headerlink" href="#Equation" title="Permalink to this heading">¶</a></h4>
+<h4>Equation<a class="headerlink" href="#Equation" title="Permalink to this heading"></a></h4>
 <div class="math notranslate nohighlight">
 \[\Delta q_i = \Delta q_{i-1} + J_{i | pre}^\dagger(e - J_i\Delta q_{i-1})\]</div>
 <div class="math notranslate nohighlight">
@@ -218,7 +221,10 @@
 <p><span class="math notranslate nohighlight">\(e\)</span> is all error we have <span class="math notranslate nohighlight">\(J_i\Delta q_{i-1}\)</span> are errors has been eliminated by first i-1th tasks.</p>
 <p><span class="math notranslate nohighlight">\(e - J_i\Delta q_{i-1}\)</span> is actual <span class="math notranslate nohighlight">\(\ x_i\)</span> for i-th task</p>
 <p>[1] A. Liégeois, “Automatic supervisory control of the coDeltanfigura- tion and behavior of multibo dy mechanisms,” IEEE Trans. Sys. Man Cybernet., vol. 7, pp. 868–871, 1977.</p>
-<p>[3] A. A. Maciejewski and C. A. Klein, “Obstacle avoidance for kinematically redundant manipulators in dynamically varying environments,” Int. J. Robot. Res., vol. 4, no. 3, pp. 109–117, 1985.</p>
+<p>[3] A. A. Maciejewski and C. A. Klein, “Obstacle avoidance for kinematically redundant manipulators in dynamically varying environments,” Int. J. Robot. Res., vol. 4, no. 3, pp. 109–117,</p>
+<ol class="arabic simple" start="1985">
+<li></li>
+</ol>
 <p>[2] Highly Dynamic Quadruped Locomotion via Whole-Body Impulse Control and Model Predictive Control</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

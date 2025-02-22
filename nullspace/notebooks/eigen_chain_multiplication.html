@@ -1,29 +1,29 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>eigen_chain_multiplication &mdash; nullspace 0.post1+gf55f499 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+  <title>eigen_chain_multiplication &mdash; nullspace 0.post1+g86e93d8 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d0548302"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../_static/copybutton.js?v=f281be69"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=26809b13"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -42,9 +42,6 @@
           <a href="../index.html" class="icon icon-home">
             nullspace
           </a>
-              <div class="version">
-                0.post1+gf55f499
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -120,16 +117,16 @@
            <div itemprop="articleBody">
              
   <section id="eigen_chain_multiplication">
-<h1>eigen_chain_multiplication<a class="headerlink" href="#eigen_chain_multiplication" title="Permalink to this heading">¶</a></h1>
+<h1>eigen_chain_multiplication<a class="headerlink" href="#eigen_chain_multiplication" title="Permalink to this heading"></a></h1>
 <p>The idea comes from Dynamic Programming of matrix chain multiplication.</p>
 <section id="Theory">
-<h2>Theory<a class="headerlink" href="#Theory" title="Permalink to this heading">¶</a></h2>
+<h2>Theory<a class="headerlink" href="#Theory" title="Permalink to this heading"></a></h2>
 <p>Clearly, matrix chain multiplication could be optimized depend on the shape of each matrix and associative property of multiple operator. XYZ = (XY)Z = X(YZ) In matrix case, their type and shape are defined below.</p>
 <p>X float 200x200 Y float 200x200 Z float 200x1</p>
 <p>We will exam the cost of time of different associative orders. Before start, there are several setup steps</p>
 </section>
 <section id="Setup">
-<h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this heading">¶</a></h2>
+<h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this heading"></a></h2>
 <p>You need install cpu frequency control tool <strong>cpufreq</strong></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt install cpufreq
 </pre></div>
@@ -146,7 +143,7 @@ sudo bash -c &#39;for ((i=0;i&lt;$(nproc);i++)); do cpufreq-set -c $i -g perform
 <p>Notice this has to be happen before you include Eigen header files.</p>
 </section>
 <section id="Code">
-<h2>Code<a class="headerlink" href="#Code" title="Permalink to this heading">¶</a></h2>
+<h2>Code<a class="headerlink" href="#Code" title="Permalink to this heading"></a></h2>
 <p>Eventually, the <strong>test.cc</strong> looks</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#include &lt;iostream&gt;
 #include &lt;chrono&gt;
@@ -206,7 +203,7 @@ int main() {
 </div>
 </section>
 <section id="Clean">
-<h2>Clean<a class="headerlink" href="#Clean" title="Permalink to this heading">¶</a></h2>
+<h2>Clean<a class="headerlink" href="#Clean" title="Permalink to this heading"></a></h2>
 <p>Setup cpu back to <strong>powersave</strong></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo su
 sudo bash -c &#39;for ((i=0;i&lt;$(nproc);i++)); do cpufreq-set -c $i -g powersave; done&#39;
@@ -214,7 +211,7 @@ sudo bash -c &#39;for ((i=0;i&lt;$(nproc);i++)); do cpufreq-set -c $i -g powersa
 </div>
 </section>
 <section id="Conclusion">
-<h2>Conclusion<a class="headerlink" href="#Conclusion" title="Permalink to this heading">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#Conclusion" title="Permalink to this heading"></a></h2>
 <p>In threoy, the first associative order should do 200x200x200 + 200x200x1 mulitplications. The later one should do 200x200x1 + 200x200x1 multiplication.</p>
 <p>(200x200x200 + 200x200x1) / (200x200x1 + 200x200x1) = 100.5 1.32664e+06/11270.1 = 132</p>
 <p>So the reality are pretty close to theory. Moreover, performance of reality is even better.</p>

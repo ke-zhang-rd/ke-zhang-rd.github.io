@@ -1,29 +1,30 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Docs &mdash; nullspace 0.post1+g14502e5 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <title>nullspace Documentation &mdash; nullspace 0.post1+g86e93d8 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=859c6db1"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
-        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="_static/copybutton.js?v=f281be69"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=26809b13"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Philosophy" href="philosophy.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,9 +38,6 @@
           <a href="#" class="icon icon-home">
             nullspace
           </a>
-              <div class="version">
-                0.post1+g14502e5
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -48,11 +46,37 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Docs</a></li>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/virtual_rigid_kinematics.html">Example: Virtual Rigid Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controlflow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robot_descriptor.html">Robot Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="error_update.html">Error Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best_fit_plane.html">Best Fit Plane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nullspace_basic.html">Nullspace Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/autodiff_svd.html">Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 </ul>
-</div>
+<p class="caption" role="heading"><span class="caption-text">Source Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autodiff_svd.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robot_builder.html">robotBuilder</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Robotics Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/quaternion.html">Quaternion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angular_momentum_derivative.html">angular_momentum_derivative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="composite_inertia.html">composite_inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dof_computation.html">DOF Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eigen_chain_multiplication.html">Eigen Chain Multiplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eigen_matrix_practice.html">Eigen Matrix Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -67,7 +91,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Docs</li>
+      <li class="breadcrumb-item active">nullspace Documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -77,19 +101,114 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="docs">
-<h1>Docs<a class="headerlink" href="#docs" title="Permalink to this heading">¶</a></h1>
+  <section id="nullspace-documentation">
+<h1>nullspace Documentation<a class="headerlink" href="#nullspace-documentation" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/virtual_rigid_kinematics.html">Example: Virtual Rigid Kinematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controlflow.html">Control Flow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controlflow.html#control-variables">Control Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controlflow.html#error-update">Error Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controlflow.html#fixed-foot-distance-nullspace-controller-jacobian">Fixed Foot Distance Nullspace Controller(Jacobian)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="robot_descriptor.html">Robot Descriptor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="error_update.html">Error Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best_fit_plane.html">Best Fit Plane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nullspace_basic.html">Nullspace Basic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/nullspace_basic.html">The role of thumb</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/autodiff_svd.html">Automatic Differentiating(AD) of Singular Value Decomposition(SVD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/autodiff_svd.html#Problem-Define">Problem Define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/autodiff_svd.html#Analytical/AD-solution">Analytical/AD solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/autodiff_svd.html#Compare-with-numerical-solution">Compare with numerical solution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Source Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autodiff_svd.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autodiff_svd.html#nullspace.__init__.autodiff_svd"><code class="docutils literal notranslate"><span class="pre">autodiff_svd()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="robot_builder.html">robotBuilder</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="robot_builder.html#nullspace.models.structure.robotBuilder"><code class="docutils literal notranslate"><span class="pre">robotBuilder()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Robotics Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/quaternion.html">Quaternion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Format">Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Algebra">Algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Conjugate">Conjugate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Norm">Norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Inverse">Inverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Identity">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Associativity">Associativity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Distributive">Distributive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Commutative">Commutative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Vector">Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#Rotation-Matrix">Rotation Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#From-quaternion-to-a-rotation-matrix">From quaternion to a rotation matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#From-a-rotation-matrix-of-angles-to-a-quaternion">From a rotation matrix of angles to a quaternion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/quaternion.html#From-Euler-angles-to-a-quaternion">From Euler angles to a quaternion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="angular_momentum_derivative.html">angular_momentum_derivative</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/angular_momentum_derivative.html">Derivative of Angular Momentum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="composite_inertia.html">composite_inertia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/composite_inertia.html">CompositeInertia</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dof_computation.html">DOF Computation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/dof_computation.html">DOF discussion of quadruped</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_consistent_inverse.html">Dynamic Consistent Inverse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/dynamic_consistent_inverse.html">Dynamically Consistent Pseudo Inverse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eigen_chain_multiplication.html">Eigen Chain Multiplication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/eigen_chain_multiplication.html">eigen_chain_multiplication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eigen_matrix_practice.html">Eigen Matrix Practice</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/eigen_maxtrix_practice.html">How to construct matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/eigen_maxtrix_practice.html#Difference-of-block-operator">Difference of block operator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-history.html#initial-release-yyyy-mm-dd">Initial Release (YYYY-MM-DD)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="min_versions.html">Minimum Version of Python and NumPy</a></li>
+</ul>
+</div>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="philosophy.html" class="btn btn-neutral float-right" title="Philosophy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, HF.</p>
+    <p>&#169; Copyright 2022, KZ.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

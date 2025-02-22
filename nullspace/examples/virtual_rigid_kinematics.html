@@ -1,29 +1,29 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Example: Virtual Rigid Kinematics &mdash; nullspace 0.post1+gf55f499 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+  <title>Example: Virtual Rigid Kinematics &mdash; nullspace 0.post1+g86e93d8 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d0548302"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../_static/copybutton.js?v=f281be69"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=26809b13"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -42,9 +42,6 @@
           <a href="../index.html" class="icon icon-home">
             nullspace
           </a>
-              <div class="version">
-                0.post1+gf55f499
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -109,7 +106,7 @@
            <div itemprop="articleBody">
              
   <section id="Example:-Virtual-Rigid-Kinematics">
-<h1>Example: Virtual Rigid Kinematics<a class="headerlink" href="#Example:-Virtual-Rigid-Kinematics" title="Permalink to this heading">¶</a></h1>
+<h1>Example: Virtual Rigid Kinematics<a class="headerlink" href="#Example:-Virtual-Rigid-Kinematics" title="Permalink to this heading"></a></h1>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -133,16 +130,16 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">eye</span>
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">simplify</span><span class="p">,</span> <span class="n">nsimplify</span>
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Array</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">ZeroMatrix</span><span class="p">,</span> <span class="n">BlockMatrix</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">eye</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">simplify</span><span class="p">,</span> <span class="n">nsimplify</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">ZeroMatrix</span><span class="p">,</span> <span class="n">BlockMatrix</span>
 
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">nullspace.rbda</span> <span class="kn">import</span> <span class="n">Rx</span><span class="p">,</span> <span class="n">Ry</span><span class="p">,</span> <span class="n">Rz</span>
-<span class="kn">from</span> <span class="nn">nullspace.se3</span> <span class="kn">import</span> <span class="n">hat</span><span class="p">,</span> <span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span><span class="p">,</span> <span class="n">Ez</span><span class="p">,</span> <span class="n">SXForm</span><span class="p">,</span> <span class="n">getE</span><span class="p">,</span> <span class="n">getr</span><span class="p">,</span> <span class="n">perfect_Ez_pi</span>
-<span class="kn">from</span> <span class="nn">nullspace</span> <span class="kn">import</span> <span class="n">ensure_positive_Z</span><span class="p">,</span> <span class="n">autodiff_svd</span><span class="p">,</span> <span class="n">svd_regulated</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nullspace.rbda</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rx</span><span class="p">,</span> <span class="n">Ry</span><span class="p">,</span> <span class="n">Rz</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nullspace.se3</span><span class="w"> </span><span class="kn">import</span> <span class="n">hat</span><span class="p">,</span> <span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span><span class="p">,</span> <span class="n">Ez</span><span class="p">,</span> <span class="n">SXForm</span><span class="p">,</span> <span class="n">getE</span><span class="p">,</span> <span class="n">getr</span><span class="p">,</span> <span class="n">perfect_Ez_pi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nullspace</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_positive_Z</span><span class="p">,</span> <span class="n">autodiff_svd</span><span class="p">,</span> <span class="n">svd_regulated</span>
 </pre></div>
 </div>
 </div>
@@ -150,8 +147,8 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nullspace.models.structure</span> <span class="kn">import</span> <span class="n">q_sym</span>
-<span class="kn">from</span> <span class="nn">nullspace.models.structure</span> <span class="kn">import</span> <span class="n">robotBuilder</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nullspace.models.structure</span><span class="w"> </span><span class="kn">import</span> <span class="n">q_sym</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nullspace.models.structure</span><span class="w"> </span><span class="kn">import</span> <span class="n">robotBuilder</span>
 
 <span class="n">o</span> <span class="o">=</span> <span class="n">robotBuilder</span><span class="p">(</span><span class="s1">&#39;structure.yaml&#39;</span><span class="p">)</span>
 <span class="n">abad0</span> <span class="o">=</span> <span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -261,13 +258,13 @@
 <span class="c1"># DON&#39;T DELETE, This isn&#39;t redundant in my knowledge of 2020</span>
 
 
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">pi</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">mpl_toolkits.mplot3d.art3d</span> <span class="k">as</span> <span class="nn">art3d</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d.art3d</span> <span class="kn">import</span> <span class="n">Poly3DCollection</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">PathPatch</span><span class="p">,</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">Polygon</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">pi</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mpl_toolkits.mplot3d.art3d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">art3d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.mplot3d.art3d</span><span class="w"> </span><span class="kn">import</span> <span class="n">Poly3DCollection</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">PathPatch</span><span class="p">,</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 
 
@@ -279,8 +276,8 @@
 <span class="n">Pos_floor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
 
 
-<span class="k">class</span> <span class="nc">ThreeLinkArm</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_angles</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">F</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeLinkArm</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_angles</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">F</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        joint_angles:</span>
 <span class="sd">            The 3d vector of abad, hip and knee joint value.</span>
@@ -303,7 +300,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">F</span> <span class="o">=</span> <span class="n">F</span>
 
 
-    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">q_sym</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_angles</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                  <span class="n">q_sym</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_angles</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
@@ -326,7 +323,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">foot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">F</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">d</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">abad_color</span><span class="p">,</span> <span class="n">hip_color</span><span class="p">,</span> <span class="n">knee_color</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">abad_color</span><span class="p">,</span> <span class="n">hip_color</span><span class="p">,</span> <span class="n">knee_color</span><span class="p">):</span>
 
         <span class="c1"># plot one leg. index 0, 1 and 2 are meaning x, y, z composite here</span>
         <span class="c1"># plot abad - hip arm</span>
@@ -352,8 +349,8 @@
 
 
 
-<span class="k">class</span> <span class="nc">FourLegRobot</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zeroth</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">support_normal_option</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FourLegRobot</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zeroth</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">support_normal_option</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">it</span> <span class="o">=</span> <span class="kc">None</span>
@@ -434,7 +431,7 @@
 
 
 
-    <span class="k">def</span> <span class="nf">set_Ori_BodyOnSupport_Target_byRotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_Ori_BodyOnSupport_Target_byRotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Set Ori by Rotation matrix of Body relative to support area.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -443,7 +440,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">Normal_SupportOnBody_Target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ori_SupportOnBody_Target</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">EdgeY_SupportOnBody_Target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ori_SupportOnBody_Target</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">set_Ori_BodyOnSupport_byYZ</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yz</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_Ori_BodyOnSupport_byYZ</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yz</span><span class="p">):</span>
         <span class="n">col1</span> <span class="o">=</span> <span class="n">yz</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
         <span class="n">col2</span> <span class="o">=</span> <span class="n">yz</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
         <span class="n">col1</span> <span class="o">=</span> <span class="n">col1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">col1</span><span class="p">)</span>
@@ -452,22 +449,22 @@
         <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">col0</span><span class="p">,</span> <span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_Ori_BodyOnSupport_Target_byRotation</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">set_Ori_BodyOnSupport_Target_byRPY</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_Ori_BodyOnSupport_Target_byRPY</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">):</span>
         <span class="n">R</span> <span class="o">=</span> <span class="n">Rz</span><span class="p">(</span><span class="n">yaw</span><span class="p">)</span> <span class="o">@</span> <span class="n">Ry</span><span class="p">(</span><span class="n">pitch</span><span class="p">)</span> <span class="o">@</span> <span class="n">Rx</span><span class="p">(</span><span class="n">roll</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_Ori_BodyOnSupport_Target_byRotation</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">set_Ori_BodyOnHorizon_Target_byRPY</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_Ori_BodyOnHorizon_Target_byRPY</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Ori_BodyOnHorizon_Target</span> <span class="o">=</span> <span class="n">Rz</span><span class="p">(</span><span class="n">yaw</span><span class="p">)</span> <span class="o">@</span> <span class="n">Ry</span><span class="p">(</span><span class="n">pitch</span><span class="p">)</span> <span class="o">@</span> <span class="n">Rx</span><span class="p">(</span><span class="n">roll</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">set_Pos_SupportOnBody_Target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Pos_BodyOnSupport_Target</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_Pos_SupportOnBody_Target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Pos_BodyOnSupport_Target</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Pos_SupportOnBody_Target</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Ori_SupportOnBody_Target</span>
                                           <span class="o">@</span> <span class="n">Pos_BodyOnSupport_Target</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">set_Ori_SupportOnBody_Current</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edgeY</span><span class="p">,</span> <span class="n">normal</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_Ori_SupportOnBody_Current</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edgeY</span><span class="p">,</span> <span class="n">normal</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">edgeY</span><span class="p">,</span> <span class="n">normal</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Ori_SupportOnBody_Current</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">edgeY</span><span class="p">,</span> <span class="n">normal</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">get_edgeY</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_edgeY</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Top View</span>
 
@@ -505,7 +502,7 @@
             <span class="n">vec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">foot</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">foot</span>
         <span class="k">return</span> <span class="n">vec</span>
 
-    <span class="k">def</span> <span class="nf">get_point_projection_on_plane</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_point_projection_on_plane</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Calculate the point coordinate on certain plane.</span>
 
@@ -534,7 +531,7 @@
         <span class="k">return</span> <span class="n">res</span>
 
 
-    <span class="k">def</span> <span class="nf">update_joints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q_values</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_joints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q_values</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">joint_angles</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">joint_angles</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">joint_angles</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
@@ -546,7 +543,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">prepare_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prepare_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="n">progress</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">it</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span>
 
@@ -572,7 +569,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">it</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">support_color</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.745</span><span class="p">,</span> <span class="mf">0.458</span><span class="p">,</span> <span class="mf">0.941</span><span class="p">)</span> <span class="c1"># Purple</span>
-    <span class="k">def</span> <span class="nf">plot_on_body</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_on_body</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="c1"># Plot each arms</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">it</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">abad_color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hip_color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">knee_color</span><span class="p">)</span>
@@ -608,7 +605,7 @@
                           <span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">plot_on_support_each_arm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arm</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_on_support_each_arm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arm</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Calculate each joints location of one leg under horizon coordinate.</span>
 <span class="sd">        There are 4 joints and 3 links.</span>
@@ -640,7 +637,7 @@
 
 
 
-    <span class="k">def</span> <span class="nf">plot_on_support</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_on_support</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Plot on support area coordinate with Centroid as origin.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -679,7 +676,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">plot_on_support_each_arm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arms</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
 
-    <span class="k">def</span> <span class="nf">plot_on_horizon_each_arm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arm</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_on_horizon_each_arm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arm</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Calculate each joints location of one leg under horizon coordinate.</span>
 <span class="sd">        There are 4 joints and 3 links.</span>
@@ -723,7 +720,7 @@
 
         <span class="k">return</span> <span class="n">foot_on_horizon</span>
 
-    <span class="k">def</span> <span class="nf">plot_on_horizon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_on_horizon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Plot on horizon coordinate</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -776,7 +773,7 @@
                                                             <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
                                                             <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">))</span>
     <span class="c1"># Update Error</span>
-    <span class="k">def</span> <span class="nf">update_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Estimator</span>
         <span class="c1"># Normal</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">support_normal_option</span> <span class="o">==</span> <span class="s1">&#39;svd&#39;</span><span class="p">:</span>

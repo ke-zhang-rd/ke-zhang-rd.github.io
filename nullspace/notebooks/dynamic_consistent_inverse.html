@@ -1,28 +1,28 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dynamically Consistent Pseudo Inverse &mdash; nullspace 0.post1+gf55f499 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+  <title>Dynamically Consistent Pseudo Inverse &mdash; nullspace 0.post1+g86e93d8 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d0548302"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../_static/copybutton.js?v=f281be69"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=26809b13"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -41,9 +41,6 @@
           <a href="../index.html" class="icon icon-home">
             nullspace
           </a>
-              <div class="version">
-                0.post1+gf55f499
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -128,12 +125,12 @@
            <div itemprop="articleBody">
              
   <section id="Dynamically-Consistent-Pseudo-Inverse">
-<h1>Dynamically Consistent Pseudo Inverse<a class="headerlink" href="#Dynamically-Consistent-Pseudo-Inverse" title="Permalink to this heading">¶</a></h1>
+<h1>Dynamically Consistent Pseudo Inverse<a class="headerlink" href="#Dynamically-Consistent-Pseudo-Inverse" title="Permalink to this heading"></a></h1>
 <p>This document introduces the generalized null space formulation of both kinematics and dynamics. Clearly, they share same underlying mathematical foundation. Moreover, In a redundant system, for inverse of <span class="math notranslate nohighlight">\(J\)</span> compliance with operational acceleration constrain, we could deduce the formulation of inverse, <span class="math notranslate nohighlight">\(\bar J\)</span>, by involving mass matrix. <span class="math notranslate nohighlight">\(\bar J\)</span> is named dynamically consistent pseudo-inverse.</p>
 <section id="1.-Mapping">
-<h2>1. Mapping<a class="headerlink" href="#1.-Mapping" title="Permalink to this heading">¶</a></h2>
+<h2>1. Mapping<a class="headerlink" href="#1.-Mapping" title="Permalink to this heading"></a></h2>
 <section id="1.-1-Kinematics">
-<h3>1. 1 Kinematics<a class="headerlink" href="#1.-1-Kinematics" title="Permalink to this heading">¶</a></h3>
+<h3>1. 1 Kinematics<a class="headerlink" href="#1.-1-Kinematics" title="Permalink to this heading"></a></h3>
 <p>In kinematics, we have</p>
 <div class="math notranslate nohighlight">
 \[\begin{equation}
@@ -142,17 +139,21 @@ J\dot q = \dot x
 <p>in which <span class="math notranslate nohighlight">\(J\)</span> is a Jacobian projection <span class="math notranslate nohighlight">\(\dot q\)</span> is in configuration space <span class="math notranslate nohighlight">\(\dot x\)</span> is in task space</p>
 </section>
 <section id="1.2-Dynamics">
-<h3>1.2 Dynamics<a class="headerlink" href="#1.2-Dynamics" title="Permalink to this heading">¶</a></h3>
+<h3>1.2 Dynamics<a class="headerlink" href="#1.2-Dynamics" title="Permalink to this heading"></a></h3>
 <p>In dynamics, we have <span class="math notranslate nohighlight">\(\tau = J^Tf\)</span> in consistent with general formula, we rewrite it as</p>
 <div class="math notranslate nohighlight">
 \[\begin{equation}
 J^{T\sharp}\tau = f
 \end{equation}\]</div>
 <p>in which <span class="math notranslate nohighlight">\(J^{T\sharp}\)</span> is projection <span class="math notranslate nohighlight">\(\tau\)</span> is joint torque in configuration space <span class="math notranslate nohighlight">\(f\)</span> is operational force in task space</p>
-<p>Notice * <span class="math notranslate nohighlight">\(M^\sharp\)</span> is pseudo-inverse of <span class="math notranslate nohighlight">\(M\)</span>. Here we use <span class="math notranslate nohighlight">\(\sharp\)</span> refer pseudo-inverse while some paper using <span class="math notranslate nohighlight">\(\dagger\)</span>. * <span class="math notranslate nohighlight">\((A^{-1})^T = (A^T)^{-1}\)</span> or <span class="math notranslate nohighlight">\((A^\sharp)^T = (A^T)^\sharp\)</span> and proof is shown in appendix.</p>
+<p>Notice</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(M^\sharp\)</span> is pseudo-inverse of <span class="math notranslate nohighlight">\(M\)</span>. Here we use <span class="math notranslate nohighlight">\(\sharp\)</span> refer pseudo-inverse while some paper using <span class="math notranslate nohighlight">\(\dagger\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\((A^{-1})^T = (A^T)^{-1}\)</span> or <span class="math notranslate nohighlight">\((A^\sharp)^T = (A^T)^\sharp\)</span> and proof is shown in appendix.</p></li>
+</ul>
 </section>
 <section id="1.3-Generalize">
-<h3>1.3 Generalize<a class="headerlink" href="#1.3-Generalize" title="Permalink to this heading">¶</a></h3>
+<h3>1.3 Generalize<a class="headerlink" href="#1.3-Generalize" title="Permalink to this heading"></a></h3>
 <p>Both kinematics and dynamics formulate a mapping from configuration space to task space. The controllable variable is the item in configuration space. In general, the formulation is</p>
 <div class="math notranslate nohighlight">
 \[\begin{equation}
@@ -162,7 +163,7 @@ Pc = t
 </section>
 </section>
 <section id="2.-Null-space-of-the-Mapping">
-<h2>2. Null space of the Mapping<a class="headerlink" href="#2.-Null-space-of-the-Mapping" title="Permalink to this heading">¶</a></h2>
+<h2>2. Null space of the Mapping<a class="headerlink" href="#2.-Null-space-of-the-Mapping" title="Permalink to this heading"></a></h2>
 <p>In a redundant system, null space method could be used to achieve manipulation in configuration space without affecting the resulting status in task space. For a matrix transformation like <span class="math notranslate nohighlight">\(Pc = t\)</span>, the null space of <span class="math notranslate nohighlight">\(P\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[\begin{equation}
@@ -190,7 +191,7 @@ c = P^\sharp t + (I - P^\sharp P)V_0
 \end{equation}\]</div>
 </section>
 <section id="3.-Where-are-we">
-<h2>3. Where are we<a class="headerlink" href="#3.-Where-are-we" title="Permalink to this heading">¶</a></h2>
+<h2>3. Where are we<a class="headerlink" href="#3.-Where-are-we" title="Permalink to this heading"></a></h2>
 <p>The whole story start from goal of dynamically control which means solve the torque from a desired trajectory.</p>
 <ul class="simple">
 <li><p>At the very beginning, we have a desired trajectory <span class="math notranslate nohighlight">\(x(t)\)</span>.</p></li>
@@ -201,7 +202,9 @@ c = P^\sharp t + (I - P^\sharp P)V_0
 \[\begin{equation}
 \ddot x - \dot J \dot q= J \ddot q
 \end{equation}\]</div>
-<p>* We could calculate <span class="math notranslate nohighlight">\(\ddot q\)</span> by</p>
+<ul class="simple">
+<li><p>We could calculate <span class="math notranslate nohighlight">\(\ddot q\)</span> by</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[\begin{equation}
 \ddot q = J^\sharp(\ddot x - \dot J \dot q)
@@ -210,7 +213,7 @@ c = P^\sharp t + (I - P^\sharp P)V_0
 <p>Well, my hardware colleague warns me there isn’t such magic in the world to allow me control acceleration directly. He said if I recall <span class="math notranslate nohighlight">\(F = ma\)</span> in junior school, you may understand you have to go through force to control acceleration. In motor case, through <span class="math notranslate nohighlight">\(\tau\)</span> to control <span class="math notranslate nohighlight">\(\ddot q\)</span>. <strong>PROBLEM 2</strong>: To finish control, there is a relationship between <span class="math notranslate nohighlight">\(\ddot q\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> need to be figured.</p>
 </section>
 <section id="4.-Extra-dynamic-constrain">
-<h2>4. Extra dynamic constrain<a class="headerlink" href="#4.-Extra-dynamic-constrain" title="Permalink to this heading">¶</a></h2>
+<h2>4. Extra dynamic constrain<a class="headerlink" href="#4.-Extra-dynamic-constrain" title="Permalink to this heading"></a></h2>
 <p>To emphasis above-mentioned problems, considering the derivative of <span class="math notranslate nohighlight">\(\dot x = J\dot q\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\begin{equation}
@@ -244,15 +247,15 @@ J^\sharp = \bar J = A^{-1}J^T\Lambda
 <p>Now, by using extra dynamical constrain, we get this particular pseudo inverse <span class="math notranslate nohighlight">\(\bar J\)</span> which should be use in control equation <span class="math notranslate nohighlight">\(\ddot q = \bar J (\ddot x - \dot J \dot q)\)</span> and eventually input torque <span class="math notranslate nohighlight">\(\tau\)</span> to motor by <span class="math notranslate nohighlight">\(\tau = A\ddot q + b + g - J^Tf\)</span>.</p>
 </section>
 <section id="5.-Conclusion">
-<h2>5. Conclusion<a class="headerlink" href="#5.-Conclusion" title="Permalink to this heading">¶</a></h2>
+<h2>5. Conclusion<a class="headerlink" href="#5.-Conclusion" title="Permalink to this heading"></a></h2>
 <p>In a redundant system, since there are more controllable joints in configuration space than needed. We could distribute operational space task to configuration space in a smarter way, so-called <em>task oriented</em> control by Oussama Khatib. That means we could use different pseudo inverse achieve different optimized goals. In kinematics, pseudo inverse, <span class="math notranslate nohighlight">\(J^{-1}\)</span>, by SVD minimizes the least square of error. In contrast, dynamic constrain pseudo inverse, <span class="math notranslate nohighlight">\(\bar J\)</span>, by bring mass matrix in
 account to minimizes instantaneous kinetic energy.</p>
 <p>Later Roy Featherstone showed that this <span class="math notranslate nohighlight">\(\bar J\)</span> is independent of load in Roy (1997). This might be a torch of future research.</p>
 </section>
 <section id="APPENDIX">
-<h2>APPENDIX<a class="headerlink" href="#APPENDIX" title="Permalink to this heading">¶</a></h2>
+<h2>APPENDIX<a class="headerlink" href="#APPENDIX" title="Permalink to this heading"></a></h2>
 <section id="APPENDIX.A">
-<h3>APPENDIX.A<a class="headerlink" href="#APPENDIX.A" title="Permalink to this heading">¶</a></h3>
+<h3>APPENDIX.A<a class="headerlink" href="#APPENDIX.A" title="Permalink to this heading"></a></h3>
 <div class="math notranslate nohighlight">
 \[\begin{split}A^T(A^{-1})^T =  (A^{-1}A)^{T} = I^T = I \\
 (A^{-1})^TA^T =  (AA^{-1})^{T} = I^T = I\end{split}\]</div>

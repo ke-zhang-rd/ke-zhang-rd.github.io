@@ -1,26 +1,26 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Control Flow &mdash; nullspace 0.post1+gf55f499 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <title>Control Flow &mdash; nullspace 0.post1+g86e93d8 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d0548302"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
-        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="_static/copybutton.js?v=f281be69"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=26809b13"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,9 +39,6 @@
           <a href="index.html" class="icon icon-home">
             nullspace
           </a>
-              <div class="version">
-                0.post1+gf55f499
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -114,7 +111,7 @@
            <div itemprop="articleBody">
              
   <section id="control-flow">
-<h1>Control Flow<a class="headerlink" href="#control-flow" title="Permalink to this heading">¶</a></h1>
+<h1>Control Flow<a class="headerlink" href="#control-flow" title="Permalink to this heading"></a></h1>
 <a class="reference internal image-reference" href="_images/NullspaceControlFlow.svg"><img alt="_images/NullspaceControlFlow.svg" class="align-center" src="_images/NullspaceControlFlow.svg" width="1000" /></a>
 <p>There are 3 coordinates</p>
 <blockquote>
@@ -130,7 +127,7 @@
 Boday coordinate. And the current Support rigid on Body coordinate is very easy calculated by forward
 kinematics. The error could be achieved to pass to nullspace controller.</p>
 <section id="control-variables">
-<h2>Control Variables<a class="headerlink" href="#control-variables" title="Permalink to this heading">¶</a></h2>
+<h2>Control Variables<a class="headerlink" href="#control-variables" title="Permalink to this heading"></a></h2>
 <p>The control is based on simple formula</p>
 <blockquote>
 <div><p>$$dq = J^{-1}e$$</p>
@@ -143,7 +140,7 @@ kinematics. The error could be achieved to pass to nullspace controller.</p>
 </div>
 </section>
 <section id="error-update">
-<h2>Error Update<a class="headerlink" href="#error-update" title="Permalink to this heading">¶</a></h2>
+<h2>Error Update<a class="headerlink" href="#error-update" title="Permalink to this heading"></a></h2>
 <p>The error is described by orientation and position of Support virtual coordinate relative to Base.</p>
 <p>In this chapter we are talking about the coordination fixed on virtual rigid object relative to
 base.</p>
@@ -162,7 +159,7 @@ define this vector since the difference between current status and target status
 bound in eagle view as <em>Y</em> axis</p>
 </section>
 <section id="fixed-foot-distance-nullspace-controller-jacobian">
-<h2>Fixed Foot Distance Nullspace Controller(Jacobian)<a class="headerlink" href="#fixed-foot-distance-nullspace-controller-jacobian" title="Permalink to this heading">¶</a></h2>
+<h2>Fixed Foot Distance Nullspace Controller(Jacobian)<a class="headerlink" href="#fixed-foot-distance-nullspace-controller-jacobian" title="Permalink to this heading"></a></h2>
 <p>This is prioritized tasks controller and it has 3 tasks from higher to lower order:</p>
 <blockquote>
 <div><ol class="arabic simple">

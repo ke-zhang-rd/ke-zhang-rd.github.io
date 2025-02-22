@@ -1,25 +1,25 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nullspace.models.structure &mdash; nullspace 0.post1+gf55f499 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+  <title>nullspace.models.structure &mdash; nullspace 0.post1+g86e93d8 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=d0548302"></script>
-        <script src="../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
-        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../../_static/copybutton.js?v=f281be69"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=26809b13"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -36,9 +36,6 @@
           <a href="../../../index.html" class="icon icon-home">
             nullspace
           </a>
-              <div class="version">
-                0.post1+gf55f499
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -103,10 +100,10 @@
            <div itemprop="articleBody">
              
   <h1>Source code for nullspace.models.structure</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">yaml</span>
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">eye</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">simplify</span><span class="p">,</span> <span class="n">ZeroMatrix</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="n">eye</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">simplify</span><span class="p">,</span> <span class="n">ZeroMatrix</span>
 
-<span class="kn">from</span> <span class="nn">nullspace.se3</span> <span class="kn">import</span> <span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span><span class="p">,</span> <span class="n">SXForm</span><span class="p">,</span> <span class="n">getr</span><span class="p">,</span> <span class="n">perfect_Ez_pi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nullspace.se3</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span><span class="p">,</span> <span class="n">SXForm</span><span class="p">,</span> <span class="n">getr</span><span class="p">,</span> <span class="n">perfect_Ez_pi</span>
 
 
 <span class="c1"># Robot model, without link length</span>
@@ -117,7 +114,7 @@
 <span class="n">tmp2</span> <span class="o">=</span> <span class="n">Ey</span>
 
 
-<div class="viewcode-block" id="robotBuilder"><a class="viewcode-back" href="../../../robot_builder.html#nullspace.models.structure.robotBuilder">[docs]</a><span class="k">def</span> <span class="nf">robotBuilder</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+<div class="viewcode-block" id="robotBuilder"><a class="viewcode-back" href="../../../robot_builder.html#nullspace.models.structure.robotBuilder">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">robotBuilder</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">out</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
