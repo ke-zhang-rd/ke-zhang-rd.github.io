@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cython: Wrap a C++ extentsion of Python &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>Cython: Wrap a C++ extentsion of Python &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -177,7 +177,7 @@
            <div itemprop="articleBody">
              
   <section id="cython-wrap-a-c-extentsion-of-python">
-<h1>Cython: Wrap a C++ extentsion of Python<a class="headerlink" href="#cython-wrap-a-c-extentsion-of-python" title="Permalink to this heading"></a></h1>
+<h1>Cython: Wrap a C++ extentsion of Python<a class="headerlink" href="#cython-wrap-a-c-extentsion-of-python" title="Link to this heading"></a></h1>
 <p>The index of this document will include</p>
 <p>A general archetecture of cython project</p>
 <p>Should include as much as possible build information here</p>
@@ -188,7 +188,7 @@
 <p>A numpy <strong>float</strong> is a C <strong>double</strong>!</p>
 </div>
 <section id="why">
-<h2>Why<a class="headerlink" href="#why" title="Permalink to this heading"></a></h2>
+<h2>Why<a class="headerlink" href="#why" title="Link to this heading"></a></h2>
 <p>If you are thinking whether you need cython, in most case, you don’t need it. Cython might be a good option if both conditions belwo satisfied.</p>
 <blockquote>
 <div><ul class="simple">
@@ -198,7 +198,7 @@
 </div></blockquote>
 </section>
 <section id="what">
-<h2>What<a class="headerlink" href="#what" title="Permalink to this heading"></a></h2>
+<h2>What<a class="headerlink" href="#what" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Extension is python module you write in other language, in here we refer C/C++</p></li>
 <li><p>Cython will just use whatever standard C compiler to compile it to <em>.so</em> file</p></li>
@@ -206,7 +206,7 @@
 </ol>
 </section>
 <section id="how-the-architecture-of-a-python-project-with-cython-extension">
-<h2>How: The architecture of a python project with cython extension<a class="headerlink" href="#how-the-architecture-of-a-python-project-with-cython-extension" title="Permalink to this heading"></a></h2>
+<h2>How: The architecture of a python project with cython extension<a class="headerlink" href="#how-the-architecture-of-a-python-project-with-cython-extension" title="Link to this heading"></a></h2>
 <p>A conoventional architecture and naming rule is shown below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">PROJECT</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">MODULE</span><span class="o">&gt;</span>
@@ -230,11 +230,12 @@ your original <em>.cpp</em> and your <em>.pyx</em> file the same, your <em>.cpp<
 <p>Though there is tldr <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/external_C_code.html#resolving-naming-conflicts-c-name-specifications">solution</a> if you really need to name them exactly same.</p>
 </div>
 <section id="a-work-flow">
-<h3>A work flow<a class="headerlink" href="#a-work-flow" title="Permalink to this heading"></a></h3>
-<a class="reference internal image-reference" href="_images/cython.svg"><img alt="_images/cython.svg" class="align-center" src="_images/cython.svg" width="1000" /></a>
+<h3>A work flow<a class="headerlink" href="#a-work-flow" title="Link to this heading"></a></h3>
+<a class="reference internal image-reference" href="_images/cython.svg"><img alt="_images/cython.svg" class="align-center" src="_images/cython.svg" style="width: 1000px;" />
+</a>
 </section>
 <section id="orgnize">
-<h3>Orgnize<a class="headerlink" href="#orgnize" title="Permalink to this heading"></a></h3>
+<h3>Orgnize<a class="headerlink" href="#orgnize" title="Link to this heading"></a></h3>
 <p>A Cython module can be split into two parts: a definition file with a .pxd suffix, containing C declarations that are to be available to other Cython modules, and an implementation file with a .pyx/.py suffix, containing everything else. When a module wants to use something declared in another module’s definition file, it imports it using the cimport statement or using special cython.cimports package.</p>
 <p>A .pxd file that consists solely of extern declarations does not need to correspond to an actual .pyx/.py file or Python module. This can make it a convenient place to put common declarations, for example declarations of functions from an external library that one wants to use in several modules.</p>
 <p>When you cimport a module called modulename, the Cython compiler searches for a file called modulename.pxd. It searches for this file along the path for include files (as specified by -I command line options or the include_path option to cythonize()), as well as sys.path.</p>
@@ -242,11 +243,11 @@ your original <em>.cpp</em> and your <em>.pyx</em> file the same, your <em>.cpp<
 <p>Also, whenever you compile a file modulename.pyx/modulename.py, the corresponding definition file modulename.pxd is first searched for along the include path (but not sys.path), and if found, it is processed before processing the .pyx file.</p>
 </section>
 <section id="stay-with-h-and-cpp">
-<h3>Stay with .h and .cpp<a class="headerlink" href="#stay-with-h-and-cpp" title="Permalink to this heading"></a></h3>
+<h3>Stay with .h and .cpp<a class="headerlink" href="#stay-with-h-and-cpp" title="Link to this heading"></a></h3>
 <p>The <em>.h</em> files in <em>include</em> and <em>.cpp</em> files in <em>src</em> are just pure/raw c++ files. They should be 100% legal in a pure c++ environment.</p>
 </section>
 <section id="pyx">
-<h3>.pyx<a class="headerlink" href="#pyx" title="Permalink to this heading"></a></h3>
+<h3>.pyx<a class="headerlink" href="#pyx" title="Link to this heading"></a></h3>
 <p><a class="reference external" href="../../examples/cython/compute_wrapper.pyx">compute_wrapper.pyx</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># distutils: language = c++</span>
 
@@ -348,7 +349,7 @@ location.</p></li>
 </div></blockquote>
 </section>
 <section id="pxd-file">
-<h3>.pxd file<a class="headerlink" href="#pxd-file" title="Permalink to this heading"></a></h3>
+<h3>.pxd file<a class="headerlink" href="#pxd-file" title="Link to this heading"></a></h3>
 <p>It is a definition file, the meanding of “d” in “pxd”. The role of .pxd file is like a shared header file of cython code,</p>
 <blockquote>
 <div><ul class="simple">
@@ -421,9 +422,9 @@ Next we declare each method and private members</p>
 </section>
 </section>
 <section id="install-package">
-<h2>Install package<a class="headerlink" href="#install-package" title="Permalink to this heading"></a></h2>
+<h2>Install package<a class="headerlink" href="#install-package" title="Link to this heading"></a></h2>
 <section id="setup-py">
-<h3>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this heading"></a></h3>
+<h3>setup.py<a class="headerlink" href="#setup-py" title="Link to this heading"></a></h3>
 <p>make sure code below are in setup.py</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">setuptools</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Extension</span>
 
@@ -473,7 +474,7 @@ Next we declare each method and private members</p>
 </div>
 </section>
 <section id="use-setup-cfg-to-make-things-easy">
-<h3>Use setup.cfg to make things easy<a class="headerlink" href="#use-setup-cfg-to-make-things-easy" title="Permalink to this heading"></a></h3>
+<h3>Use setup.cfg to make things easy<a class="headerlink" href="#use-setup-cfg-to-make-things-easy" title="Link to this heading"></a></h3>
 <p>There are tons of flag, so to make it easy, you could write all options and flag in a <em>setup.cfg</em>.</p>
 <p>You could config <em>setup.cfg</em> by instruction here
 <a class="reference external" href="https://docs.python.org/3/distutils/configfile.html">https://docs.python.org/3/distutils/configfile.html</a></p>
@@ -495,7 +496,7 @@ Next we declare each method and private members</p>
 </div>
 </section>
 <section id="use-cython-with-jupyter-notebook-ipython">
-<h3>Use cython with jupyter notebook/ipython<a class="headerlink" href="#use-cython-with-jupyter-notebook-ipython" title="Permalink to this heading"></a></h3>
+<h3>Use cython with jupyter notebook/ipython<a class="headerlink" href="#use-cython-with-jupyter-notebook-ipython" title="Link to this heading"></a></h3>
 <p>in the top of notebook/ipython
 .. code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">load_ext</span> <span class="n">cythonmagic</span>
@@ -510,15 +511,15 @@ Next we declare each method and private members</p>
 </section>
 </section>
 <section id="practice-with-c-and-python-community-eigne-and-numpy">
-<h2>Practice with C and Python community: Eigne and Numpy<a class="headerlink" href="#practice-with-c-and-python-community-eigne-and-numpy" title="Permalink to this heading"></a></h2>
+<h2>Practice with C and Python community: Eigne and Numpy<a class="headerlink" href="#practice-with-c-and-python-community-eigne-and-numpy" title="Link to this heading"></a></h2>
 <section id="how-to-get-eigen-library">
-<h3>How to get Eigen library<a class="headerlink" href="#how-to-get-eigen-library" title="Permalink to this heading"></a></h3>
+<h3>How to get Eigen library<a class="headerlink" href="#how-to-get-eigen-library" title="Link to this heading"></a></h3>
 </section>
 <section id="how-to-get-numpy-package">
-<h3>How to get numpy package<a class="headerlink" href="#how-to-get-numpy-package" title="Permalink to this heading"></a></h3>
+<h3>How to get numpy package<a class="headerlink" href="#how-to-get-numpy-package" title="Link to this heading"></a></h3>
 </section>
 <section id="how-to-get-cpp-std-libray">
-<h3>How to get cpp std libray<a class="headerlink" href="#how-to-get-cpp-std-libray" title="Permalink to this heading"></a></h3>
+<h3>How to get cpp std libray<a class="headerlink" href="#how-to-get-cpp-std-libray" title="Link to this heading"></a></h3>
 <p><a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/wrapping_CPlusPlus.html?highlight=Rectangle#standard-library">https://cython.readthedocs.io/en/latest/src/userguide/wrapping_CPlusPlus.html?highlight=Rectangle#standard-library</a></p>
 <p>A code here also work as good examples on how to declare C++ classes.</p>
 <p>The code below perfectly show us the logistic to mix Eigen and Numpy with Cython. It trys call a <em>CalcPointAcceleration</em> from python which transfers all variables to cpp and use some cpp source code with Eigen do real math calculation and then transfer variables back to Numpy.</p>
@@ -603,20 +604,20 @@ Next we declare each method and private members</p>
 </section>
 </section>
 <section id="when-you-use-cdef">
-<h2>When you use cdef<a class="headerlink" href="#when-you-use-cdef" title="Permalink to this heading"></a></h2>
+<h2>When you use cdef<a class="headerlink" href="#when-you-use-cdef" title="Link to this heading"></a></h2>
 <p>When you need define something that need to be used later in python but its come from cpp(in .h file and .cpp file)</p>
 </section>
 <section id="numpy-import-vs-cimport">
-<h2>numpy import vs cimport<a class="headerlink" href="#numpy-import-vs-cimport" title="Permalink to this heading"></a></h2>
+<h2>numpy import vs cimport<a class="headerlink" href="#numpy-import-vs-cimport" title="Link to this heading"></a></h2>
 <p>how to import or cimport numpy in .pyx file.
 <a class="reference external" href="https://stackoverflow.com/questions/20268228/cython-cimport-and-import-numpy-as-both-np">https://stackoverflow.com/questions/20268228/cython-cimport-and-import-numpy-as-both-np</a></p>
 </section>
 <section id="cython-fatal-error-numpy-arrayobject-h-no-such-file-or-directory">
-<h2>Cython: “fatal error: numpy/arrayobject.h: No such file or directory”<a class="headerlink" href="#cython-fatal-error-numpy-arrayobject-h-no-such-file-or-directory" title="Permalink to this heading"></a></h2>
+<h2>Cython: “fatal error: numpy/arrayobject.h: No such file or directory”<a class="headerlink" href="#cython-fatal-error-numpy-arrayobject-h-no-such-file-or-directory" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://stackoverflow.com/a/14657667/10642305">https://stackoverflow.com/a/14657667/10642305</a></p>
 </section>
 <section id="directive-comments">
-<h2>Directive comments<a class="headerlink" href="#directive-comments" title="Permalink to this heading"></a></h2>
+<h2>Directive comments<a class="headerlink" href="#directive-comments" title="Link to this heading"></a></h2>
 <p>The comments in cython related file are compling directives which do take effect.
 Ref:
 <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#how-to-set-directives">https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#how-to-set-directives</a>
@@ -624,7 +625,7 @@ The directive is prefered to setup in setup.py by this
 <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#how-to-set-directives">https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#how-to-set-directives</a></p>
 </section>
 <section id="def-vs-cdef-vs-cpdef">
-<h2>def vs cdef vs cpdef<a class="headerlink" href="#def-vs-cdef-vs-cpdef" title="Permalink to this heading"></a></h2>
+<h2>def vs cdef vs cpdef<a class="headerlink" href="#def-vs-cdef-vs-cpdef" title="Link to this heading"></a></h2>
 <p><strong>cdef</strong> is basiclly define a function that only workable inside package. it cannot be used by python directly. It is local to current file. If you wanna use it by python directly, aka
 do something like below</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pkg.pyx_module</span><span class="w"> </span><span class="kn">import</span> <span class="n">function_defined_inside_pyx</span>
@@ -639,17 +640,17 @@ other than that, yes, you could always use cpdef.</p>
 <p>Thing to remember is always use <strong>def</strong> and <strong>cpdef</strong> to expose function to outside</p>
 </section>
 <section id="cannot-find-eign-core">
-<h2>Cannot find Eign/Core<a class="headerlink" href="#cannot-find-eign-core" title="Permalink to this heading"></a></h2>
+<h2>Cannot find Eign/Core<a class="headerlink" href="#cannot-find-eign-core" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://github.com/opencv/opencv/issues/14868">https://github.com/opencv/opencv/issues/14868</a></p>
 </section>
 <section id="how-do-i-wrap-a-c-class-with-cython">
-<h2>How do I wrap a C class with cython<a class="headerlink" href="#how-do-i-wrap-a-c-class-with-cython" title="Permalink to this heading"></a></h2>
+<h2>How do I wrap a C class with cython<a class="headerlink" href="#how-do-i-wrap-a-c-class-with-cython" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://stackoverflow.com/questions/8933263/how-do-i-wrap-a-c-class-with-cython">https://stackoverflow.com/questions/8933263/how-do-i-wrap-a-c-class-with-cython</a></p>
 </section>
 <section id="ci-cd-a-cython-project">
-<h2>CI/CD a Cython Project<a class="headerlink" href="#ci-cd-a-cython-project" title="Permalink to this heading"></a></h2>
+<h2>CI/CD a Cython Project<a class="headerlink" href="#ci-cd-a-cython-project" title="Link to this heading"></a></h2>
 <section id="pytest">
-<h3>pytest<a class="headerlink" href="#pytest" title="Permalink to this heading"></a></h3>
+<h3>pytest<a class="headerlink" href="#pytest" title="Link to this heading"></a></h3>
 <p>The pytes isn’t work well with cython, before test, you need install editable by</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
@@ -658,7 +659,7 @@ other than that, yes, you could always use cpdef.</p>
 </section>
 </section>
 <section id="faq">
-<h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this heading"></a></h2>
+<h2>FAQ<a class="headerlink" href="#faq" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li></li>
 </ol>
@@ -721,20 +722,20 @@ In this case the whole output looks like</p>
 </pre></div>
 </div>
 <section id="use-cdef">
-<h3>Use cdef<a class="headerlink" href="#use-cdef" title="Permalink to this heading"></a></h3>
+<h3>Use cdef<a class="headerlink" href="#use-cdef" title="Link to this heading"></a></h3>
 <p>If something both exist in C and python, C take privilege, ex, float is C float</p>
 </section>
 <section id="cython-file-names">
-<h3>cython file names<a class="headerlink" href="#cython-file-names" title="Permalink to this heading"></a></h3>
+<h3>cython file names<a class="headerlink" href="#cython-file-names" title="Link to this heading"></a></h3>
 <p>You don’t have to use .pyx , any .py files are ok for cython</p>
 </section>
 <section id="setup-py-ext-modules">
-<h3>setup.py ext_modules<a class="headerlink" href="#setup-py-ext-modules" title="Permalink to this heading"></a></h3>
+<h3>setup.py ext_modules<a class="headerlink" href="#setup-py-ext-modules" title="Link to this heading"></a></h3>
 <p>You could compile multiple extensions by</p>
 <p>cythonize([“.pyx”, “.pyx”])</p>
 </section>
 <section id="cython-annotation">
-<h3>cython annotation<a class="headerlink" href="#cython-annotation" title="Permalink to this heading"></a></h3>
+<h3>cython annotation<a class="headerlink" href="#cython-annotation" title="Link to this heading"></a></h3>
 <p>cython -a .pyx</p>
 </section>
 </section>

@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>functools &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>functools &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -142,9 +142,9 @@
            <div itemprop="articleBody">
              
   <section id="functools">
-<h1>functools<a class="headerlink" href="#functools" title="Permalink to this heading"></a></h1>
+<h1>functools<a class="headerlink" href="#functools" title="Link to this heading"></a></h1>
 <section id="lru-cache">
-<h2>lru_cache<a class="headerlink" href="#lru-cache" title="Permalink to this heading"></a></h2>
+<h2>lru_cache<a class="headerlink" href="#lru-cache" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -197,21 +197,21 @@
 </div>
 </section>
 <section id="cache">
-<h2>cache<a class="headerlink" href="#cache" title="Permalink to this heading"></a></h2>
+<h2>cache<a class="headerlink" href="#cache" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@functools</span><span class="o">.</span><span class="n">cache</span><span class="p">(</span><span class="n">user_function</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">cache</span></code> returns the same as <code class="docutils literal notranslate"><span class="pre">lru_cache(maxsize=None)</span></code>.</p>
 </section>
 <section id="cached-property">
-<h2>cached_property<a class="headerlink" href="#cached-property" title="Permalink to this heading"></a></h2>
+<h2>cached_property<a class="headerlink" href="#cached-property" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@functools</span><span class="o">.</span><span class="n">cached_property</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>It’s <code class="docutils literal notranslate"><span class="pre">&#64;cache</span></code> + <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code>. Transform a method of class into a property whose value is computed once and then cached as a normal attribute for the life of the instance.</p>
 </section>
 <section id="wraps">
-<h2>wraps<a class="headerlink" href="#wraps" title="Permalink to this heading"></a></h2>
+<h2>wraps<a class="headerlink" href="#wraps" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">my_decorator</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
@@ -240,7 +240,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">wraps</span></code> manipulate <code class="docutils literal notranslate"><span class="pre">__name__</span></code> and <code class="docutils literal notranslate"><span class="pre">__doc__</span></code> for function(<code class="docutils literal notranslate"><span class="pre">example</span></code> here).</p>
 </section>
 <section id="partial">
-<h2>partial<a class="headerlink" href="#partial" title="Permalink to this heading"></a></h2>
+<h2>partial<a class="headerlink" href="#partial" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>

@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>itertools &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>itertools &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -140,9 +140,9 @@
            <div itemprop="articleBody">
              
   <section id="itertools">
-<h1>itertools<a class="headerlink" href="#itertools" title="Permalink to this heading"></a></h1>
+<h1>itertools<a class="headerlink" href="#itertools" title="Link to this heading"></a></h1>
 <section id="itertools-count">
-<h2>itertools.count<a class="headerlink" href="#itertools-count" title="Permalink to this heading"></a></h2>
+<h2>itertools.count<a class="headerlink" href="#itertools-count" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">count()</span></code> is a infinite loop yield int number from 0</p>
 <p>Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">count</span>
@@ -157,7 +157,7 @@
 </div>
 </section>
 <section id="itertools-chain">
-<h2>itertools.chain<a class="headerlink" href="#itertools-chain" title="Permalink to this heading"></a></h2>
+<h2>itertools.chain<a class="headerlink" href="#itertools-chain" title="Link to this heading"></a></h2>
 <p>Basically, chain has two method <code class="docutils literal notranslate"><span class="pre">chain()</span></code> and <code class="docutils literal notranslate"><span class="pre">chain.from_iterable()</span></code>
 The only difference is their inputs. The argument of chain() is a <code class="docutils literal notranslate"><span class="pre">*arg</span></code>, seperated by coma, while the <code class="docutils literal notranslate"><span class="pre">from_iterable()</span></code> use iterable, like a list.</p>
 <p>Example:</p>
@@ -171,7 +171,7 @@ The only difference is their inputs. The argument of chain() is a <code class="d
 </div>
 </section>
 <section id="itertools-compress">
-<h2>itertools.compress<a class="headerlink" href="#itertools-compress" title="Permalink to this heading"></a></h2>
+<h2>itertools.compress<a class="headerlink" href="#itertools-compress" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">compress()</span></code> is a data selector, maybe the true name is mask.</p>
 <p>Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">compress</span><span class="p">(</span><span class="s1">&#39;ABCDEF&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>

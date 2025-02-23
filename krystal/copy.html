@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deepcopy vs Shallow copy &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>Deepcopy vs Shallow copy &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -140,9 +140,9 @@
            <div itemprop="articleBody">
              
   <section id="deepcopy-vs-shallow-copy">
-<h1>Deepcopy vs Shallow copy<a class="headerlink" href="#deepcopy-vs-shallow-copy" title="Permalink to this heading"></a></h1>
+<h1>Deepcopy vs Shallow copy<a class="headerlink" href="#deepcopy-vs-shallow-copy" title="Link to this heading"></a></h1>
 <section id="shallow-copy">
-<h2>Shallow copy<a class="headerlink" href="#shallow-copy" title="Permalink to this heading"></a></h2>
+<h2>Shallow copy<a class="headerlink" href="#shallow-copy" title="Link to this heading"></a></h2>
 <p>Shallow copy, means not deep enough, means <em>internal object</em> isn’t copied. Object in both old container and new container will change together.
 <code class="docutils literal notranslate"><span class="pre">obj</span></code> will change together in <code class="docutils literal notranslate"><span class="pre">obj</span></code>, <code class="docutils literal notranslate"><span class="pre">var</span></code> and <code class="docutils literal notranslate"><span class="pre">var_cp</span></code> in below example.</p>
 <div class="admonition tip">
@@ -173,7 +173,7 @@
 </div>
 </section>
 <section id="deep-copy">
-<h2>Deep copy<a class="headerlink" href="#deep-copy" title="Permalink to this heading"></a></h2>
+<h2>Deep copy<a class="headerlink" href="#deep-copy" title="Link to this heading"></a></h2>
 <p>Deepcopy create totally independent object from top to bottom. You could do <code class="docutils literal notranslate"><span class="pre">deepcopy</span></code> by builtin module <code class="docutils literal notranslate"><span class="pre">copy</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
@@ -191,7 +191,7 @@
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
 <p>Reference is just a alternative name of orignal object. Assignment create a reference.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
 <span class="n">var</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>

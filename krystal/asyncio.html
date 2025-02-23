@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>asyncio &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>asyncio &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -145,23 +145,23 @@
            <div itemprop="articleBody">
              
   <section id="asyncio">
-<h1>asyncio<a class="headerlink" href="#asyncio" title="Permalink to this heading"></a></h1>
+<h1>asyncio<a class="headerlink" href="#asyncio" title="Link to this heading"></a></h1>
 <section id="what-is-asyncio">
-<h2>What is asyncio<a class="headerlink" href="#what-is-asyncio" title="Permalink to this heading"></a></h2>
+<h2>What is asyncio<a class="headerlink" href="#what-is-asyncio" title="Link to this heading"></a></h2>
 <p>Async is simply not-sync. Synchronous means in order. So asynchronous menas not in order.
 A synchronous programme logic is as simple as function: Enter it, run it then return it. From outside view of function, functions runs one by one. You need wait one finished to start another one. The previous function block running.
 Well async allow you run multiple coroutine(name for async function) concurrently.</p>
 </section>
 <section id="what-is-coroutine">
-<h2>What is coroutine<a class="headerlink" href="#what-is-coroutine" title="Permalink to this heading"></a></h2>
+<h2>What is coroutine<a class="headerlink" href="#what-is-coroutine" title="Link to this heading"></a></h2>
 <p>Just define function by <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">def</span></code>. Then we call it a coroutine.</p>
 </section>
 <section id="how-to-run-coroutine-concurrently">
-<h2>How to run coroutine concurrently<a class="headerlink" href="#how-to-run-coroutine-concurrently" title="Permalink to this heading"></a></h2>
+<h2>How to run coroutine concurrently<a class="headerlink" href="#how-to-run-coroutine-concurrently" title="Link to this heading"></a></h2>
 <p>By using <code class="docutils literal notranslate"><span class="pre">asyncio.gather</span></code>, coroutines are running concurrently.</p>
 </section>
 <section id="a-minimum-example">
-<h2>A minimum example<a class="headerlink" href="#a-minimum-example" title="Permalink to this heading"></a></h2>
+<h2>A minimum example<a class="headerlink" href="#a-minimum-example" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">worker</span><span class="p">():</span>
@@ -196,12 +196,12 @@ Well async allow you run multiple coroutine(name for async function) concurrentl
 </ul>
 </section>
 <section id="the-reason-of-concurrently">
-<h2>The reason of concurrently<a class="headerlink" href="#the-reason-of-concurrently" title="Permalink to this heading"></a></h2>
+<h2>The reason of concurrently<a class="headerlink" href="#the-reason-of-concurrently" title="Link to this heading"></a></h2>
 <p>Why coroutine ran concurrently, there are two concepts, task and future.</p>
 <p>Task is a bad name. When coroutine become a task, it actually already start running. This is usually being done by <code class="docutils literal notranslate"><span class="pre">create_task</span></code>.</p>
 </section>
 <section id="why-we-need-await">
-<h2>Why we need await<a class="headerlink" href="#why-we-need-await" title="Permalink to this heading"></a></h2>
+<h2>Why we need await<a class="headerlink" href="#why-we-need-await" title="Link to this heading"></a></h2>
 <p>A example without await</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
@@ -237,7 +237,7 @@ Total time elapsed: 0.00 seconds
 </div>
 </section>
 <section id="when-you-use-asyncio">
-<h2>When you use asyncio<a class="headerlink" href="#when-you-use-asyncio" title="Permalink to this heading"></a></h2>
+<h2>When you use asyncio<a class="headerlink" href="#when-you-use-asyncio" title="Link to this heading"></a></h2>
 <p>Solutions choice of CPU bound and IO bound problem.</p>
 <table class="docutils align-default">
 <thead>
@@ -277,7 +277,7 @@ Total time elapsed: 0.00 seconds
 </table>
 </section>
 <section id="design-pattern">
-<h2>Design Pattern<a class="headerlink" href="#design-pattern" title="Permalink to this heading"></a></h2>
+<h2>Design Pattern<a class="headerlink" href="#design-pattern" title="Link to this heading"></a></h2>
 <p>Running Tasks Concurrently</p>
 <p>#1</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">()</span>

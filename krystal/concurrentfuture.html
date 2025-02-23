@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Processing async vs concurrent.future &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>Processing async vs concurrent.future &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -141,12 +141,12 @@
            <div itemprop="articleBody">
              
   <section id="processing-async-vs-concurrent-future">
-<h1>Processing async vs concurrent.future<a class="headerlink" href="#processing-async-vs-concurrent-future" title="Permalink to this heading"></a></h1>
+<h1>Processing async vs concurrent.future<a class="headerlink" href="#processing-async-vs-concurrent-future" title="Link to this heading"></a></h1>
 <p>Usually, processing are Synchronizing and you could only get all result after all of them finished. What if you want to get each value once it finished. Basically, there are two approcaches and they all involve a concept Future.</p>
 <p>If you dont’ understand what is Future, check Future section of this tutorial.</p>
 <p>Examples:</p>
 <section id="diff1-both-have-callback-mechanisms">
-<h2>Diff1: Both have callback mechanisms:<a class="headerlink" href="#diff1-both-have-callback-mechanisms" title="Permalink to this heading"></a></h2>
+<h2>Diff1: Both have callback mechanisms:<a class="headerlink" href="#diff1-both-have-callback-mechanisms" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pool</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">work_process</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
@@ -228,7 +228,7 @@ Diff2: Get result as complete
 </div>
 </section>
 <section id="diff3-get-incompleted-result">
-<h2>Diff3: Get incompleted result<a class="headerlink" href="#diff3-get-incompleted-result" title="Permalink to this heading"></a></h2>
+<h2>Diff3: Get incompleted result<a class="headerlink" href="#diff3-get-incompleted-result" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="ne">TimeoutError</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
 
@@ -278,7 +278,7 @@ Diff2: Get result as complete
 <p>This time, however, even though the timed-out task is still continuing to run and is typing up the process, the with block is not prevented from exiting and thus the program terminates normally. The reason for this is that the context manager for the Pool instance will execute a call to terminate when the block exits and this results in the immediate termination of all processes in the pool. This is contrasted with the context handler for the ProcessPoolExecutor instance, which executes a call to shutdown(wait=True) to await the termination of all processes in the pool when the block it governs exits. The advantage would seem to go to multiprocessing.Pool if you are using context handlers to handle pool termination and the possibility of a timeout exists.</p>
 </section>
 <section id="diff4-block-call">
-<h2>Diff4: Block call:<a class="headerlink" href="#diff4-block-call" title="Permalink to this heading"></a></h2>
+<h2>Diff4: Block call:<a class="headerlink" href="#diff4-block-call" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mp</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">worker_process</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
@@ -297,7 +297,7 @@ Diff2: Get result as complete
 The concurrent.futures.ThreadPoolExecutor class has no such equivalent. You have to issue a submit and then a call to result against the returned Future instance. It’s not a hardship to have to do this, but the pool.apply method is more convenient for the use case where a blocking task submission is appropriate.</p>
 </section>
 <section id="diff5-tie-the-return-value-back-to-the-original-passed-argument">
-<h2>Diff5: tie the return value back to the original passed argument<a class="headerlink" href="#diff5-tie-the-return-value-back-to-the-original-passed-argument" title="Permalink to this heading"></a></h2>
+<h2>Diff5: tie the return value back to the original passed argument<a class="headerlink" href="#diff5-tie-the-return-value-back-to-the-original-passed-argument" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">worker_process</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>

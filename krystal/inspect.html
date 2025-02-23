@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inspect function caller &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>Inspect function caller &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -138,7 +138,7 @@
            <div itemprop="articleBody">
              
   <section id="inspect-function-caller">
-<h1>Inspect function caller<a class="headerlink" href="#inspect-function-caller" title="Permalink to this heading"></a></h1>
+<h1>Inspect function caller<a class="headerlink" href="#inspect-function-caller" title="Link to this heading"></a></h1>
 <p>You write a function <code class="docutils literal notranslate"><span class="pre">func()</span></code> and coorperate with popular package in the way this package subscribe <code class="docutils literal notranslate"><span class="pre">func()</span></code>. You are curious which function of this package actually call your <code class="docutils literal notranslate"><span class="pre">func</span></code>. <code class="docutils literal notranslate"><span class="pre">inspect</span></code> could help you.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This part happen in popular package.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">caller</span><span class="p">():</span>
@@ -171,11 +171,11 @@
 </pre></div>
 </div>
 <section id="package">
-<h2>package<a class="headerlink" href="#package" title="Permalink to this heading"></a></h2>
+<h2>package<a class="headerlink" href="#package" title="Link to this heading"></a></h2>
 <p>I wrote a package called <code class="docutils literal notranslate"><span class="pre">ambush</span></code> to do this. <a class="reference external" href="https://github.com/ke-zhang-rd/ambush">https://github.com/ke-zhang-rd/ambush</a></p>
 <p><strong>Example:</strong></p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">main.py</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">main.py</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">sub</span><span class="w"> </span><span class="kn">import</span> <span class="n">Member</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span>
@@ -196,7 +196,7 @@
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">sub.py</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text">sub.py</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span><span class="w"> </span><span class="nc">Member</span><span class="p">:</span>
 <span class="linenos">2</span>
 <span class="linenos">3</span>

@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Decorator &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>Decorator &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -144,9 +144,9 @@
            <div itemprop="articleBody">
              
   <section id="decorator">
-<h1>Decorator<a class="headerlink" href="#decorator" title="Permalink to this heading"></a></h1>
+<h1>Decorator<a class="headerlink" href="#decorator" title="Link to this heading"></a></h1>
 <section id="syntax">
-<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading"></a></h2>
+<h2>Syntax<a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dec</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
   <span class="o">...</span>
@@ -183,7 +183,7 @@
 <p>It reveals the logic under the hood is calculating function call <code class="docutils literal notranslate"><span class="pre">dec(a=something)</span></code> first which returns the true decorator.</p>
 </section>
 <section id="chained-decorators">
-<h2>Chained decorators<a class="headerlink" href="#chained-decorators" title="Permalink to this heading"></a></h2>
+<h2>Chained decorators<a class="headerlink" href="#chained-decorators" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@outside</span>
 <span class="nd">@inside</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
@@ -196,7 +196,7 @@
 </div>
 </section>
 <section id="write-a-decorator">
-<h2>Write a decorator<a class="headerlink" href="#write-a-decorator" title="Permalink to this heading"></a></h2>
+<h2>Write a decorator<a class="headerlink" href="#write-a-decorator" title="Link to this heading"></a></h2>
 <p>When you try to write a decorator <code class="docutils literal notranslate"><span class="pre">dec</span></code>, Let’s assume: <strong>it accepts a func and returns a func</strong>. So initially, it should looks like:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
   <span class="o">...</span>
@@ -256,7 +256,7 @@
 </div>
 </section>
 <section id="write-a-decorator-with-parameters">
-<h2>Write a decorator with parameters<a class="headerlink" href="#write-a-decorator-with-parameters" title="Permalink to this heading"></a></h2>
+<h2>Write a decorator with parameters<a class="headerlink" href="#write-a-decorator-with-parameters" title="Link to this heading"></a></h2>
 <p>Again, It runs the function with parameters first which return true decorator. So the definition looks like:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
 
@@ -282,7 +282,7 @@
 </div>
 </section>
 <section id="class-decorator">
-<h2>Class decorator<a class="headerlink" href="#class-decorator" title="Permalink to this heading"></a></h2>
+<h2>Class decorator<a class="headerlink" href="#class-decorator" title="Link to this heading"></a></h2>
 <p>Class decorator is nothing more. If a function’s decorator is a function that accepts a function and returns a new function. Then class’s decorator is a function that accepts a class and returns a new class.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
     <span class="k">class</span><span class="w"> </span><span class="nc">newcls</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
@@ -300,7 +300,7 @@
 </div>
 </section>
 <section id="make-any-callable-become-a-decorator">
-<h2>Make any callable become a decorator<a class="headerlink" href="#make-any-callable-become-a-decorator" title="Permalink to this heading"></a></h2>
+<h2>Make any callable become a decorator<a class="headerlink" href="#make-any-callable-become-a-decorator" title="Link to this heading"></a></h2>
 <p>Let’s go back to the beginning of decorator syntax, <code class="docutils literal notranslate"><span class="pre">func</span> <span class="pre">=</span> <span class="pre">dec(func)</span></code>. Here <code class="docutils literal notranslate"><span class="pre">dec</span></code> has to be callable, clearly function is callable, so in above example decorator is a <em>function</em>/<em>class</em> that accepts X and return a new-X. However, pure function is not the only callable thing. When construct a instance, You use <em>CLASS</em> in a callable way.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dec1</span><span class="p">:</span>
 
@@ -379,7 +379,7 @@
 <p>I hope you already understand the very beginning statement, decorator is nothing more than <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">dec(X)</span></code>.</p>
 </section>
 <section id="how-to-drive-your-boss-crazy">
-<h2>How to drive your boss crazy<a class="headerlink" href="#how-to-drive-your-boss-crazy" title="Permalink to this heading"></a></h2>
+<h2>How to drive your boss crazy<a class="headerlink" href="#how-to-drive-your-boss-crazy" title="Link to this heading"></a></h2>
 <p>This is <strong>LEGAL</strong> in Python 3.9:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">@</span><span class="p">(</span><span class="k">lambda</span> <span class="n">call</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">func</span><span class="p">:</span> <span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">call</span><span class="p">)()))(</span><span class="s1">&#39;upper&#39;</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">():</span>

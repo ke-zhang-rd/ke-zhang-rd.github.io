@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Descriptor &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>Descriptor &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -141,9 +141,9 @@
            <div itemprop="articleBody">
              
   <section id="descriptor">
-<h1>Descriptor<a class="headerlink" href="#descriptor" title="Permalink to this heading"></a></h1>
+<h1>Descriptor<a class="headerlink" href="#descriptor" title="Link to this heading"></a></h1>
 <section id="what-is-descriptor">
-<h2>What is descriptor<a class="headerlink" href="#what-is-descriptor" title="Permalink to this heading"></a></h2>
+<h2>What is descriptor<a class="headerlink" href="#what-is-descriptor" title="Link to this heading"></a></h2>
 <p>Descriptor is a instance of class with certain methods. There are two kind of descriptor.</p>
 <ul class="simple">
 <li><p>non-data descriptor: Only <code class="docutils literal notranslate"><span class="pre">__get__</span></code> is defined in class.</p></li>
@@ -151,17 +151,17 @@
 </ul>
 </section>
 <section id="object-attribute-lookup">
-<h2>Object attribute lookup<a class="headerlink" href="#object-attribute-lookup" title="Permalink to this heading"></a></h2>
+<h2>Object attribute lookup<a class="headerlink" href="#object-attribute-lookup" title="Link to this heading"></a></h2>
 <img alt="_images/object-attribute-lookup-v3.png" class="align-center" src="_images/object-attribute-lookup-v3.png" />
 <p><code class="docutils literal notranslate"><span class="pre">Class.__dict__</span></code> is not a real dict but a special dict proxy that will also look in all the base classes.</p>
 <p>For clarity I’ve simplified things to Class.__dict__[‘foobar’] but in reality the __dict__ proxy object is not used, but instead all the logic is inlined: attributes are looked up on the class of the object in the order of the __mro__ via typeobject.c:_PyType_Lookup (called from object.c: _PyObject_GenericGetAttrWithDict).</p>
 </section>
 <section id="when-you-need-descriptor">
-<h2>When you need descriptor<a class="headerlink" href="#when-you-need-descriptor" title="Permalink to this heading"></a></h2>
+<h2>When you need descriptor<a class="headerlink" href="#when-you-need-descriptor" title="Link to this heading"></a></h2>
 <p>Based on above lookup figure, if you need extra operation when you do <code class="docutils literal notranslate"><span class="pre">obj.attr</span></code>, you could use descriptor.</p>
 </section>
 <section id="how-to-write-a-descriptor">
-<h2>How to write a descriptor<a class="headerlink" href="#how-to-write-a-descriptor" title="Permalink to this heading"></a></h2>
+<h2>How to write a descriptor<a class="headerlink" href="#how-to-write-a-descriptor" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># lazy_properties.py</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 

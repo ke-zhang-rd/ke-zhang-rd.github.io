@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>classmethod, staticmethod and property &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>classmethod, staticmethod and property &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -140,10 +140,10 @@
            <div itemprop="articleBody">
              
   <section id="classmethod-staticmethod-and-property">
-<h1>classmethod, staticmethod and property<a class="headerlink" href="#classmethod-staticmethod-and-property" title="Permalink to this heading"></a></h1>
+<h1>classmethod, staticmethod and property<a class="headerlink" href="#classmethod-staticmethod-and-property" title="Link to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">classmethod</span></code>, <code class="docutils literal notranslate"><span class="pre">staticmethod</span></code> and <code class="docutils literal notranslate"><span class="pre">property</span></code> are decorators implemented by the descriptor.</p>
 <section id="classmethod">
-<h2>classmethod<a class="headerlink" href="#classmethod" title="Permalink to this heading"></a></h2>
+<h2>classmethod<a class="headerlink" href="#classmethod" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">classmethod</span></code> is another way to create instances.
 Notice the first parameter of function of classmethod decorated is CLASS name(Student here) which passed by python internal logic.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">:</span>
@@ -171,7 +171,7 @@ Notice the first parameter of function of classmethod decorated is CLASS name(St
 </div>
 </section>
 <section id="staticmethod">
-<h2>staticmethod<a class="headerlink" href="#staticmethod" title="Permalink to this heading"></a></h2>
+<h2>staticmethod<a class="headerlink" href="#staticmethod" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">staticmethod</span></code> is a util function of class but the first argument isn’t self. Notice the function decorated by staticmethodis doesn’t need use <code class="docutils literal notranslate"><span class="pre">self</span></code> to accept instance.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
@@ -190,7 +190,7 @@ Notice the first parameter of function of classmethod decorated is CLASS name(St
 </div>
 </section>
 <section id="property">
-<h2>property<a class="headerlink" href="#property" title="Permalink to this heading"></a></h2>
+<h2>property<a class="headerlink" href="#property" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">property</span></code> make function become a attribute. <code class="docutils literal notranslate"><span class="pre">property</span></code> make function call become a attribute.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">:</span>
 

@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>High performance container &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>High performance container &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -145,9 +145,9 @@
            <div itemprop="articleBody">
              
   <section id="high-performance-container">
-<h1>High performance container<a class="headerlink" href="#high-performance-container" title="Permalink to this heading"></a></h1>
+<h1>High performance container<a class="headerlink" href="#high-performance-container" title="Link to this heading"></a></h1>
 <section id="ordereddict">
-<h2>OrderedDict<a class="headerlink" href="#ordereddict" title="Permalink to this heading"></a></h2>
+<h2>OrderedDict<a class="headerlink" href="#ordereddict" title="Link to this heading"></a></h2>
 <p>It is a <code class="docutils literal notranslate"><span class="pre">dict</span></code> and it has order. It could be constructed by <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="n">od</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">({</span><span class="n">i</span><span class="p">:</span> <span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])})</span>
@@ -174,9 +174,9 @@
 </div>
 </section>
 <section id="queue">
-<h2>queue<a class="headerlink" href="#queue" title="Permalink to this heading"></a></h2>
+<h2>queue<a class="headerlink" href="#queue" title="Link to this heading"></a></h2>
 <section id="priorityqueue">
-<h3>PriorityQueue<a class="headerlink" href="#priorityqueue" title="Permalink to this heading"></a></h3>
+<h3>PriorityQueue<a class="headerlink" href="#priorityqueue" title="Link to this heading"></a></h3>
 <p>PriorityQueue is a container for min heap.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">PriorityQueue</span>
 <span class="n">q</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
@@ -223,7 +223,7 @@
 </div>
 </section>
 <section id="function-based-api-of-heapq">
-<h3>Function based API of heapq<a class="headerlink" href="#function-based-api-of-heapq" title="Permalink to this heading"></a></h3>
+<h3>Function based API of heapq<a class="headerlink" href="#function-based-api-of-heapq" title="Link to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">heapq</span>
 <span class="n">q</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -243,7 +243,7 @@
 </div>
 </section>
 <section id="class-based-api-of-queue">
-<h3>Class based API of Queue<a class="headerlink" href="#class-based-api-of-queue" title="Permalink to this heading"></a></h3>
+<h3>Class based API of Queue<a class="headerlink" href="#class-based-api-of-queue" title="Link to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
 
 <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
@@ -265,7 +265,7 @@
 </section>
 </section>
 <section id="deque">
-<h2>deque<a class="headerlink" href="#deque" title="Permalink to this heading"></a></h2>
+<h2>deque<a class="headerlink" href="#deque" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="s1">&#39;ghi&#39;</span><span class="p">)</span>                 <span class="c1"># make a new deque with three items</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>                   <span class="c1"># iterate over the deque&#39;s elements</span>

@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytest with contest and parameterize &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>pytest with contest and parameterize &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -140,9 +140,9 @@
            <div itemprop="articleBody">
              
   <section id="pytest-with-contest-and-parameterize">
-<h1>pytest with contest and parameterize<a class="headerlink" href="#pytest-with-contest-and-parameterize" title="Permalink to this heading"></a></h1>
+<h1>pytest with contest and parameterize<a class="headerlink" href="#pytest-with-contest-and-parameterize" title="Link to this heading"></a></h1>
 <section id="fixture">
-<h2>fixture<a class="headerlink" href="#fixture" title="Permalink to this heading"></a></h2>
+<h2>fixture<a class="headerlink" href="#fixture" title="Link to this heading"></a></h2>
 <p>fixture is a method to construct shared data for all tests. You may want put fixture in conftest.py which will load for all tests. Here is an example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># conftest.py</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
@@ -160,7 +160,7 @@
 <p>Pytest will load data one by one. It collects two tests for <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">10</span></code> and then <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">20</span></code>.</p>
 </section>
 <section id="fixture-scopes">
-<h2>fixture scopes<a class="headerlink" href="#fixture-scopes" title="Permalink to this heading"></a></h2>
+<h2>fixture scopes<a class="headerlink" href="#fixture-scopes" title="Link to this heading"></a></h2>
 <p>Fixtures are created when first requested by a test, and are destroyed based on their scope:
 function: the default scope, the fixture is destroyed at the end of the test.
 class: the fixture is destroyed during teardown of the last test in the class.
@@ -169,7 +169,7 @@ package: the fixture is destroyed during teardown of the last test in the packag
 session: the fixture is destroyed at the end of the test session.</p>
 </section>
 <section id="parametrize">
-<h2>parametrize<a class="headerlink" href="#parametrize" title="Permalink to this heading"></a></h2>
+<h2>parametrize<a class="headerlink" href="#parametrize" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># test_expectation.py</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 

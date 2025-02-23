@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dunder methods &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>Dunder methods &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -153,13 +153,13 @@
            <div itemprop="articleBody">
              
   <section id="dunder-methods">
-<h1>Dunder methods<a class="headerlink" href="#dunder-methods" title="Permalink to this heading"></a></h1>
+<h1>Dunder methods<a class="headerlink" href="#dunder-methods" title="Link to this heading"></a></h1>
 <section id="slot">
-<h2>__slot__<a class="headerlink" href="#slot" title="Permalink to this heading"></a></h2>
+<h2>__slot__<a class="headerlink" href="#slot" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://towardsdatascience.com/understand-slots-in-python-e3081ef5196d">https://towardsdatascience.com/understand-slots-in-python-e3081ef5196d</a></p>
 </section>
 <section id="doc">
-<h2>__doc__<a class="headerlink" href="#doc" title="Permalink to this heading"></a></h2>
+<h2>__doc__<a class="headerlink" href="#doc" title="Link to this heading"></a></h2>
 <p>Show the docstring inside triple quotes <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;...&quot;&quot;&quot;</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># mymodule.py</span>
 <span class="sd">&quot;&quot;&quot;This is the module docstring.&quot;&quot;&quot;</span>
@@ -178,7 +178,7 @@
 </div>
 </section>
 <section id="str-and-repr">
-<h2>__str__ and __repr__<a class="headerlink" href="#str-and-repr" title="Permalink to this heading"></a></h2>
+<h2>__str__ and __repr__<a class="headerlink" href="#str-and-repr" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>class Point:</dt><dd><dl class="simple">
 <dt>def __init__(self, x, y):</dt><dd><p>self.x, self.y = x, y</p>
@@ -215,13 +215,13 @@ Point(x=3, y=4) from __str__</p>
 <p>eval and repr are conjugate. repr shows the argument’s type info(quote of str).</p>
 </section>
 <section id="attributs-related">
-<h2>Attributs related<a class="headerlink" href="#attributs-related" title="Permalink to this heading"></a></h2>
+<h2>Attributs related<a class="headerlink" href="#attributs-related" title="Link to this heading"></a></h2>
 </section>
 <section id="getattribute">
-<h2>__getattribute__<a class="headerlink" href="#getattribute" title="Permalink to this heading"></a></h2>
+<h2>__getattribute__<a class="headerlink" href="#getattribute" title="Link to this heading"></a></h2>
 <p>Check lookup chain on this document. All attribute/attr related dunder methods(__getattribute__, __setattr__, __getattr__ and __delattr__) are related to attributes lookup by <code class="docutils literal notranslate"><span class="pre">.</span></code> convention not <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
 <section id="setattr">
-<h3>__setattr__<a class="headerlink" href="#setattr" title="Permalink to this heading"></a></h3>
+<h3>__setattr__<a class="headerlink" href="#setattr" title="Link to this heading"></a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># this example uses __setattr__ to dynamically change attribute value to uppercase</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">Frob</span><span class="p">:</span>
 <span class="gp">... </span>   <span class="k">def</span><span class="w"> </span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -236,11 +236,11 @@ Point(x=3, y=4) from __str__</p>
 </section>
 </section>
 <section id="getattr">
-<h2>__getattr__<a class="headerlink" href="#getattr" title="Permalink to this heading"></a></h2>
+<h2>__getattr__<a class="headerlink" href="#getattr" title="Link to this heading"></a></h2>
 <p>Gets called when the item is not found via __getattribute__</p>
 </section>
 <section id="delattr">
-<h2>__delattr__<a class="headerlink" href="#delattr" title="Permalink to this heading"></a></h2>
+<h2>__delattr__<a class="headerlink" href="#delattr" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>class foo():</dt><dd><dl class="simple">
 <dt>def __delattr__(self, name):</dt><dd><p>print(name)
@@ -251,7 +251,7 @@ super().__delattr__(name)</p>
 </dl>
 </section>
 <section id="getitem">
-<h2>__getitem__<a class="headerlink" href="#getitem" title="Permalink to this heading"></a></h2>
+<h2>__getitem__<a class="headerlink" href="#getitem" title="Link to this heading"></a></h2>
 <p>Get called when look up by [] like a dict.</p>
 <p>Three dots(Ellipsis)</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">foo</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
@@ -271,7 +271,7 @@ f.xyz
 AttributeError: ‘foo’ object has no attribute ‘xyz’</p>
 </section>
 <section id="next-and-iter">
-<h2>__next__ and __iter__<a class="headerlink" href="#next-and-iter" title="Permalink to this heading"></a></h2>
+<h2>__next__ and __iter__<a class="headerlink" href="#next-and-iter" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>__iter__ return the iterable object(the whole things, list, tuple or generator).</p></li>
 <li><p>__next__ return one element.</p></li>
@@ -306,9 +306,9 @@ In the simplest case the iterable will implement __next__ itself and return self
 <p>__init_subclass__</p>
 </section>
 <section id="comparison-methods">
-<h2>Comparison methods<a class="headerlink" href="#comparison-methods" title="Permalink to this heading"></a></h2>
+<h2>Comparison methods<a class="headerlink" href="#comparison-methods" title="Link to this heading"></a></h2>
 <section id="hash">
-<h3>__hash__<a class="headerlink" href="#hash" title="Permalink to this heading"></a></h3>
+<h3>__hash__<a class="headerlink" href="#hash" title="Link to this heading"></a></h3>
 <p>Called by built-in function hash() and for object comparison. Usually it defined with __eq__ together.</p>
 <p>object.__eq__(self, other)
 object.__lt__(self, other)

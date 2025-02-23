@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Metaclass &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>Metaclass &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -143,7 +143,7 @@
            <div itemprop="articleBody">
              
   <section id="metaclass">
-<h1>Metaclass<a class="headerlink" href="#metaclass" title="Permalink to this heading"></a></h1>
+<h1>Metaclass<a class="headerlink" href="#metaclass" title="Link to this heading"></a></h1>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>In this section, we use name <em>class</em> if we refer to non-metaclass. We use <em>metaclass</em> for metaclass.</p>
@@ -158,7 +158,7 @@
 <p>is an example of <strong>meta-sentence</strong> referencing themselves in this way.</p>
 </div>
 <section id="everything-is-object">
-<h2>Everything is Object<a class="headerlink" href="#everything-is-object" title="Permalink to this heading"></a></h2>
+<h2>Everything is Object<a class="headerlink" href="#everything-is-object" title="Link to this heading"></a></h2>
 <p>In python, everything is object. So, classes are objects. The question is what is the class of class. The answer is <em>metaclass</em>. Object is an instance of class. Class is an instance of metaclass. Moreover, class is first-class object in python. When we try to control the construction and initializion of object, we define <code class="docutils literal notranslate"><span class="pre">__new__</span></code> and <code class="docutils literal notranslate"><span class="pre">__init__</span></code> in class. Therefore, to control classes construction and initializion, we need those two methods in metaclass.</p>
 <p>By default, <cite>type</cite> is the metaclass of all. When construct class, <code class="docutils literal notranslate"><span class="pre">type</span></code>’s <code class="docutils literal notranslate"><span class="pre">__new__</span></code> and <code class="docutils literal notranslate"><span class="pre">__init__</span></code> should be called. If keyword <code class="docutils literal notranslate"><span class="pre">metaclass</span></code> is used, then metaclasses <code class="docutils literal notranslate"><span class="pre">__new__</span></code> and <code class="docutils literal notranslate"><span class="pre">__init__</span></code> will be used. Usually, metaclass also inherits from <code class="docutils literal notranslate"><span class="pre">type</span></code> so if some methods are lacking, it’s ok.</p>
 <p>Here we create a <code class="docutils literal notranslate"><span class="pre">Meta</span></code> as metaclass which inherits from <code class="docutils literal notranslate"><span class="pre">type</span></code>. In <code class="docutils literal notranslate"><span class="pre">__new__</span></code> function which actually creates the instance of Meta(an actual class), It creates a class, sets an <code class="docutils literal notranslate"><span class="pre">attr</span></code> with value and returns it.</p>
@@ -179,7 +179,7 @@
 </div>
 </section>
 <section id="classes-construction-and-initializion">
-<h2>Classes Construction and Initializion<a class="headerlink" href="#classes-construction-and-initializion" title="Permalink to this heading"></a></h2>
+<h2>Classes Construction and Initializion<a class="headerlink" href="#classes-construction-and-initializion" title="Link to this heading"></a></h2>
 <p>Most real-life metaclasses will probably override just one of <code class="docutils literal notranslate"><span class="pre">__new__</span></code> and <code class="docutils literal notranslate"><span class="pre">__init__</span></code>. <code class="docutils literal notranslate"><span class="pre">__new__</span></code> should be implemented when you want to control the creation of a new object (class in our case), <code class="docutils literal notranslate"><span class="pre">__init__</span></code> should be implemented when you want to control the initialization of the new object(class in our case) after it has been created.</p>
 <p>Here’s a more concrete example that should demonstrate what’s going on:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
@@ -238,7 +238,7 @@ It’s important to note here that these print-outs are actually done at class <
 </div>
 </section>
 <section id="classes-call">
-<h2>Classes Call<a class="headerlink" href="#classes-call" title="Permalink to this heading"></a></h2>
+<h2>Classes Call<a class="headerlink" href="#classes-call" title="Link to this heading"></a></h2>
 <p>Another metaclass method that’s occasionally useful to override is <code class="docutils literal notranslate"><span class="pre">__call__</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
@@ -264,14 +264,14 @@ MyKlass object with a=1, b=2
 <p>Here <code class="docutils literal notranslate"><span class="pre">MyMeta.__call__</span></code> just notifies us of the arguments and delegates to <code class="docutils literal notranslate"><span class="pre">type.__call__</span></code>. But it can also interfere in the process, affecting the way objects of the class are created.</p>
 </section>
 <section id="comparision-between-new-init-with-call">
-<h2>Comparision between __new__/__init__ with __call__<a class="headerlink" href="#comparision-between-new-init-with-call" title="Permalink to this heading"></a></h2>
+<h2>Comparision between __new__/__init__ with __call__<a class="headerlink" href="#comparision-between-new-init-with-call" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">__call__</span></code>: Reorganize, keep or delete result of instance. E,g Singleton implementation. If you need a singleton object which is an instance of class. You need some control when doing Class() which call <code class="docutils literal notranslate"><span class="pre">__call__</span></code> in metaclass.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">__new__</span></code> or <code class="docutils literal notranslate"><span class="pre">__init__</span></code>: Add methods to Class definition. Popular methods are get, set del etc.</p></li>
 </ul>
 </section>
 <section id="complete-example">
-<h2>Complete Example<a class="headerlink" href="#complete-example" title="Permalink to this heading"></a></h2>
+<h2>Complete Example<a class="headerlink" href="#complete-example" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Singleton</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
     <span class="n">_instances</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
@@ -346,7 +346,7 @@ MyKlass object with a=1, b=2
 </div>
 </section>
 <section id="object-create-sequence">
-<span id="id1"></span><h2>Object Create Sequence<a class="headerlink" href="#object-create-sequence" title="Permalink to this heading"></a></h2>
+<span id="id1"></span><h2>Object Create Sequence<a class="headerlink" href="#object-create-sequence" title="Link to this heading"></a></h2>
 <p>In above example, when running <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">Foo()</span></code>. The <code class="docutils literal notranslate"><span class="pre">super</span></code> in <code class="docutils literal notranslate"><span class="pre">metaclass</span></code> called <code class="docutils literal notranslate"><span class="pre">__call__</span></code> of <code class="docutils literal notranslate"><span class="pre">type</span></code>. The code above reveals what it actually does:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">type</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>

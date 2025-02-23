@@ -1,12 +1,12 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Packaging: What, Why and How &mdash; Krystal Python 0.post1+gfd53bb7 documentation</title>
+  <title>Packaging: What, Why and How &mdash; Krystal Python 0.post1+gab6ffe7 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -15,9 +15,9 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=59fbb064"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=dca901b2"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -147,9 +147,9 @@
            <div itemprop="articleBody">
              
   <section id="packaging-what-why-and-how">
-<h1>Packaging: What, Why and How<a class="headerlink" href="#packaging-what-why-and-how" title="Permalink to this heading"></a></h1>
+<h1>Packaging: What, Why and How<a class="headerlink" href="#packaging-what-why-and-how" title="Link to this heading"></a></h1>
 <section id="what-actually-happens-when-a-package-has-been-determined-to-install">
-<h2>What actually happens when a package has been determined to install<a class="headerlink" href="#what-actually-happens-when-a-package-has-been-determined-to-install" title="Permalink to this heading"></a></h2>
+<h2>What actually happens when a package has been determined to install<a class="headerlink" href="#what-actually-happens-when-a-package-has-been-determined-to-install" title="Link to this heading"></a></h2>
 <p>It goes to pypi server and search if there is any distribution available. There are two types of distribution</p>
 <ul class="simple">
 <li><p>source distribution</p></li>
@@ -159,16 +159,16 @@
 platform dependent but faster in performance.</p>
 </section>
 <section id="what-are-wheels">
-<h2>What are wheels<a class="headerlink" href="#what-are-wheels" title="Permalink to this heading"></a></h2>
+<h2>What are wheels<a class="headerlink" href="#what-are-wheels" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://realpython.com/python-wheels/">https://realpython.com/python-wheels/</a></p>
 </section>
 <section id="why-build-python-package-is-hard">
-<h2>Why build python package is hard<a class="headerlink" href="#why-build-python-package-is-hard" title="Permalink to this heading"></a></h2>
+<h2>Why build python package is hard<a class="headerlink" href="#why-build-python-package-is-hard" title="Link to this heading"></a></h2>
 <p>There may be a time in your development career where you need to author a package that extends Python w/ C or C++. In such a case your Python package needs to go through a compilation process, which converts C or C++ to binaries that work for a specific target system. This becomes really tedious when you think about how many flavors and versions of Linux there are. Building a separate binary for Red Hat, SUSE, Ubuntu, etc… Ugh so tiring.</p>
 <p>Look build for windows and mac is eaiser by PEP513 <a class="reference external" href="https://peps.python.org/pep-0513/">https://peps.python.org/pep-0513/</a></p>
 </section>
 <section id="how-to-include-c-files-header-source-and-libraries">
-<h2>How to include c++ files(header, source and libraries)<a class="headerlink" href="#how-to-include-c-files-header-source-and-libraries" title="Permalink to this heading"></a></h2>
+<h2>How to include c++ files(header, source and libraries)<a class="headerlink" href="#how-to-include-c-files-header-source-and-libraries" title="Link to this heading"></a></h2>
 <p>This is covered in here <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#configuring-the-c-build">https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#configuring-the-c-build</a></p>
 <p>Those files should be listed in setup.py, usually in Extension method of setuptools.
 <em>#include &lt;Python.h&gt;</em> should be added as mentioned here <a class="reference external" href="https://docs.python.org/3/c-api/intro.html">https://docs.python.org/3/c-api/intro.html</a>
@@ -177,7 +177,7 @@ better to add in a wrapper layer which wrap pure c++ files inside.</p>
 <p>WARNING</p>
 <p>Note that when using setuptools, you should import it before Cython, otherwise, both might disagree about the class to use here.</p>
 <section id="method-1">
-<h3>Method 1<a class="headerlink" href="#method-1" title="Permalink to this heading"></a></h3>
+<h3>Method 1<a class="headerlink" href="#method-1" title="Link to this heading"></a></h3>
 <p>Use <em>include_path</em> of <em>cythonize</em> and by using C level API like</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">include_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">get_include</span><span class="p">()]</span>
 </pre></div>
@@ -185,7 +185,7 @@ better to add in a wrapper layer which wrap pure c++ files inside.</p>
 <p>Note you need this only if you need cimport numpy</p>
 </section>
 <section id="method-2">
-<h3>Method 2<a class="headerlink" href="#method-2" title="Permalink to this heading"></a></h3>
+<h3>Method 2<a class="headerlink" href="#method-2" title="Link to this heading"></a></h3>
 <p>Use Extension method of setuptools to get the c++ files including, sources, include_dirs, libraries, and library_dirs.
 A general example of all those files config example could be found <a class="reference external" href="https://github.com/numpy/numpy/blob/b62c541463a9c7ed011436311ff6df9408db6651/site.cfg.example">https://github.com/numpy/numpy/blob/b62c541463a9c7ed011436311ff6df9408db6651/site.cfg.example</a></p>
 <blockquote>
@@ -236,7 +236,7 @@ setuptools are the successor of distutils and almost sharing 90%API and features
 </section>
 </section>
 <section id="how-does-wheel-join-your-packaging-distribution">
-<h2>How does wheel join your packaging distribution<a class="headerlink" href="#how-does-wheel-join-your-packaging-distribution" title="Permalink to this heading"></a></h2>
+<h2>How does wheel join your packaging distribution<a class="headerlink" href="#how-does-wheel-join-your-packaging-distribution" title="Link to this heading"></a></h2>
 <p>The tar.gz tarball that pip retrieves is a source distribution, or sdist, rather than a wheel. In some ways, a sdist is the opposite of a wheel.</p>
 <p>A developer perspective</p>
 <p>Create source distribution sdist
@@ -244,7 +244,7 @@ $ python setup.py sdist</p>
 <p>A user perspective</p>
 </section>
 <section id="cibuildwheel">
-<h2>cibuildwheel<a class="headerlink" href="#cibuildwheel" title="Permalink to this heading"></a></h2>
+<h2>cibuildwheel<a class="headerlink" href="#cibuildwheel" title="Link to this heading"></a></h2>
 <p>all builds are running on same CENTOS container. So any dependency you installed are shared by all builds. One build match one wheel, something
 like a linux_cp39, linux_cp310 …</p>
 <p>before-all: running once before all builds</p>
